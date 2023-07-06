@@ -1,0 +1,15 @@
+#Caravel
+type = light_ship
+trigger = { 
+				has_country_flag = lightship_mod_f
+}
+hull_size = 13
+base_cannons = 23
+blockade = 4
+sail_speed = 8 
+trigger = {
+      NOT = { tag = POR }
+}
+trade_power = 3
+
+sprite_level = 2

@@ -1,0 +1,49 @@
+namespace = cu_test
+
+#Show Current Seed
+country_event = {
+	id = cu_test.1
+	title = "cu_test.1.t"
+	desc = "cu_test.1.d"
+	picture = PRAYING_eventPicture
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			cu_random_number = yes
+		}
+	}
+	option = {
+		name = "cu_test.1.a"
+		
+	}
+}
+
+#Set game year
+country_event = {
+	id = cu_test.2
+	title = "EVT_HIDDEN"
+	desc = "EVT_HIDDEN"
+	picture = PRAYING_eventPicture
+	is_triggered_only = yes
+	option = {
+		name = "EVT_HIDDEN"
+		every_country = {
+		    set_variable = { which = cu_year value = 1478 }
+			cu_calc_tech_cost = yes
+		}
+	}
+}
+
+#Advance DIP Tech
+country_event = {
+	id = cu_test.3
+	title = "EVT_HIDDEN"
+	desc = "EVT_HIDDEN"
+	picture = PRAYING_eventPicture
+	is_triggered_only = yes
+	option = {
+		name = "EVT_HIDDEN"
+		set_variable = { which = dt_asy value = 0 }
+		cu_finish_dip_tech = yes
+	}
+}

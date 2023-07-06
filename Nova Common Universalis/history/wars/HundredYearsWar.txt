@@ -1,0 +1,31 @@
+name = "Hundred Years War"
+war_goal = {
+	type = wargoal_hyw
+	casus_belli = cb_hyw
+	tag = FRA 
+}
+
+
+
+# Reset to game start
+1435.1.1 = {
+	add_defender = FRA
+	add_attacker = ENG
+	add_defender = PRO
+	add_defender = ORL
+	add_defender = FOI
+	add_defender = BOU
+	add_defender = AUV
+	add_defender = AMG
+}
+
+1444.1.1 = {
+	rem_defender = FRA
+	rem_attacker = ENG
+	rem_defender = PRO
+	rem_defender = ORL
+	rem_defender = FOI
+	rem_defender = BOU
+	rem_defender = AUV
+	rem_defender = AMG
+}

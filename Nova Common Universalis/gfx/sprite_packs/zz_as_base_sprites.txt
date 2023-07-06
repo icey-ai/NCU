@@ -1,0 +1,291 @@
+sa_base_sprites = {
+	country_trigger = {
+		OR = {			
+			tag = ROC
+			tag = SNG
+			tag = ASM
+			tag = LFA	
+		}
+	}
+	
+	sprite_infantry = {		
+		1 = TPA_INFANTRY_2
+		2 = TPA_INFANTRY_3
+		3 = TPA_INFANTRY_4
+	}
+
+	sprite_cavalry = {		
+		1 = TPA_CAVALRY_2
+		2 = TPA_CAVALRY_3
+		3 = TPA_CAVALRY_4
+	}
+
+	sprite_artillery = {		
+		1 = TPA_ARTILLERY_2
+		2 = TPA_ARTILLERY_3
+		3 = TPA_ARTILLERY_4
+	}
+}
+
+tib_sprite_pack = {
+	# Tests against every tag in game
+	country_trigger = {
+		tag = BXA
+	}
+
+	sprite_infantry = {
+		0 = TIB_INFANTRY_1
+		1 = TIB_INFANTRY_2
+		2 = TIB_INFANTRY_3
+		3 = TIB_INFANTRY_4
+	}
+
+	sprite_cavalry = {
+		0 = TIB_CAVALRY_1
+		1 = TIB_CAVALRY_2
+		2 = TIB_CAVALRY_3
+		3 = TIB_CAVALRY_4
+	}
+
+	sprite_artillery = {
+		0 = TIB_ARTILLERY_1
+		1 = TIB_ARTILLERY_2
+		2 = TIB_ARTILLERY_3
+		3 = TIB_ARTILLERY_4
+	}
+}
+
+tim_sprite_pack = {
+	# Tests against every tag in game
+	country_trigger = {
+		tag = KHT
+	}
+
+	sprite_infantry = {
+		0 = TIM_INFANTRY_1
+		1 = TIM_INFANTRY_2
+		2 = TIM_INFANTRY_3
+		3 = TIM_INFANTRY_4
+	}
+
+	sprite_cavalry = {
+		0 = TIM_CAVALRY_1
+		1 = TIM_CAVALRY_2
+		2 = TIM_CAVALRY_3
+		3 = TIM_CAVALRY_4
+	}
+
+	sprite_artillery = {
+		0 = TIM_ARTILLERY_1
+		1 = TIM_ARTILLERY_2
+		2 = TIM_ARTILLERY_3
+		3 = TIM_ARTILLERY_4
+	}
+}
+
+mng_sprite_pack = {
+	# Tests against every tag in game
+	country_trigger = {
+		OR = {
+			tag = CHN
+			tag = CWE
+			tag = CZH			
+			tag = CHF			
+		}
+	}
+
+	sprite_infantry = {
+		0 = MNG_INFANTRY_1
+		1 = MNG_INFANTRY_2
+		2 = MNG_INFANTRY_3
+		3 = MNG_INFANTRY_4
+	}
+
+	sprite_cavalry = {
+		0 = MNG_CAVALRY_1
+		1 = MNG_CAVALRY_2
+		2 = MNG_CAVALRY_3
+		3 = MNG_CAVALRY_4
+	}
+
+	sprite_artillery = {
+		0 = MNG_ARTILLERY_1
+		1 = MNG_ARTILLERY_2
+		2 = MNG_ARTILLERY_3
+		3 = MNG_ARTILLERY_4
+	}
+}
+
+kor_sprite_pack = {
+	# Tests against every tag in game
+	country_trigger = {
+		tag = KHN
+	}
+
+	sprite_infantry = {
+		0 = KOR_INFANTRY_1
+		1 = KOR_INFANTRY_2
+		2 = KOR_INFANTRY_3
+		3 = KOR_INFANTRY_4
+	}
+
+	sprite_cavalry = {
+		0 = KOR_CAVALRY_1
+		1 = KOR_CAVALRY_2
+		2 = KOR_CAVALRY_3
+		3 = KOR_CAVALRY_4
+	}
+
+	sprite_artillery = {
+		0 = KOR_ARTILLERY_1
+		1 = KOR_ARTILLERY_2
+		2 = KOR_ARTILLERY_3
+		3 = KOR_ARTILLERY_4
+	}
+}
+
+mch_sprite_pack = {
+	# Tests against every tag in game
+	country_trigger = {
+		tag = JNG
+	}
+
+	sprite_infantry = {
+		0 = MCH_INFANTRY_1
+		1 = MCH_INFANTRY_2
+		2 = MCH_INFANTRY_3
+		3 = MCH_INFANTRY_4
+	}
+
+	sprite_cavalry = {
+		0 = MCH_CAVALRY_1
+		1 = MCH_CAVALRY_2
+		2 = MCH_CAVALRY_3
+		3 = MCH_CAVALRY_4
+	}
+
+	sprite_artillery = {
+		0 = MCH_ARTILLERY_1
+		1 = MCH_ARTILLERY_2
+		2 = MCH_ARTILLERY_3
+		3 = MCH_ARTILLERY_4
+	}
+}
+
+azt_sprite_pack = {
+	# Tests against every tag in game
+	country_trigger = {
+		OR = {
+			tag = AZE
+			tag = AZC			
+		}
+	}
+
+	sprite_infantry = {
+		0 = AZT_INFANTRY_1
+		1 = AZT_INFANTRY_2
+		2 = AZT_INFANTRY_3
+		3 = AZT_INFANTRY_4
+	}
+
+	sprite_cavalry = {
+		0 = AZT_CAVALRY_1
+		1 = AZT_CAVALRY_2
+		2 = AZT_CAVALRY_3
+		3 = AZT_CAVALRY_4
+	}
+
+	sprite_artillery = {
+		0 = AZT_ARTILLERY_1
+		1 = AZT_ARTILLERY_2
+		2 = AZT_ARTILLERY_3
+		3 = AZT_ARTILLERY_4
+	}
+}
+
+may_sprite_pack = {
+	# Tests against every tag in game
+	country_trigger = {
+		tag = IRF
+	}
+
+	sprite_infantry = {
+		0 = MAY_INFANTRY_1
+		1 = MAY_INFANTRY_2
+		2 = MAY_INFANTRY_3
+		3 = MAY_INFANTRY_4
+	}
+
+	sprite_cavalry = {
+		0 = MAY_CAVALRY_1
+		1 = MAY_CAVALRY_2
+		2 = MAY_CAVALRY_3
+		3 = MAY_CAVALRY_4
+	}
+
+	sprite_artillery = {
+		0 = MAY_ARTILLERY_1
+		1 = MAY_ARTILLERY_2
+		2 = MAY_ARTILLERY_3
+		3 = MAY_ARTILLERY_4
+	}
+}
+
+inc_sprite_pack = {
+	# Tests against every tag in game
+	country_trigger = {
+		OR = {
+			tag = ICN
+			tag = ICC			
+		}
+	}
+
+	sprite_infantry = {
+		0 = INC_INFANTRY_1
+		1 = INC_INFANTRY_2
+		2 = INC_INFANTRY_3
+		3 = INC_INFANTRY_4
+	}
+
+	sprite_cavalry = {
+		0 = INC_CAVALRY_1
+		1 = INC_CAVALRY_2
+		2 = INC_CAVALRY_3
+		3 = INC_CAVALRY_4
+	}
+
+	sprite_artillery = {
+		0 = INC_ARTILLERY_1
+		1 = INC_ARTILLERY_2
+		2 = INC_ARTILLERY_3
+		3 = INC_ARTILLERY_4
+	}
+}
+
+rom_sprite_pack = {
+	# Tests against every tag in game
+	country_trigger = {
+		tag = BRM
+	}
+
+	sprite_infantry = {
+		0 = ROM_INFANTRY_1
+		1 = ROM_INFANTRY_2
+		2 = ROM_INFANTRY_3
+		3 = ROM_INFANTRY_4
+	}
+
+	sprite_cavalry = {
+		0 = ROM_CAVALRY_1
+		1 = ROM_CAVALRY_2
+		2 = ROM_CAVALRY_3
+		3 = ROM_CAVALRY_4
+	}
+
+	sprite_artillery = {
+		0 = ROM_ARTILLERY_1
+		1 = ROM_ARTILLERY_2
+		2 = ROM_ARTILLERY_3
+		3 = ROM_ARTILLERY_4
+	}
+}

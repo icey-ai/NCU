@@ -1,0 +1,49 @@
+namespace = cuculture
+province_event = {
+	id = cuculture.1
+	title = "cuestate_titl"
+	desc = "cuestate_desc"
+	picture = COLONIZATION_eventPicture
+	is_triggered_only = yes
+	hidden = yes
+	option = {
+		name = "EVT_WEL_OPTI"
+		cu_calc_base_cultural_acceptance = yes
+		cu_do_nationalism_growth = yes
+		if = {
+			limit = { cu_not_terr_trigger = yes }
+			cu_calc_cultural_acceptance_growth = yes
+		
+			#Cultural Assimilation Growth
+			if = {
+				limit = { 
+					has_province_modifier = cu_cultural_assimilation 
+				}
+				cu_cultural_assimilation_growth = yes
+			}
+			else_if = {
+				limit = {
+					has_owner_culture = no
+				}
+				add_province_modifier = {
+					name = cu_cultural_assimilation
+					duration = -1
+				}
+				cu_cultural_assimilation_growth = yes
+			}
+			else_if = { #In case of bugs
+				limit = {
+					has_owner_culture = yes
+					OR = {
+						has_province_modifier = cu_cultural_assimilation 
+						has_province_modifier = cu_immigration
+					}
+				}
+				remove_province_modifier = cu_cultural_assimilation 
+				remove_province_modifier = cu_immigration
+			}
+			
+		}
+	}
+}
+		

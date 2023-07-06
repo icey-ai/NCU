@@ -1,0 +1,22 @@
+government = monarchy
+add_government_reform = feudalism_reform
+government_rank = 1
+primary_culture = venetian
+religion = catholic
+add_accepted_culture = greek
+add_accepted_culture = dalmatian
+technology_group = western
+capital = 3003 # Chalcis
+fixed_capital = 3003 # Cannot move capital away from this province & no power cost to move to it
+historical_friend = VEN
+add_army_professionalism = 0.05
+
+1426.4.5 = {
+	monarch = {
+		name = "Crusino Sommaripa"
+		birth_date = 1400.1.1
+		adm = 2
+		dip = 2
+		mil = 2
+	}
+}

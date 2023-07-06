@@ -1,0 +1,17 @@
+#replace
+sandomierz_area;lublin
+malopolska_area;krakow
+west_dniepr_area;kyiv
+east_dniepr_area;poltava
+iraq_e_ajam_area;Markazi
+southern_morocco_area;agadir
+marrekesh_area;marrekesh-safi
+northern_morocco_area;rif
+western_morocco_area;rabat
+khorat_area;isan
+kashgaria_area;Kashgar
+ghor_area;south;Afghanistan
+transcaspia_area;charjuy
+kyzylkum_area;bukhara
+transoxiana_area;samarkand
+termez_area;qashqadaryo

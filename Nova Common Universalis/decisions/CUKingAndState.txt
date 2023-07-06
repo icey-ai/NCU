@@ -1,0 +1,400 @@
+country_decisions = {
+	
+	#Estates
+    bind_with_nobles = {
+		potential = {
+			influence_ideas = 2
+			OR = {
+				has_estate = estate_nobles
+				AND = {
+					has_estate = estate_qinwang
+					NOT = { has_estate_privilege = estate_qinwang_benefits }
+				}
+			}
+		}
+		allow = {
+			years_of_income = 0.5
+			prestige = 10
+			mil_power = 50
+			cu_not_bind_with_estate = yes
+		}
+		effect = {
+		    add_years_of_income = -0.5
+			add_prestige = -10
+			add_mil_power = -50
+			add_country_modifier = {
+				name = cu_bind_with_estate_nob
+				duration = 3650
+			}
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				NOT = { years_of_income = 0.7 }				
+			}
+			modifier = {
+				factor = 0
+				estate_loyalty = {
+					estate = estate_nobles
+					loyalty = 40
+				}
+			}
+                        
+		}		
+	}
+	bind_with_church = {
+		potential = {
+			influence_ideas = 2
+			OR = {
+				has_estate = estate_church
+				has_estate = estate_shizu
+			}
+		}
+		allow = {
+			years_of_income = 0.5
+			prestige = 10
+			adm_power = 50
+			cu_not_bind_with_estate = yes
+		}
+		effect = {
+		    add_years_of_income = -0.5
+			add_prestige = -10
+			add_adm_power = -50
+			if = {
+				limit = { has_estate = estate_church }
+				add_country_modifier = {
+					name = cu_bind_with_estate_chu
+					duration = 3650
+				}
+			}
+			else = {
+				add_country_modifier = {
+					name = cu_bind_with_estate_shi
+					duration = 3650
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				NOT = { years_of_income = 0.7 }				
+			}
+			modifier = {
+				factor = 0
+				estate_loyalty = {
+					estate = estate_church
+					loyalty = 40
+				}
+			}
+                        
+		}		
+	}
+	bind_with_burghers = {
+		potential = {
+			influence_ideas = 2
+			has_estate = estate_burghers
+		}
+		allow = {
+			years_of_income = 0.5
+			prestige = 10
+			cu_not_bind_with_estate = yes
+		}
+		effect = {
+		    add_years_of_income = -0.5
+			add_prestige = -10
+			add_dip_power = -50
+			add_country_modifier = {
+				name = cu_bind_with_estate_bur
+				duration = 3650
+			}
+			
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				NOT = { years_of_income = 0.7 }				
+			}
+			modifier = {
+				factor = 0
+				estate_loyalty = {
+					estate = estate_burghers
+					loyalty = 40
+				}
+			}
+                        
+		}		
+	}
+	bind_with_tribes = {
+		potential = {
+			influence_ideas = 2
+			cu_has_estate_nomadic_tribes = yes
+		}
+		allow = {
+			years_of_income = 0.5
+			prestige = 10
+			mil_power = 5
+			adm_power = 5
+			dip_power = 5
+			cu_not_bind_with_estate = yes
+		}
+		effect = {
+		    add_years_of_income = -0.5
+			add_prestige = -10
+			add_adm_power = -5
+			add_dip_power = -5
+			add_mil_power = -5
+			add_country_modifier = {
+				name = cu_bind_with_estate_tri
+				duration = 3650
+			}
+			
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				NOT = { years_of_income = 0.7 }				
+			}
+			modifier = {
+				factor = 0
+				estate_loyalty = {
+					estate = estate_nomadic_tribes
+					loyalty = 40
+				}
+			}
+                        
+		}		
+	}
+
+	cu_tech_panel = {
+	    potential = {
+			ai = no #Human Player does this in technology panel instead
+		}
+	    allow = {
+	        NOT = { has_country_flag = cu_tech_panel_open }
+		}
+		effect = {
+		   hidden_effect = {
+		         cu_calc_tech_cost = yes
+		   }
+		   set_country_flag = cu_tech_panel_open
+		   country_event = { id = tech.4 }
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	#Only for ais
+	court_decisions = {
+		potential = {
+			government = monarchy
+            NOT = { has_reform =  elective_monarchy }
+            NOT = { has_country_flag = enacting_court_decisions }
+			ai = yes
+		}
+		allow = {
+            legitimacy_equivalent = 50
+		}
+		effect = {
+			clr_country_flag = enacting_court_decisions_timer
+			set_country_flag = enacting_court_decisions_timer
+			set_country_flag = enacting_court_decisions
+            set_ruler_flag = enacting_court_decisions_ai
+            country_event = { id = state.1 }
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				NOT = { legitimacy_equivalent = 80 }
+			}
+			modifier = {
+				factor = 0
+				has_ruler_flag = enacting_court_decisions_ai 
+			}
+			modifier = {
+				factor = 0
+				NOT = {
+					had_country_flag = {
+						flag = enacting_court_decisions_timer
+						days = 1825
+					}
+				}
+			}
+		}		
+	}
+	cu_invest_in_adm_tech_ai = {
+	    potential = {
+			ai = yes #Human Player does this in technology panel instead
+			OR = {
+			      NOT = { has_country_flag = cu_invest_in_adm_tech_timer }
+				  had_country_flag = {
+				       flag = cu_invest_in_adm_tech_timer
+					   days = 1825
+				  }
+			}
+		}
+		allow = {
+			years_of_income = 0.25
+			adm_power = 200
+		}
+		effect = {
+		    add_years_of_income = -0.25
+			clr_country_flag = cu_invest_in_adm_tech_timer
+			set_country_flag = cu_invest_in_adm_tech_timer
+			adm_power_cost = 100
+		    cu_get_2year_adm = yes
+			
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				NOT = { years_of_income = 0.3 }				
+			}
+			modifier = {
+				factor = 0
+				NOT = { adm_power = 300 }
+			}
+			modifier = {
+				factor = 0
+				NOT = { adm_tech = 5 } #Primitives will not use it until they see the "modern" way
+			}
+            modifier = {
+				factor = 0
+				AND = {
+				  num_of_loans = 1
+				  NOT = { years_of_income = 0.4 }		
+			    }	
+			} 
+            modifier = {
+				factor = 0
+				NOT = {
+				     AND = {
+					       is_at_war = yes
+						   NOT = { years_of_income = 0.4 }		
+					 }
+				}				
+			}			
+		}		
+	
+	}
+	cu_invest_in_dip_tech_ai = {
+	    potential = {
+			ai = yes #Human Player does this in technology panel instead
+			OR = {
+			      NOT = { has_country_flag = cu_invest_in_dip_tech_timer }
+				  had_country_flag = {
+				       flag = cu_invest_in_dip_tech_timer
+					   days = 1825
+				  }
+			}
+		}
+		allow = {
+			years_of_income = 0.2
+			dip_power = 200
+		}
+		effect = {
+		    add_years_of_income = -0.25
+			clr_country_flag = cu_invest_in_dip_tech_timer
+			set_country_flag = cu_invest_in_dip_tech_timer
+			dip_power_cost = 100
+		    cu_get_2year_dip = yes
+			
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				NOT = { years_of_income = 0.3 }				
+			}
+			modifier = {
+				factor = 0
+				NOT = { dip_power = 300 }
+			}
+			modifier = {
+				factor = 0
+				NOT = { adm_tech = 5 } #Primitives will not use it until they see the "modern" way
+			}
+            modifier = {
+				factor = 0
+				AND = {
+				  num_of_loans = 1
+				  NOT = { years_of_income = 0.4 }		
+			    }	
+			}	  
+            modifier = {
+				factor = 0
+				NOT = {
+				     AND = {
+					       is_at_war = yes
+						   NOT = { years_of_income = 0.4 }		
+					 }
+				}				
+			}				
+		}		
+	
+	}
+	cu_invest_in_mil_tech_ai = {
+	    potential = {
+			ai = yes #Human Player does this in technology panel instead
+			OR = {
+			      NOT = { has_country_flag = cu_invest_in_mil_tech_timer }
+				  had_country_flag = {
+				       flag = cu_invest_in_mil_tech_timer
+					   days = 1825
+				  }
+			}
+		}
+		allow = {
+			years_of_income = 0.2
+			mil_power = 200
+		}
+		effect = {
+		    add_years_of_income = -0.25
+			clr_country_flag = cu_invest_in_mil_tech_timer
+			set_country_flag = cu_invest_in_mil_tech_timer
+			mil_power_cost = 100
+		    cu_get_2year_mil = yes
+			
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				NOT = { years_of_income = 0.3 }				
+			}
+			modifier = {
+				factor = 0
+				NOT = { mil_power = 300 }
+			}
+			modifier = {
+				factor = 0
+				NOT = { adm_tech = 5 } #Primitives will not use it until they see the "modern" way
+			}
+			modifier = {
+				factor = 0
+				AND = {
+				  num_of_loans = 1
+				  NOT = { years_of_income = 0.4 }		
+			    }	
+			}
+            
+            modifier = {
+				factor = 0
+				NOT = {
+				     AND = {
+					       is_at_war = yes
+						   NOT = { years_of_income = 0.4 }		
+					 }
+				}				
+			}	            
+		}		
+	
+	}
+
+}

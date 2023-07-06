@@ -1,0 +1,29 @@
+# No previous file for Chacujal
+
+culture = mam
+owner = AMM
+controller = AMM
+add_core = AMM
+is_city = yes
+religion = mesoamerican_religion
+capital = "Zaculeu"
+trade_goods = gems
+hre = no
+base_tax = 4 
+base_production = 4
+base_manpower = 2
+ #Nito and Naco, precolumbian international trade hubs
+discovered_by = mesoamerican
+
+1524.1.1 = {
+	discovered_by = SPA 
+	owner = SPA 
+	controller = SPA 
+	add_core = SPA
+}
+1529.1.1 = {
+	culture = castillian
+	religion = catholic
+} # First settlers
+1810.9.16 = { owner = MEX add_core = MEX controller = SPA } # Mexican War of Independence
+

@@ -1,0 +1,32 @@
+# 4756 - Bjelovar
+
+owner = VEN
+controller = VEN
+culture = dalmatian
+religion = catholic
+capital = "Šibenik"
+trade_goods = grain
+hre = no
+base_tax = 2
+base_production = 3
+base_manpower = 1
+is_city = yes
+add_core = VEN
+add_core = CRO
+add_core = DAL
+discovered_by = KAZ
+discovered_by = CRI
+discovered_by = GOL
+discovered_by = AST
+discovered_by = QAS
+discovered_by = western
+discovered_by = eastern
+discovered_by = muslim
+discovered_by = ottoman
+
+
+1526.8.30 = {
+	owner = HAB
+	controller = HAB
+	add_core = HAB
+}

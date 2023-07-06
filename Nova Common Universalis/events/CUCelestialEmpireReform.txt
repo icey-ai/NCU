@@ -1,0 +1,585 @@
+namespace = cu_celestial_reform
+
+#Starting Event
+country_event = {
+	id = cu_celestial_reform.1
+	title = cu_celestial_reform.1.t
+	desc = cu_celestial_reform.1.d
+	picture = SUFFERING_CHINESE_VILLAGE_eventPicture
+	is_triggered_only = yes
+	trigger = {
+		ai = no #AI dont use this event
+		NOT = { has_country_flag = start_army_reform_cu }
+	}
+	option = { #Reform is the way forward!
+		name = "cu_celestial_reform.1.a"
+		add_adm_power = -25
+		add_meritocracy = -5
+		custom_tooltip = cu_celestial_reform.1.at
+		hidden_effect = {
+			#Set 12 randoms in counter 
+			set_variable = { which = reform_manpower value = 0 } #1 represents 20
+			set_variable = { which = reform_tradition value = 0 } #1 represents 0.2
+			set_variable = { which = reform_milpower value = 0 } #1 represents 1
+			set_variable = { which = reform_counter value = 1 } 
+			set_variable = { which = pass_counter value = 0 }
+			cu_correct_year = yes
+			set_variable = { which = round_year which = cu_year}
+			change_variable = { which = round_year value = 5 }
+			set_country_flag = start_army_reform_cu
+			cu_random_number = yes
+			set_variable = { which = cu_cele_rd which = cu_rd }
+			country_event = { id = cu_celestial_reform.3 }#show the main page
+		}
+	}
+	option = { #Who needs reform?
+		name = "cu_celestial_reform.1.b"
+	}
+}
+
+#Getting over it! XD
+country_event = {
+	id = cu_celestial_reform.2
+	title = cu_celestial_reform.2.t
+	desc = cu_celestial_reform.2.d
+	picture = SUFFERING_CHINESE_VILLAGE_eventPicture
+	is_triggered_only = yes
+	immediate = {
+		clr_country_flag = tradition_round
+		clr_country_flag = manpower_round
+		clr_country_flag = milpower_round
+		hidden_effect = {
+			cu_correct_year = yes
+			set_variable = { which = dis_round_year which = round_year }
+			subtract_variable = { which = dis_round_year which = cu_year }
+			set_variable = { which = cu_rd which = cu_cele_rd }
+		}
+		if = {
+			limit = {
+				check_variable = { which = cu_rd value = 0.66 }
+			}
+			set_country_flag = tradition_round
+		}
+		else_if = {
+			limit = {
+				check_variable = { which = cu_rd value = 0.33 }
+			}
+			set_country_flag = manpower_round
+		}
+		else = {
+			set_country_flag = milpower_round
+		}
+	}
+	after = {
+		hidden_effect = {
+			if = {
+				limit = {
+					has_country_flag = reform_paused
+				}
+				country_event = { id = cu_celestial_reform.4 } #Inform player they has failed
+				country_event = { id = cu_celestial_reform.5 days = 3650 } #End Event in case of bugs
+				change_variable = { which = reform_counter value = 1 }
+				cu_random_number = yes
+				set_variable = { which = cu_cele_rd which = cu_rd }
+			}
+			else_if = {
+				limit = {
+					has_country_flag = goto_next_round
+				}
+				change_variable = { which = reform_counter value = 1 }
+				change_variable = { which = pass_counter value = 1 }
+				cu_random_number = yes
+				set_variable = { which = cu_cele_rd which = cu_rd }
+			}
+		}
+	}
+
+
+	option = { #Overcome obstacles tradition 1
+		name = "cu_celestial_reform.2.a"
+		trigger = {
+			has_country_flag = tradition_round
+			check_variable = { which = reform_tradition value = 50 }
+		}
+		hidden_effect = {
+			set_country_flag = goto_next_round
+			subtract_variable = { which = reform_tradition value = 50 }
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+	option = { #Overcome obstacles tradition 2
+		name = "cu_celestial_reform.2.b"
+		trigger = {
+			has_country_flag = tradition_round
+			check_variable = { which = reform_tradition value = 25 }
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					check_variable = { which = cu_rd value = 0.40 }
+				}
+				set_country_flag = goto_next_round
+			}
+			else = {
+				set_country_flag = reform_paused
+			}
+			subtract_variable = { which = reform_tradition value = 25 }
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+	option = { #Overcome obstacles tradition 3
+		name = "cu_celestial_reform.2.c"
+		trigger = {
+			has_country_flag = tradition_round
+			check_variable = { which = reform_tradition value = 10 }
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					check_variable = { which = cu_rd value = 0.80 }
+				}
+				set_country_flag = goto_next_round
+			}
+			else = {
+				set_country_flag = reform_paused
+			}
+			subtract_variable = { which = reform_tradition value = 10 }
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+	option = { #Overcome obstacles tradition 4 - an elite advisor can help us
+		highlight = yes
+		trigger = {
+			army_reformer_1 = 3
+			has_country_flag = tradition_round
+		}
+		name = "cu_celestial_reform.2.e"
+		add_country_modifier = {
+			name = advisor_unavailable_cu
+			duration = 1865
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					check_variable = { which = cu_rd value = 0.10 }
+				}
+				set_country_flag = goto_next_round
+			}
+			else = {
+				set_country_flag = reform_paused
+			}
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+
+		
+	option = { #Overcome obstacles manpower 1
+		name = "cu_celestial_reform.2.a"
+		trigger = {
+			has_country_flag = manpower_round
+			check_variable = { which = reform_manpower value = 50 }
+		}
+		hidden_effect = {
+			set_country_flag = goto_next_round
+			subtract_variable = { which = reform_manpower value = 50 }
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+	option = { #Overcome obstacles manpower 2
+		name = "cu_celestial_reform.2.b"
+		trigger = {
+			has_country_flag = manpower_round
+			check_variable = { which = reform_manpower value = 25 }
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					check_variable = { which = cu_rd value = 0.40 }
+				}
+				set_country_flag = goto_next_round
+			}
+			else = {
+				set_country_flag = reform_paused
+			}
+			subtract_variable = { which = reform_manpower value = 25 }
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+	option = { #Overcome obstacles manpower 3
+		name = "cu_celestial_reform.2.c"
+		trigger = {
+			has_country_flag = manpower_round
+			check_variable = { which = reform_manpower value = 10 }
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					check_variable = { which = cu_rd value = 0.80 }
+				}
+				set_country_flag = goto_next_round
+			}
+			else = {
+				set_country_flag = reform_paused
+			}
+			subtract_variable = { which = reform_manpower value = 10 }
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+	option = { #Overcome obstacles manpower 4 - an elite advisor can help us
+		highlight = yes
+		trigger = {
+			recruitmaster_1 = 3
+			has_country_flag = manpower_round
+		}
+		name = "cu_celestial_reform.2.e"
+		add_country_modifier = {
+			name = advisor_unavailable_cu
+			duration = 1865
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					check_variable = { which = cu_rd value = 0.10 }
+				}
+				set_country_flag = goto_next_round
+			}
+			else = {
+				set_country_flag = reform_paused
+			}
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+
+		
+	option = { #Overcome obstacles milpower 1
+		name = "cu_celestial_reform.2.a"
+		trigger = {
+			has_country_flag = milpower_round
+			check_variable = { which = reform_milpower value = 50 }
+		}
+		hidden_effect = {
+			set_country_flag = goto_next_round
+			subtract_variable = { which = reform_milpower value = 50 }
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+	option = { #Overcome obstacles milpower 2
+		name = "cu_celestial_reform.2.b"
+		trigger = {
+			has_country_flag = milpower_round
+			check_variable = { which = reform_milpower value = 25 }
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					check_variable = { which = cu_rd value = 0.40 }
+				}
+				set_country_flag = goto_next_round
+			}
+			else = {
+				set_country_flag = reform_paused
+			}
+			subtract_variable = { which = reform_milpower value = 25 }
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+	option = { #Overcome obstacles milpower 3
+		name = "cu_celestial_reform.2.c"
+		trigger = {
+			has_country_flag = milpower_round
+			check_variable = { which = reform_milpower value = 10 }
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					check_variable = { which = cu_rd value = 0.80 }
+				}
+				set_country_flag = goto_next_round
+			}
+			else = {
+				set_country_flag = reform_paused
+			}
+			subtract_variable = { which = reform_milpower value = 10 }
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+	option = { #Overcome obstacles milpower 4 - we may ask emperor for help
+		highlight = yes
+		trigger = {
+			MIL = 4
+			has_country_flag = milpower_round
+		}
+		name = "cu_celestial_reform.2.f"
+		add_country_modifier = {
+			name = emperor_unavailable_cu
+			duration = 1865
+		}
+		hidden_effect = {
+			#Shows 90% but in fact 100%
+			set_country_flag = goto_next_round
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+
+
+	option = { #Do nothing
+		name = "cu_celestial_reform.2.g"
+		hidden_effect = {
+			#Shows 10% but in fact 0%
+			set_country_flag = reform_paused
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+
+
+	option = { #Back to main menu
+		name = "cugovernmentui.back"
+		country_event = { id = cu_celestial_reform.3 }
+		ai_chance = {
+			factor = 0
+		}
+	}
+	option = { #Exit
+		name = "cu.exit"
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+#Main menu
+country_event = {
+	id = cu_celestial_reform.3
+	title = cu_celestial_reform.3.t
+	desc = cu_celestial_reform.3.desc
+	picture = SUFFERING_CHINESE_VILLAGE_eventPicture
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			cu_correct_year = yes
+			set_variable = { which = dis_round_year which = round_year }
+			subtract_variable = { which = dis_round_year which = cu_year }
+			country_event = { id = cu_celestial_reform.6 }
+			if = {
+				limit = { NOT = { check_variable = { which = dis_round_year value = 1 } } }
+				if = {
+					limit = { NOT = { has_country_flag = goto_next_round } }
+					country_event = { id = cu_celestial_reform.5 days = 30 }
+				}
+				clr_country_flag = cu_reform_five_years_pulse
+				set_country_flag = cu_reform_five_years_pulse
+				clr_country_flag = goto_next_round
+				clr_country_flag = reform_paused
+				clr_country_flag = invested_cu_this_turn
+				change_variable = { which = dis_round_year value = 5 }
+				change_variable = { which = round_year value = 5 }
+			}
+		}
+	}
+	option = { #Handle problems
+		trigger = {
+			NOT = {
+				OR = {
+					has_country_flag = goto_next_round
+					has_country_flag = reform_paused
+				}
+			}
+		}
+		name = "cu_celestial_reform.3.a"
+		custom_tooltip = show_round_year_left_tooltip
+		custom_tooltip = show_current_round_tooltip
+		country_event = { id = cu_celestial_reform.2 }
+	}
+
+	option = { #Handle problems
+		trigger = {
+			OR = {
+				has_country_flag = goto_next_round
+				has_country_flag = reform_paused
+			}
+		}
+		name = "cu_celestial_reform.3.an"
+	}
+
+
+	option = { #Invest Tradition
+		name = "cu_celestial_reform.3.b"
+		add_army_tradition = -10
+		trigger = {
+			NOT = { has_country_flag = invested_cu_this_turn }
+		}
+		hidden_effect = {
+			change_variable = { which = reform_tradition value = 50 }
+			set_country_flag = invested_cu_this_turn
+		}
+	}
+	option = { #Invest Manpower
+		name = "cu_celestial_reform.3.c"
+		add_manpower = -1
+		trigger = {
+			NOT = { has_country_flag = invested_cu_this_turn }
+		}
+		hidden_effect = {
+			change_variable = { which = reform_manpower value = 50 }
+			set_country_flag = invested_cu_this_turn
+		}
+	}
+	option = { #Invest Milpower
+		name = "cu_celestial_reform.3.d"
+		add_mil_power = -50
+		trigger = {
+			NOT = { has_country_flag = invested_cu_this_turn }
+		}
+		hidden_effect = {
+			change_variable = { which = reform_milpower value = 50 }
+			set_country_flag = invested_cu_this_turn
+		}
+	}
+	
+	option = { #Success
+		highlight = yes
+		name = "cu_celestial_reform.3.e"
+		trigger = {
+			check_variable = { which = pass_counter value = 8 }
+		}
+		set_country_flag = army_reform_success
+		country_event = { id = cu_celestial_reform.51 }
+		ai_chance = {
+			factor = 0
+		}
+	}
+
+	option = { #Back to main menu
+		name = "cugovernmentui.back"
+		country_event = {
+			id = cu_celestial_reform.3
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+	option = { #Exit
+		name = "cu.exit"
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+
+#Inform Event - they may need to S/L
+country_event = {
+	id = cu_celestial_reform.4
+	title = cu_celestial_reform.4.t
+	desc = cu_celestial_reform.4.d
+	picture = SUFFERING_CHINESE_VILLAGE_eventPicture
+	is_triggered_only = yes
+	option = { #We can cover it
+		name = "cu_celestial_reform.4.a"
+		add_adm_power = -25
+		add_treasury = -100
+		#Reform continued
+		set_country_flag = goto_next_round
+		#Shows 80% but 100%
+	}
+	option = { #Let's pray tp be forgiven
+		name = "cu_celestial_reform.4.b"
+		#Shows 10% but 0%
+		hidden_effect = {
+			country_event = { id = cu_celestial_reform.5 days = 30 }
+		}
+	}
+}
+
+#Bad End
+country_event = {
+	id = cu_celestial_reform.5
+	title = cu_celestial_reform.5.t
+	picture = SUFFERING_CHINESE_VILLAGE_eventPicture
+	is_triggered_only = yes
+	trigger = {
+		OR = {
+			check_variable = { which = reform_counter value = 13 }
+			has_country_flag = reform_paused
+		}
+	}
+	desc = {
+		trigger = { check_variable = { which = reform_counter value = 13 } }
+		desc = "cu_celestial_reform.5.d.1"
+	}
+	desc = {
+		trigger = { NOT = { check_variable = { which = reform_counter value = 13 } } }
+		desc = "cu_celestial_reform.5.d.2" 
+	}
+	after = { #Clear
+		clr_country_flag = reform_paused
+		clr_country_flag = start_army_reform_cu
+		set_variable = { which = reform_manpower value = 0 } #1 represents 20
+		set_variable = { which = reform_tradition value = 0 } #1 represents 0.2
+		set_variable = { which = reform_milpower value = 0 } #1 represents 1
+		set_variable = { which = reform_counter value = 0 } 
+		set_variable = { which = pass_counter value = 0 }
+		set_variable = { which = round_year value = 0 }
+		set_variable = { which = cu_cele_rd value = 0 }
+	}
+	option = { #All gone
+		name = "cu_celestial_reform.5.a"
+		add_country_modifier = {
+			name = army_reform_failed_cu
+			duration = 3650
+		}
+	}
+}
+
+#Good End
+country_event = {
+	id = cu_celestial_reform.51
+	title = cu_celestial_reform.51.t
+	desc = cu_celestial_reform.51.d
+	picture = SUFFERING_CHINESE_VILLAGE_eventPicture
+	is_triggered_only = yes
+	after = {
+		clr_country_flag = reform_paused
+		clr_country_flag = start_army_reform_cu
+		set_variable = { which = reform_manpower value = 0 } #1 represents 20
+		set_variable = { which = reform_tradition value = 0 } #1 represents 0.2
+		set_variable = { which = reform_milpower value = 0 } #1 represents 1
+		set_variable = { which = reform_counter value = 0 } 
+		set_variable = { which = pass_counter value = 0 }
+		set_variable = { which = round_year value = 0 }
+		set_variable = { which = cu_cele_rd value = 0 }
+	}
+	option = { #A Bright Sunny day
+		name = "cu_celestial_reform.51.a"
+		add_meritocracy = 5
+		add_adm_power = 50
+		add_mil_power = 50
+		add_dip_power = 50
+	}
+}

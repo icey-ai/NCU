@@ -1,0 +1,13 @@
+#Nau - Caravel Replacement
+type = light_ship
+trigger = {
+      tag = POR
+}
+hull_size = 12
+base_cannons = 19
+blockade = 3
+sail_speed = 9
+
+trade_power = 3.3
+
+sprite_level = 2

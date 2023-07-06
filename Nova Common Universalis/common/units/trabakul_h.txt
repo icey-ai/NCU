@@ -1,0 +1,13 @@
+#Trabakul
+type = transport
+trigger = {
+    has_country_flag = transport_mod_h
+}
+hull_size = 24
+base_cannons = 6
+blockade = 2
+sail_speed = 7
+
+trade_power = 5.3
+
+sprite_level = 5

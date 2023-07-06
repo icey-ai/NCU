@@ -1,0 +1,26 @@
+#1018 - Houki
+
+owner = YMN
+controller = YMN
+culture = japanese
+religion = shinto
+capital = "Houki"
+trade_goods = cotton
+hre = no
+base_tax = 3 
+base_production = 3
+base_manpower = 2
+is_city = yes
+add_core = AMA
+add_core = YMN
+discovered_by = chinese
+discovered_by = MCH
+discovered_by = KHA
+discovered_by = OIR
+discovered_by = QNG
+
+1542.1.1 = { discovered_by = POR }
+1552.11.28 = { owner = AMA controller = AMA }
+1558.1.1 = { add_core = MRI }
+1566.11.28 = { owner = MRI controller = MRI remove_core = AMA }
+1600.9.13 = { add_core = TKG owner = TKG controller = TKG remove_core = MRI }

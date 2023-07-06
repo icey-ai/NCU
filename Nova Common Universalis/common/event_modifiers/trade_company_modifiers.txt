@@ -1,0 +1,111 @@
+trade_company_off_1 = {
+	province_trade_power_modifier = 25
+    province_trade_power_value = 2
+    trade_goods_size_modifier = 0.08
+    local_development_cost = 0.10
+    local_unrest = 1
+    local_missionary_strength = -0.01
+    local_religious_unity_contribution = -1
+    min_local_autonomy = 100
+    local_governing_cost = 0.2
+    allowed_num_of_buildings = 2
+	picture = "trading_company_1"
+}
+
+trade_company_off_2 = {
+	province_trade_power_modifier = 50
+    province_trade_power_value = 4
+    trade_goods_size_modifier = 0.16
+    local_development_cost = 0.1
+    local_unrest = 1
+    local_missionary_strength = -0.01
+    local_religious_unity_contribution = -1
+    min_local_autonomy = 100
+    local_governing_cost = 0.2
+    allowed_num_of_buildings = 2
+	picture = "trading_company_2"
+}
+
+trade_company_off_3 = {
+	province_trade_power_modifier = 75
+    province_trade_power_value = 6
+    trade_goods_size_modifier = 0.24
+    local_development_cost = 0.1
+    local_unrest = 1
+    local_missionary_strength = -0.01
+    local_religious_unity_contribution = -1
+    min_local_autonomy = 100
+    local_governing_cost = 0.2
+    allowed_num_of_buildings = 2
+	picture = "trading_company_3"
+}
+
+trade_company_off_4 = {
+	province_trade_power_modifier = 100
+    province_trade_power_value = 8
+    trade_goods_size_modifier = 0.32
+    local_development_cost = 0.1
+    local_unrest = 1
+    local_missionary_strength = -0.01
+    local_religious_unity_contribution = -1
+    min_local_autonomy = 100
+    local_governing_cost = 0.2
+    allowed_num_of_buildings = 2
+	picture = "trading_company_4"
+}
+
+trade_company_pri_1 = {
+	province_trade_power_modifier = 25
+    province_trade_power_value = 2
+    trade_goods_size_modifier = 0.06
+    local_missionary_strength = -0.01
+	local_development_cost = 0.1
+    local_unrest = 2
+    local_religious_unity_contribution = -1
+    min_local_autonomy = 100
+    local_governing_cost = 0.1
+    allowed_num_of_buildings = 1
+	picture = "trading_company_1"
+}
+
+trade_company_pri_2 = {
+	province_trade_power_modifier = 50
+    province_trade_power_value = 4
+    trade_goods_size_modifier = 0.12
+    local_missionary_strength = -0.01
+	local_development_cost = 0.2
+    local_unrest = 2
+    local_religious_unity_contribution = -1
+    min_local_autonomy = 100
+    local_governing_cost = 0.1
+    allowed_num_of_buildings = 1
+	picture = "trading_company_2"
+}
+
+trade_company_pri_3 = {
+	province_trade_power_modifier = 75
+    province_trade_power_value = 6
+    trade_goods_size_modifier = 0.18
+    local_missionary_strength = -0.01
+	local_development_cost = 0.25
+    local_unrest = 2
+    local_religious_unity_contribution = -1
+    min_local_autonomy = 100
+    local_governing_cost = 0.1
+    allowed_num_of_buildings = 1
+	picture = "trading_company_3"
+}
+
+trade_company_pri_4 = {
+	province_trade_power_modifier = 100
+    province_trade_power_value = 8
+    trade_goods_size_modifier = 0.24
+    local_missionary_strength = -0.01
+	local_development_cost = 0.33
+    local_unrest = 2
+    local_religious_unity_contribution = -1
+    min_local_autonomy = 100
+    local_governing_cost = 0.1
+    allowed_num_of_buildings = 1
+	picture = "trading_company_4"
+}

@@ -1,0 +1,7 @@
+government = monarchy
+add_government_reform = feudalism_reform
+primary_culture = bosnian
+religion = catholic
+technology_group = western
+capital = 130	# Istria
+fixed_capital = 130 # Cannot move capital away from this province & no power cost to move to it

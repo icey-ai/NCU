@@ -1,0 +1,54 @@
+cu_estate_marry_trigger = {
+	is_lesser_in_union = no
+	has_regency = no
+	has_consort = no 	
+	NOT = { government = theocracy }
+	NOT = { has_country_flag = est_consort }
+}
+
+can_unrest_trigger = {
+	NOT = { stability = 1 }
+	NOT = { absolutism = 70 }
+}
+
+cu_estate_preload_native = {
+	OR = {
+		government = native
+		AND = {
+			capital_scope = {
+				OR = {
+					continent = new_world
+					continent = north_america
+					continent = south_america
+				}
+			}
+			OR = {
+				technology_group = north_american
+				technology_group = south_american
+				technology_group = andean
+				technology_group = mesoamerican
+			}
+			NOT = { check_variable = { which = ave_literacy value = 1 } }
+		}
+	}
+}
+
+cu_has_estate_nomadic_tribes = {
+	has_estate = estate_nomadic_tribes  
+	OR = { 
+		is_nomad = yes 
+		government = native 
+	}
+}
+
+cu_not_bind_with_estate = {
+	NOT = {
+		OR = {
+			has_country_modifier = cu_bind_with_estate_bur
+			has_country_modifier = cu_bind_with_estate_nob
+			has_country_modifier = cu_bind_with_estate_chu
+			has_country_modifier = cu_bind_with_estate_shi
+			has_country_modifier = cu_bind_with_estate_tri
+		}
+	}
+}

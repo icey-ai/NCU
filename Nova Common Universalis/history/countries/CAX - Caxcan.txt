@@ -1,0 +1,7 @@
+government = native government_rank = 1
+primary_culture = caxcan
+religion = animism
+technology_group = mesoamerican
+capital = 6927 
+
+

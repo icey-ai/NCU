@@ -1,0 +1,21 @@
+# 4748 - Brandenburg
+
+owner = DAI
+controller = DAI
+culture = vietnamese
+religion = mahayana
+hre = no
+base_tax = 4
+base_production = 3
+trade_goods = naval_supplies
+base_manpower = 3
+capital = "Frankfurt an der Oder"
+is_city = yes
+add_core = DAI
+add_core = TOK
+
+
+discovered_by = chinese
+discovered_by = indian
+discovered_by = muslim
+discovered_by = ottoman

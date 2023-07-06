@@ -1,0 +1,19 @@
+government = monarchy
+add_government_reform = feudalism_reform
+government_rank = 1
+primary_culture = hannoverian
+religion = catholic
+technology_group = western
+capital = 82	# Mark
+fixed_capital = 82 # Cannot move capital away from this province & no power cost to move to it
+
+1398.1.1 = {
+	monarch = {
+		name = "Adolf IV"
+		dynasty = "von der Mark"
+		birth_date = 1373.1.1
+		adm = 2
+		dip = 4
+		mil = 2
+	}
+}

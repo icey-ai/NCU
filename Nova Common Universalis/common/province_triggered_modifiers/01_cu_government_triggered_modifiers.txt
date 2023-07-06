@@ -1,0 +1,53 @@
+
+#Sample
+noble_reduce_tax_1 = {
+	 potential = {
+		owner = { is_variable_equal = { which = noble_tax_lev value = 1 } }
+		OR = {
+			has_estate = estate_nobles
+			has_estate = estate_qinwang
+		}
+	}
+	
+	trigger = {		
+		
+	}
+	local_tax_modifier = -0.10
+	local_production_efficiency = -0.10
+	local_manpower_modifier = 0.10
+}
+
+noble_reduce_tax_2 = {
+	 potential = {
+		owner = { is_variable_equal = { which = noble_tax_lev value = 2 } }
+		OR = {
+			has_estate = estate_nobles
+			has_estate = estate_qinwang
+		}
+	}
+	
+	trigger = {		
+		
+	}
+	local_tax_modifier = -0.20
+	local_production_efficiency = -0.20
+	local_manpower_modifier = 0.20
+}
+
+noble_reduce_tax_3 = {
+	 potential = {
+		owner = { is_variable_equal = { which = noble_tax_lev value = 3 } }
+		OR = {
+			has_estate = estate_nobles
+			has_estate = estate_qinwang
+		}
+	}
+	
+	trigger = {		
+		
+	}
+	local_tax_modifier = -0.30
+	local_production_efficiency = -0.30
+	local_manpower_modifier = 0.30
+}
+

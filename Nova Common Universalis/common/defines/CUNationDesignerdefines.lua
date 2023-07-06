@@ -1,0 +1,4 @@
+NDefines.NNationDesigner.POINTS_AVAILABLE = 250
+NDefines.NNationDesigner.BASE_TAX_COST_MODIFIER = 0.25
+NDefines.NNationDesigner.PRODUCTION_COST_MODIFIER = 0.25
+NDefines.NNationDesigner.MANPOWER_COST_MODIFIER = 0.25

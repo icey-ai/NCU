@@ -1,0 +1,205 @@
+country_decisions = {
+	cu_ai_upgrade_forts_1 = {
+		potential = {
+			mil_tech = 16
+			cu_ai_buff_trigger = yes
+			is_at_war = no
+			NOT = { num_of_loans = 1 }
+			army_size_percentage = 0.70
+		}
+
+		allow = {
+			treasury = 425
+			monthly_income = 20
+			current_income_balance = 6
+			any_owned_province = {
+				AND = {
+					has_building = fort_15th
+					can_build = fort_16th
+				}
+			}
+		}
+
+		effect = {
+			random_owned_province = {
+				limit = {
+					AND = {
+						has_building = fort_15th
+						can_build = fort_16th
+					}
+				}
+				add_building_construction = {
+					building = fort_16th
+					speed = 1
+					cost = 1
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 1.0
+			modifier = {
+				factor = 0
+				OR = {
+					is_in_deficit = yes
+					NOT = { current_income_balance = 9 }
+				}
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					mil_tech = 21
+					monthly_income = 25
+					current_income_balance = 10
+				}
+			}
+			modifier = {
+				factor = 0 
+				any_owned_province = {
+					OR = {
+						has_construction = fort_16th
+						has_construction = fort_17th
+						has_construction = fort_18th
+					}
+				}
+			}
+		}
+	}
+	cu_ai_upgrade_forts_2 = {
+		potential = {
+			mil_tech = 21
+			cu_ai_buff_trigger = yes
+			is_at_war = no
+			NOT = { num_of_loans = 1 }
+			army_size_percentage = 0.70
+		}
+
+		allow = {
+			treasury = 625
+			monthly_income = 25
+			current_income_balance = 8
+			any_owned_province = {
+				AND = {
+					OR = {
+						has_building = fort_15th
+						has_building = fort_16th
+					}
+					can_build = fort_17th
+				}
+			}
+		}
+
+		effect = {
+			random_owned_province = {
+				limit = {
+					AND = {
+						OR = {
+							has_building = fort_15th
+							has_building = fort_16th
+						}
+					}
+				}
+				add_building_construction = {
+					building = fort_17th
+					speed = 1
+					cost = 1
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 1.0
+			modifier = {
+				factor = 0
+				OR = {
+					is_in_deficit = yes
+					NOT = { current_income_balance = 11 }
+				}
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					mil_tech = 26
+					monthly_income = 30
+					current_income_balance = 12
+				}
+			}
+			modifier = {
+				factor = 0 
+				any_owned_province = {
+					OR = {
+						has_construction = fort_16th
+						has_construction = fort_17th
+						has_construction = fort_18th
+					}
+				}
+			}
+		}
+	}
+	cu_ai_upgrade_forts_3 = {
+		potential = {
+			mil_tech = 26
+			cu_ai_buff_trigger = yes
+			is_at_war = no
+			NOT = { num_of_loans = 1 }
+			army_size_percentage = 0.70
+		}
+
+		allow = {
+			treasury = 825
+			monthly_income = 30
+			current_income_balance = 10
+			any_owned_province = {
+				AND = {
+					OR = {
+						has_building = fort_15th
+						has_building = fort_16th
+						has_building = fort_17th
+					}
+					can_build = fort_18th
+				}
+			}
+		}
+
+		effect = {
+			random_owned_province = {
+				limit = {
+					AND = {
+						OR = {
+							has_building = fort_15th
+							has_building = fort_16th
+							has_building = fort_17th
+						}
+						can_build = fort_18th
+					}
+				}
+				add_building_construction = {
+					building = fort_18th
+					speed = 1
+					cost = 1
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 1.0
+			modifier = {
+				factor = 0
+				OR = {
+					is_in_deficit = yes
+					NOT = { current_income_balance = 13 }
+				}
+			}
+			modifier = {
+				factor = 0 
+				any_owned_province = {
+					OR = {
+						has_construction = fort_16th
+						has_construction = fort_17th
+						has_construction = fort_18th
+					}
+				}
+			}
+		}
+	}
+}

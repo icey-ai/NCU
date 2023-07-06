@@ -1,0 +1,20 @@
+#6668 - Awa
+
+owner = ASK
+controller = ASK
+culture = togoku
+religion = shinto
+capital = "Awa"
+trade_goods = grain
+hre = no
+base_tax = 4 
+base_production = 4
+base_manpower = 3
+is_city = yes
+add_core = ASK
+add_core = HJO
+discovered_by = chinese
+discovered_by = MCH
+discovered_by = KHA
+discovered_by = OIR
+discovered_by = QNG

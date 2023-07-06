@@ -1,0 +1,12 @@
+ao_song_ideas = {
+	potential = {
+		NOT = { adm_tech = 19 }
+		NOT = { is_year = 1450 }
+		tag = ASM		
+	}
+
+	trigger = {
+		ai = no
+	}
+	idea_cost = -2	
+}

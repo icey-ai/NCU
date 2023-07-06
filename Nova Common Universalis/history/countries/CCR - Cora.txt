@@ -1,0 +1,7 @@
+government = native government_rank = 1
+primary_culture = cora
+religion = animism
+technology_group = mesoamerican
+capital = 4647 
+
+

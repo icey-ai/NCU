@@ -1,0 +1,19 @@
+government = monarchy
+add_government_reform = feudalism_reform
+government_rank = 1
+primary_culture = mecklenburgish
+religion = catholic
+technology_group = western
+capital = 6223	# Schwerin
+fixed_capital = 6223 # Cannot move capital away from this province & no power cost to move to it
+
+1426.1.1 = {
+	monarch = {
+		name = "Otto VII"
+		dynasty = "von Tecklenburg"
+		birth_date = 1380.1.1
+		dip = 3
+		adm = 2
+		mil = 2
+	}
+}

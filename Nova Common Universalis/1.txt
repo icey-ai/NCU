@@ -1,0 +1,10 @@
+log = "New"
+		ROOT = {
+			hidden_effect = {
+				export_to_variable = {
+					which = province_id_cu
+					value = modifier:administrative_efficiency
+				}
+				log = "[This.province_id_cu.GetValue]"
+			}
+		}

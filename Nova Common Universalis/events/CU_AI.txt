@@ -1,0 +1,800 @@
+namespace = cuai
+
+#AI Delete oversized fleet
+country_event = {
+    id = cuai.1
+	title = "EVT_HIDDEN"
+	desc = "EVT_HIDDEN"
+	picture = BIG_BOOK_eventPicture
+	is_triggered_only = yes
+	trigger = {
+		ai = yes
+		navy_size_percentage = 0.95
+	}
+	option = {
+		name = "EVT_HIDDEN"
+		add_country_modifier = {
+			name = ai_navy_oversized
+			duration = 1825
+		}
+		if = {
+			limit = { is_at_war = no }
+			set_variable = { which = cu_var1 value = 0 }
+			while = {
+				limit = { NOT = { check_variable = { which = cu_var1 value = 12 } } }
+				change_variable = { which = cu_var1 value = 1 }
+				if = {
+					limit = { num_of_galley = 1 navy_size_percentage = 0.90 }
+					every_province = { #Galley is so weak that ai do this
+						limit = {
+							num_of_units_in_province = {
+								type = galley
+								who = ROOT
+								amount = 1
+							}
+						}
+						kill_units = {
+							who = ROOT
+							type = galley
+						}
+					}
+				}
+				else_if = {
+					limit = { num_of_light_ship = 1 navy_size_percentage = 0.90 }
+					random_province = {
+						limit = {
+							num_of_units_in_province = {
+								type = light_ship
+								who = ROOT
+								amount = 1
+							}
+						}
+						kill_units = {
+							who = ROOT
+							type = light_ship
+						}
+					}
+				}
+				else_if = {
+					limit = { num_of_heavy_ship = 1 navy_size_percentage = 0.90 }
+					random_province = {
+						limit = {
+							num_of_units_in_province = {
+								type = heavy_ship
+								who = ROOT
+								amount = 1
+							}
+						}
+						kill_units = {
+							who = ROOT
+							type = heavy_ship
+						}
+					}
+				}
+				else_if = {
+					limit = { num_of_transport = 1 navy_size_percentage = 0.90 }
+					random_province = {
+						limit = {
+							num_of_units_in_province = {
+								type = transport
+								who = ROOT
+								amount = 1
+							}
+						}
+						kill_units = {
+							who = ROOT
+							type = transport
+						}
+					}
+				}
+			}
+		}
+	}
+	
+}
+
+#AI handles low governance capacity
+country_event = {
+    id = cuai.2
+	title = "EVT_HIDDEN"
+	desc = "EVT_HIDDEN"
+	picture = BIG_BOOK_eventPicture
+	
+	trigger = {
+		ai = yes
+		check_variable = { which = go value = 110 }
+		NOT = {
+			has_estate_privilege = gentrys_landholding
+		}
+		NOT = {
+			has_reform = elective_monarchy
+		}
+		OR = {
+			NOT = {
+				has_country_flag = recent_refresh_gc_ai
+			}
+			had_country_flag = {
+				flag = recent_refresh_gc_ai
+				days = 1865
+			}
+		}
+	}
+	mean_time_to_happen = {
+		months = 240
+		modifier = {
+			factor = 0.5
+			check_variable = { which = go value = 120 }
+		}
+		modifier = {
+			factor = 0.5
+			check_variable = { which = go value = 130 }
+		}
+	}
+	option = {
+		name = "EVT_HIDDEN"
+		set_country_flag = recent_refresh_gc_ai
+		#Increasing Autonomy in low integrity provinces
+		every_owned_province = {
+			limit = {
+				NOT = { check_variable = { which = p_ca value = 50 } }
+				has_owner_culture = no
+				has_owner_accepted_culture = no
+				NOT = { PREV = { culture_group = PREV } }
+			}
+			add_unrest = -5
+			add_local_autonomy = 20
+		}
+		#Reduce Autonomy in high integrity provinces
+		every_owned_province = {
+			limit = {
+				check_variable = { which = p_ca value = 70  }
+				OR = {
+					has_owner_culture = yes
+					has_owner_accepted_culture = yes
+					PREV = { culture_group = PREV }
+				}
+			}
+			add_unrest = 5
+			add_local_autonomy = -20
+		}
+		country_event = { id = cugovernment.1 days = 1 } #Government Capacity Calculation
+	}
+	
+}
+
+#AI backstabs a country at war
+country_event = {
+    id = cuai.3
+	title = "EVT_HIDDEN"
+	desc = "EVT_HIDDEN"
+	picture = BIG_BOOK_eventPicture
+	hidden = yes
+	trigger = {
+		#ai = no
+		is_at_war = yes
+		any_neighbor_country = {
+			ai = yes
+			is_subject = no
+			is_bankrupt = no
+			is_at_war = no
+			NOT = {
+				OR = {
+					
+					has_country_modifier = foreign_ignorance
+					AND = {
+						is_part_of_hre = yes
+						ROOT = { is_part_of_hre = yes }
+					}
+					alliance_with = ROOT
+					truce_with = ROOT
+					has_opinion = {
+							who = ROOT
+							value = 100
+					}
+				}
+			}
+		}
+		
+	}
+	mean_time_to_happen = {
+		months = 180
+		modifier = {
+			factor = 0.5
+			ai = no
+		}
+		modifier = {
+			factor = 0.5
+			NOT = { war_score = -2 }
+		}
+	}
+	option = {
+		name = "EVT_HIDDEN"
+		#Increasing Autonomy in low integrity provinces
+		every_neighbor_country = {
+			limit = {
+				ai = yes
+				is_subject = no
+				is_bankrupt = no
+				is_at_war = no
+				NOT = {
+					OR = {
+						has_country_modifier = foreign_ignorance
+						AND = {
+							is_part_of_hre = yes
+							ROOT = { is_part_of_hre = yes }
+						}
+						alliance_with = ROOT
+						truce_with = ROOT
+						has_opinion = {
+								who = ROOT
+								value = 100
+						}
+					}
+				}
+			}
+			country_event = { id = cuai.4 }
+		}
+	}
+	
+}
+
+#AI backstabs a country at war
+country_event = {
+    id = cuai.4
+	title = "EVT_HIDDEN"
+	desc = "EVT_HIDDEN"
+	picture = BIG_BOOK_eventPicture
+	hidden = yes
+	is_triggered_only = yes
+	option = {
+		name = "EVT_HIDDEN" #Take Back Our Core!
+		trigger = {
+			FROM = {
+				any_owned_province = {
+					is_core = ROOT
+				}
+			}
+		}
+		 declare_war_with_cb = {
+				    who = FROM
+				    casus_belli = cb_core
+		 }
+		 ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 0
+				NOT = { army_size_percentage = 0.5 }
+			}
+			modifier = {
+				factor = 0.5
+				NOT = { army_size_percentage = 0.75 }
+			}
+			modifier = {
+				factor = 0.5
+				NOT = { army_size = FROM }
+			}
+			modifier = {
+				factor = 0.25
+				NOT = { army_size = 5 }
+			}
+			modifier = {
+				factor = 0.5
+				NOT = { manpower_percentage = 0.5 }
+			}
+			modifier = {
+				factor = 0
+				NOT = { manpower_percentage = 0.25 }
+			}
+			modifier = {
+				factor = 1.5
+				manpower_percentage = 0.75
+			}
+			modifier = {
+				factor = 0.75
+				war_exhaustion = 2
+			}
+			modifier = {
+				factor = 0.5
+				war_exhaustion = 5
+			}
+			modifier = {
+				factor = 0
+				war_exhaustion = 6
+			}
+			modifier = {
+				factor = 0.5
+				NOT = { treasury = 100 }
+			}
+			modifier = {
+				factor = 0.5
+				num_of_loans = 1
+			}
+			modifier = {
+				factor = 1.5
+				years_of_income = 1
+			}
+			modifier = {
+				factor = 1.5
+				FROM = { ai = no }
+			}
+		 }
+	}
+	option = {
+		name = "EVT_HIDDEN" #Take Our Claim!
+		trigger = {
+			FROM = {
+				any_owned_province = {
+					is_claim = ROOT
+				}
+			}
+		}
+		 declare_war_with_cb = {
+				    who = FROM
+				    casus_belli = cb_conquest
+		 }
+		 ai_chance = {
+			factor = 25
+			modifier = {
+				factor = 0
+				NOT = { army_size_percentage = 0.5 }
+			}
+			modifier = {
+				factor = 0.5
+				NOT = { army_size_percentage = 0.75 }
+			}
+			modifier = {
+				factor = 0.5
+				NOT = { army_size = FROM }
+			}
+			modifier = {
+				factor = 0.25
+				NOT = { army_size = 5 }
+			}
+			modifier = {
+				factor = 0.5
+				NOT = { manpower_percentage = 0.5 }
+			}
+			modifier = {
+				factor = 0
+				NOT = { manpower_percentage = 0.25 }
+			}
+			modifier = {
+				factor = 1.5
+				manpower_percentage = 0.75
+			}
+			modifier = {
+				factor = 0.75
+				war_exhaustion = 2
+			}
+			modifier = {
+				factor = 0.5
+				war_exhaustion = 5
+			}
+			modifier = {
+				factor = 0
+				war_exhaustion = 6
+			}
+			modifier = {
+				factor = 0.5
+				NOT = { treasury = 100 }
+			}
+			modifier = {
+				factor = 0.5
+				num_of_loans = 1
+			}
+			modifier = {
+				factor = 1.5
+				years_of_income = 1
+			}
+			modifier = {
+				factor = 1.5
+				FROM = { ai = no }
+			}
+		 }
+	}
+	option = {
+		name = "EVT_HIDDEN" #Not ready!
+		 ai_chance = {
+			factor = 25
+		 }
+	}
+}
+
+#Change Religion in low tolerance province
+province_event = {
+	id = cuai.6
+	title = "EVT_HIDDEN"
+	desc = "EVT_HIDDEN"
+	picture = BIG_BOOK_eventPicture
+	hidden = yes
+	trigger = {
+		has_owner_religion = no
+		owner = {
+			ai = yes
+			num_of_missionaries = 1
+		}
+		NOT = { tolerance_to_this = 3 }
+		NOT = { has_province_flag = ai_missionary_construction_target }
+		check_variable = { which = cu_local_missionary_strength value = 0.001 }
+	}
+	immediate = {
+		add_province_modifier = {
+			name = ai_missionary_construction
+			duration = 30
+			hidden = yes
+		}
+	}
+	mean_time_to_happen = {
+		days = 180
+		modifier = {
+			factor = 500
+			owner = {
+				religion = confucianism
+			}
+		}
+		modifier = {
+			factor = 50
+			tolerance_to_this = 0
+		}
+		modifier = {
+			factor = 50
+			tolerance_to_this = 1
+		}
+		modifier = {
+			factor = 50
+			tolerance_to_this = 2
+		}
+		modifier = {
+			factor = 0.95
+			check_variable = { which = cu_local_missionary_strength value = 0.02 }
+		}
+		modifier = {
+			factor = 0.95
+			check_variable = { which = cu_local_missionary_strength value = 0.03 }
+		}
+		modifier = {
+			factor = 0.85
+			check_variable = { which = cu_local_missionary_strength value = 0.04 }
+		}
+		modifier = {
+			factor = 0.85
+			check_variable = { which = cu_local_missionary_strength value = 0.05 }
+		}
+		modifier = {
+			factor = 0.8
+			check_variable = { which = cu_local_missionary_strength value = 0.06 }
+		}
+		modifier = {
+			factor = 0.8
+			check_variable = { which = cu_local_missionary_strength value = 0.07 }
+		}
+		modifier = {
+			factor = 0.75
+			check_variable = { which = cu_local_missionary_strength value = 0.08 }
+		}
+		modifier = {
+			factor = 0.75
+			check_variable = { which = cu_local_missionary_strength value = 0.09 }
+		}
+		modifier = {
+			factor = 0.75
+			check_variable = { which = cu_local_missionary_strength value = 0.1 }
+		}
+	}
+	option = {
+		name = "EVT_HIDDEN"
+		set_variable = { which = cu_vark value = 1 }
+		divide_variable = { which = cu_vark which = cu_local_missionary_strength  }
+		change_variable = { which = cu_vark value = -1 }
+		add_province_modifier = {
+			name = ai_missionary_construction
+			duration = 30
+		}
+		while = {
+			limit = { check_variable = { which = cu_vark value = 1 } }
+			extend_province_modifier = {
+				name = ai_missionary_construction
+				duration = 30
+			}
+			change_variable = { which = cu_vark value = -1 }
+		}
+		set_province_flag = ai_missionary_construction_target
+	}
+}
+
+province_event = {
+	id = cuai.61
+	title = "EVT_HIDDEN"
+	desc = "EVT_HIDDEN"
+	picture = BIG_BOOK_eventPicture
+	hidden = yes
+	trigger = {
+		NOT = { has_province_modifier = ai_missionary_construction }
+		has_province_flag = ai_missionary_construction_target
+	}
+	option = {
+		name = "EVT_HIDDEN"
+		change_religion = owner
+		clr_province_flag = ai_missionary_construction_target
+	}
+}
+
+#AI build school
+
+
+#AI call their allies
+country_event = {
+	id = cuai.8
+	title = "EVT_HIDDEN"
+	desc = "EVT_HIDDEN"
+	picture = BIG_BOOK_eventPicture
+	hidden = yes
+	trigger = {
+		is_at_war = yes
+		any_subject_country = {
+			cu_high_autonomy_subject = yes
+			has_scutage = no
+			NOT = { liberty_desire = 50 }
+			NOT = {
+				is_in_war = {
+					defenders = ROOT
+				}
+			}
+			NOT = {
+				has_country_modifer = nominal_rule
+			}
+			ai = yes
+		}
+		ai = yes
+	}
+	option = {
+		name = "EVT_HIDDEN"
+		every_subject_country = {
+			limit = {
+				cu_high_autonomy_subject = yes
+				has_scutage = no
+				NOT = {
+					is_in_war = {
+						defenders = ROOT
+					}
+				}
+				NOT = { liberty_desire = 50 }
+				ai = yes
+				NOT = {
+					has_country_modifer = nominal_rule
+				}
+			}
+			join_all_defensive_wars_of = ROOT
+		}
+	}
+}
+country_event = {
+	id = cuai.81
+	title = "EVT_HIDDEN"
+	desc = "EVT_HIDDEN"
+	picture = BIG_BOOK_eventPicture
+	hidden = yes
+	trigger = {
+		is_at_war = yes
+		any_subject_country = {
+			cu_high_autonomy_subject = yes
+			has_scutage = no
+			NOT = { liberty_desire = 50 }
+			NOT = {
+				is_in_war = {
+					attackers = ROOT
+				}
+			}
+			NOT = {
+				has_country_modifer = nominal_rule
+			}
+			ai = yes
+		}
+		ai = yes
+	}
+	option = {
+		name = "EVT_HIDDEN"
+		every_subject_country = {
+			limit = {
+				NOT = { is_subject_of_type = tributary_state }
+				NOT = { is_subject_of_type = protectorate }
+				has_scutage = no
+				NOT = {
+					is_in_war = {
+						attackers = ROOT
+					}
+				}
+				NOT = { liberty_desire = 50 }
+				ai = yes
+				NOT = {
+					has_country_modifer = nominal_rule
+				}
+			}
+			join_all_offensive_wars_of = ROOT
+		}
+	}
+}
+
+#Russia move captial to st.p
+country_event = {
+	id = cuai.9
+	title = "EVT_HIDDEN"
+	desc = "EVT_HIDDEN"
+	picture = BIG_BOOK_eventPicture
+	hidden = yes
+	trigger = {
+		owns = 33
+		NOT = { capital = 33 }
+		NOT = { has_country_flag = relocated_capital_st_petersburg }
+		is_at_war = no
+		capital_scope = {
+			base_tax = 3
+			base_production = 3
+			base_manpower = 4
+		}
+		any_province = {
+			is_capital = no
+			base_tax = 4
+			base_production = 4
+			base_manpower = 7
+			NOT = { province_id = 33 }
+		}
+		OR = {
+			DIP = 4
+			is_year = 1700
+		}
+		tag = RUS
+		cu_ai_buff_trigger = yes
+	}
+	option = {
+		name = "EVT_HIDDEN"
+		set_country_flag = relocated_capital_st_petersburg
+		add_adm_power = -150
+		add_prestige = 10
+		add_dip_power = 100
+		random_province = {
+			limit = { 
+				is_capital = yes
+				owned_by = ROOT 
+			}
+			add_base_tax = -1
+			add_base_production = -1
+			add_base_manpower = -2
+		}
+		random_province = {
+			limit = { 
+				is_capital = no
+				owned_by = ROOT
+				culture = owner
+				base_tax = 4
+				base_production = 4
+				base_manpower = 7
+				NOT = { province_id = 33 }
+			}
+			add_base_tax = -1
+			add_base_production = -1
+			add_base_manpower = -2
+		}
+		set_capital = 33
+		
+		33 = {
+			change_province_name = "St. Petersburg"
+			rename_capital = "St. Petersburg"
+			add_base_tax = 3
+			add_base_production = 3
+			add_base_manpower = 6
+			change_culture = owner
+			hidden_effect = {
+				change_variable = { which = b_uc value = 4 }
+				change_variable = { which = b_ac value = 5 }
+				change_trade_goods = fish
+			}
+			add_province_modifier = {
+				name = russian_western_door
+				duration = -1
+			}
+			center_of_trade = 1
+		}
+	}
+}
+
+#AI keep low autonomy in state provinces
+province_event = {
+	id = cuai.11
+	title = "EVT_HIDDEN"
+	desc = "EVT_HIDDEN"
+	picture = BIG_BOOK_eventPicture
+	hidden = yes
+	trigger = {
+		local_autonomy = 60
+		NOT = { unrest = 1 }
+		owner = {
+			ai = yes
+		}
+		cu_not_terr_trigger = yes
+	}
+	mean_time_to_happen = {
+		months = 240
+	}
+	option = {
+		name = "EVT_HIDDEN"
+		add_local_autonomy = -25
+		add_unrest = 5
+	}
+}
+
+#Recover from low stability
+country_event = {
+	id = cuai.12
+	title = "EVT_HIDDEN"
+	desc = "EVT_HIDDEN"
+	picture = BIG_BOOK_eventPicture
+	hidden = yes
+	trigger = {
+		NOT = { has_country_flag = use_future_stability }
+		ai = yes
+		NOT = {
+			stability = -1
+		}
+	}
+	mean_time_to_happen = {
+		months = 120
+	}
+	option = {
+		name = "EVT_HIDDEN"
+		cu_calc_total_stability_growth = yes #Stability Calculation
+		set_country_flag = use_future_stability
+	}
+}
+
+#AI keep low corruption
+country_event = {
+	id = cuai.13
+	title = "EVT_HIDDEN"
+	desc = "EVT_HIDDEN"
+	picture = BIG_BOOK_eventPicture
+	hidden = yes
+	trigger = {
+		variable_arithmetic_trigger = {
+			corruption = 10
+			
+			export_to_variable = {
+				variable_name = cu_ai_var2
+				value = modifier:yearly_corruption
+			}
+			
+			check_variable = {
+				which = cu_ai_var2
+				value = 0.10
+			}
+		}
+		cu_ai_buff_trigger = yes
+	}
+	mean_time_to_happen = {
+		months = 1200
+		modifier = {
+			factor = 0.75
+			corruption = 30
+		}
+		modifier = {
+			factor = 0.75
+			corruption = 25
+		}
+		modifier = {
+			factor = 0.75
+			corruption = 20
+		}
+		modifier = {
+			factor = 0.75
+			corruption = 15
+		}
+		modifier = {
+			factor = 2
+			tag = MNG
+		}
+	}
+	option = {
+		name = "EVT_HIDDEN"
+		add_corruption = -5
+	}
+}

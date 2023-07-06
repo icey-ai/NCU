@@ -1,0 +1,1005 @@
+country_decisions = {
+
+	#Chinese Nations declare mandate of heaven
+	declare_mandate_of_heaven_china = {
+		major = yes
+		potential = {
+			culture_group = east_asian
+			NOT = {
+				tag = JAP
+				has_country_flag = tennou
+			}
+			NOT = { has_reform =  chinese_warlord }
+			NOT = { has_reform =  celestial_empire }
+			NOT = { has_reform =  celestial_empire_2 }
+			NOT = { has_reform =  celestial_empire_3 }
+			NOT = { has_country_flag = no_more_celestial }
+			NOT = { tag = MNG }                        
+			NOT = { tag = CHF }
+			NOT = { tag = PAP }
+			NOT = { has_country_flag = moh_declared }
+		}
+		allow = {
+			is_subject = no
+			capital_scope = { 
+				OR = {
+					region = south_china_region
+					region = xinan_region
+					region = north_china_region
+				}
+			} 
+			num_of_owned_provinces_with = {
+				value = 5
+				NOT = { area = taiwan_area }
+				OR = {
+					region = south_china_region
+					region = xinan_region
+					region = north_china_region
+				}
+			}
+		}
+		effect = {
+			add_prestige = -10		
+			add_government_reform = becomes_monarchy_reform			
+			add_government_reform = chinese_warlord
+            country_event = { id = mandate.000 }
+			if = {
+				limit = { 
+					OR = {
+						has_reform = tribal_conscription
+						has_reform = mercenary_conscription
+						has_reform = feudal_conscription
+					}
+				}
+				add_government_reform = military_household		   
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}		
+	}
+
+
+    #Foreign Nations Declare Mandate Of Heaven
+	declare_mandate_of_heaven_foreign = {
+		major = yes
+		potential = {					
+			NOT = { culture_group = east_asian }
+			NOT = {
+				AND = {
+					tag = JAP
+					has_country_flag = tennou
+				}
+			}
+			num_of_owned_provinces_with = {
+				value = 1                                
+				OR = {
+					region = south_china_region
+					region = xinan_region
+					region = north_china_region
+				}
+			}                        
+			NOT = { has_reform =  chinese_warlord }
+			NOT = { has_reform =  celestial_empire }
+			NOT = { has_reform =  celestial_empire_2 }
+			NOT = { has_reform =  celestial_empire_3 }
+			NOT = { has_country_flag = no_more_celestial }
+			NOT = { tag = MNG }                       
+			NOT = { tag = CHF }
+			NOT = { tag = PAP }
+			NOT = { has_country_flag = moh_declared }
+			NOT = { has_country_flag = declared_mandate }
+		}
+		allow = {
+			is_subject = no
+			if = {
+				limit = { ai = no }
+				prestige = 20
+			}
+			num_of_owned_provinces_with = {
+				value = 20
+				NOT = { area = taiwan_area }
+				OR = {
+					region = south_china_region
+					region = xinan_region
+					region = north_china_region
+				}
+			}
+			stability = 0
+		}
+		effect = {
+			if = {
+				limit = {
+					OR = {
+						technology_group = chinese
+						AND = {
+							technology_group = nomad_group
+							OR = {
+								religion_group = pagan
+								religion_group = eastern
+							}
+						}
+					}
+				}
+				add_prestige = -20		
+				add_government_reform = becomes_monarchy_reform			
+				add_government_reform = chinese_warlord
+				add_mercantilism = 10
+				country_event = { id = mandate.000 }
+				if = {
+					limit = { 
+						OR = {
+							has_reform = tribal_conscription
+							has_reform = mercenary_conscription
+							has_reform = feudal_conscription
+						}
+					}
+					add_government_reform = military_household		   
+				}
+			}
+			else = {
+				add_adm_power = -200
+				add_dip_power = -200
+				add_mil_power = -200
+				add_prestige = 10
+				south_china_region = {
+					add_claim = ROOT
+				}
+				xinan_region = {
+					add_claim = ROOT
+				}
+				north_china_region = {
+					add_claim = ROOT
+				}
+				set_country_flag = declared_mandate
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}		
+	}
+	
+	#Fight for Mandate Of Heaven
+	fight_for_mandate_of_heaven = {
+		major = yes
+		potential = {
+			OR = {
+				has_reform = chinese_revolter
+				has_reform = chinese_warlord
+				has_reform =  celestial_empire
+				has_reform =  celestial_empire_2
+				has_reform =  celestial_empire_3
+			}
+		}
+		allow = {
+		}
+		effect = {
+			country_event = { id = mandate.1000 }
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+    #Revoke Gentry's Landholding
+	show_land_information = {
+		major = yes
+		potential = {
+			has_estate_privilege = gentrys_landholding 
+			NOT = { has_country_flag = check_now }
+			has_country_flag = cu_gentrys_landholding_on
+		}
+		allow = {
+			stability = 0
+		}
+		effect = {
+            set_country_flag = check_now		
+			country_event = {
+				id = cuestate.200
+			}			
+		}
+		ai_will_do = {
+			factor = 0
+		}		
+	}
+	
+    #Revoke Artisan's Regulation
+	revoke_artisans_regulation = {
+		major = yes
+		potential = {
+			has_country_modifier = artisan_regulation
+		}
+		allow = {
+			years_of_income = 0.75
+			prestige = 50
+			meritocracy = 50
+			OR = {
+				adm = 5
+				AND = {
+					adm = 4
+					OR = {
+						advisor = natural_scientist_1
+						advisor = master_of_mint_1
+					}
+				}
+			}			                  
+			dip_power = 100
+			adm_power = 100
+		}
+		effect = {
+			add_years_of_income = -0.5
+			add_meritocracy = -10
+			add_prestige = -30
+			add_dip_power = -100
+			add_adm_power = -100			
+			remove_country_modifier = artisan_regulation	
+		}
+		ai_will_do = {
+			factor = 0
+		}		
+	}
+    estabilish_artisans_regulation = {
+		major = yes
+		potential = {
+			OR = {
+				has_reform = celestial_empire
+				has_reform = celestial_empire_2
+			}
+			NOT = { has_country_modifier = artisan_regulation }
+		}
+		allow = {             
+			dip_power = 100
+			adm_power = 100
+			meritocracy = 50
+		}
+		effect = {
+			add_meritocracy = -10	
+			add_dip_power = -100
+			add_adm_power = -100	
+			add_country_modifier = {
+				name = artisan_regulation
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 0
+		}		
+	}
+
+    #Revoke Wei-Suo System
+	revoke_weisuos_system = {
+		major = yes
+		potential = {
+		    has_country_modifier = weisuo_system
+			NOT = { has_country_flag = start_army_reform_cu }
+			NOT = { has_country_modifier = army_reform_failed_cu }
+		}
+		allow = {
+			OR = {
+				mil = 5                   
+				AND = {
+					mil = 4                           
+					OR = {
+						advisor = army_reformer_1
+						advisor = army_organiser_1
+						advisor = commandant_1
+					}
+				}
+				AND = {
+					mil = 3
+					prestige = 80
+				}
+			}			                  
+			mil_power = 200                        			                   
+		}
+		effect = {
+			add_mil_power = -200     
+			country_event = { id = cu_celestial_reform.1 } 			
+		}
+		ai_will_do = {
+			factor = 0
+		}		
+	}
+
+	revoke_weisuos_system_2 = {
+		major = yes
+		potential = {
+		    has_country_modifier = weisuo_system
+			has_country_flag = start_army_reform_cu
+		}
+		allow = {                   
+		}
+		effect = {
+            country_event = { id = cu_celestial_reform.3 }				
+		}
+		ai_will_do = {
+			factor = 0
+		}		
+	}
+
+    celestial_empire_reform = {
+		major = yes
+		potential = {
+			has_reform =  celestial_empire
+			#NOT = { technology_group = western }
+		}
+		allow = {
+			stability = 2
+			army_tradition = 25
+			years_of_income = 1
+			OR = { 
+				AND = {
+					adm = 3
+					dip = 3
+					mil = 3   
+					OR = {
+						adm = 5
+						dip = 5
+						mil = 5
+					}
+				}
+				has_institution = printing_press			                   
+			}
+			meritocracy = 90   
+			adm_power = 200
+			dip_power = 200
+			mil_power = 200
+			custom_trigger_tooltip = {
+				tooltip = tooltip_ave_literacy_5
+				check_variable = { which = ave_literacy value = 5 }
+			}
+		}
+		effect = {
+			cu_change_stability_point_n75 = yes
+			add_army_tradition = -15
+			add_years_of_income = -1
+			add_adm_power = -200
+			add_dip_power = -200
+			add_mil_power = -200	
+			add_meritocracy = -40  						
+			add_government_reform = celestial_empire_2
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				NOT = { adm_power = 600 }
+			}
+			modifier = {
+				factor = 0
+				NOT = { dip_power = 300 }
+			}
+			modifier = {
+				factor = 0
+				NOT = { mil_power = 300 }
+			}
+			modifier = {
+				factor = 0
+				unrest = -3
+			}
+		}			
+	}
+	
+	celestial_empire_modernize = {
+		major = yes
+		potential = {
+			has_reform =  celestial_empire_2
+			has_global_flag = harmony_achieved                       
+		}
+		allow = {
+			stability = 2
+			army_tradition = 25
+			years_of_income = 1
+			OR = {                                
+				adm = 4
+				dip = 4
+				mil = 4
+			}
+			has_institution = feudalism
+			has_institution = renaissance
+			has_institution = new_world_i
+			has_institution = printing_press
+			OR ={
+				has_institution = global_trade
+				has_institution = manufactories
+				has_institution = enlightenment
+			}                        
+			meritocracy = 90   
+			adm_power = 200
+			dip_power = 200
+			mil_power = 200
+			custom_trigger_tooltip = {
+				tooltip = tooltip_ave_literacy_10
+				check_variable = { which = ave_literacy value = 10 }
+			}     						
+			NOT = { has_estate_privilege = gentrys_landholding }                              
+			NOT = { has_country_modifier = artisan_regulation }
+			NOT = { has_country_modifier = weisuo_system }
+			NOT = { has_ruler_modifier = revoke_weisuo_system }
+			NOT = { has_country_modifier = trade_limitation }
+			NOT = { has_country_modifier = foreign_ignorance }
+			NOT = { has_country_modifier = nostalgic_provincialism }
+		}
+		effect = {
+			cu_change_stability_point_n75 = yes
+			add_army_tradition = -15
+			add_years_of_income = -1
+			add_adm_power = -200
+			add_dip_power = -200
+			add_mil_power = -200	
+			add_meritocracy = -40  						
+			add_government_reform = celestial_empire_3
+			hidden_effect = {
+				remove_faction = bureaucrats
+				remove_faction = enuchs
+				remove_faction = temples               
+			}
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				NOT = { adm_power = 300 }
+			}
+			modifier = {
+				factor = 0
+				NOT = { dip_power = 300 }
+			}
+			modifier = {
+				factor = 0
+				NOT = { mil_power = 300 }
+			}
+			modifier = {
+				factor = 0
+				unrest = -3
+			}
+		}			
+	}
+
+   	no_more_celestial_empire = {
+		major = yes
+		potential = {
+			has_reform =  celestial_empire_2
+			NOT = { has_country_flag = no_more_celestial }
+			NOT = { has_country_modifier = start_of_circle }
+			NOT = { check_variable = { which = landholding_progress value = 50 } }
+	   	}
+		allow = {
+			adm = 3
+			dip = 3
+			mil = 3   
+		    OR = {
+				adm = 5
+				dip = 5
+				mil = 5
+            }
+            has_institution = feudalism
+			has_institution = renaissance
+			has_institution = new_world_i
+			has_institution = printing_press
+			innovativeness = 25	
+			stability = 2
+			dip_power = 200
+			mil_power = 200 
+			meritocracy = 90                                               
+			years_of_income = 1
+        	NOT = { has_country_modifier = artisan_regulation }
+        	NOT = { has_country_modifier = weisuo_system }
+		}
+		effect = {
+			cu_change_stability_point_n150 = yes
+			add_dip_power = -200
+			add_mil_power = -200
+			add_years_of_income = -1	
+			remove_estate_privilege = gentrys_landholding
+			set_country_flag = no_more_celestial
+			add_country_modifier = {
+				name = shishen_anger
+				duration = 1865
+			}
+			remove_country_modifier = kejv_cu
+			clr_country_flag = keju_system
+			add_government_reform = ord_reform
+			hidden_effect = {
+				remove_faction = bureaucrats
+				remove_faction = enuchs
+				remove_faction = temples
+               	dismantle_empire_of_china = yes
+				add_country_modifier = {
+					name = cu_estate_reshuffle
+					duration = 1
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 0
+		}			
+	}
+
+    send_tribute = {
+		potential = {
+			NOT = { has_country_flag = send_tribute }
+			NOT = { has_ruler_flag = sent_tribute }
+			any_known_country = {
+				is_emperor_of_china = yes
+				overlord_of = ROOT
+			}
+		}
+		allow = {
+			any_known_country = {
+				is_emperor_of_china = yes
+				overlord_of = ROOT
+			}
+		}
+		effect = {
+			set_country_flag = send_tribute
+			country_event = { id = mandate.800 }
+		}
+		ai_will_do = {
+			factor = 1
+            modifier = {
+				factor = 0
+				any_known_country = {
+					overlord_of = ROOT
+					NOT = { war_with = ROOT }
+					NOT = { reverse_has_opinion = { who = ROOT value = 80 } }
+                }
+			}
+			modifier = {
+				factor = 0.5
+				government = tribal
+			}
+			modifier = {
+				factor = 0.1
+				government = republic
+			}
+		}			
+	}
+
+	back_to_celestial_empire = {
+		potential = {
+			has_country_flag = no_more_celestial
+			government = monarchy
+		}
+		allow = {
+		}
+		effect = {
+			cu_change_stability_point_p100 = yes
+			add_adm_power = 400	
+			clr_country_flag = no_more_celestial
+			remove_country_modifier = shishen_anger
+			add_government_reform = celestial_empire
+			hidden_effect = {
+				set_emperor_of_china = ROOT
+				add_estate_influence_modifier = {
+					estate = estate_shizu
+					desc = EST_VAL_CHURCH_ADVANCE
+					influence = 20
+					duration = 7300
+				}
+				add_estate_influence_modifier = {
+					estate = estate_government
+					desc = EST_VAL_CHURCH_ADVANCE
+					influence = -20
+					duration = 7300
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 0
+		}		
+	}
+	
+	call_tribute = {
+		potential = {
+			is_emperor_of_china = yes
+			any_known_country = {
+				is_subject_of_type = tributary_state
+				is_subject_of = ROOT
+				NOT = { has_country_flag = send_tribute }
+			}
+			OR = {  
+				NOT = { has_country_flag = call_tribute }
+				had_country_flag = {
+					flag = call_tribute
+					days = 7300
+				}
+			}
+		}
+		allow = {
+			custom_trigger_tooltip = {
+				tooltip = has_formalize_tributary_system
+				has_global_flag = tributary_formalized
+			}
+		}
+		effect = {
+			clr_country_flag = call_tribute
+			set_country_flag = call_tribute
+			every_subject_country = {
+				limit = {      
+					is_subject_of_type = tributary_state
+					NOT = { has_country_flag = send_tribute }
+				}
+				set_country_flag = send_tribute
+				country_event = { id = mandate.797 }
+			}
+		}
+		ai_will_do = {
+			factor = 1
+            modifier = {
+				factor = 0
+				any_known_country = {
+					OR = {
+						has_reform =  celestial_empire
+						has_reform =  celestial_empire_2
+						has_reform =  celestial_empire_3
+					}
+					NOT = { war_with = ROOT }
+					NOT = { reverse_has_opinion = { who = ROOT value = 80 } }
+				}
+			}
+		}			
+	}
+	
+	#CHF
+	propose_chinese_federation = {
+		major = yes
+		potential = {
+            has_global_flag = harmony_achieved
+			is_emperor_of_china = yes
+			culture_group = east_asian
+			religion = confucianism 
+			has_idea_group = influence_ideas
+			has_reform =  celestial_empire_3
+			NOT = { has_global_flag = chinese_federation_formed }                                             
+			NOT = { tag = CHF } 
+			south_china_region = {
+				type = all
+				owned_by = ROOT
+			}
+			xinan_region = {
+				type = all
+				owned_by = ROOT
+			}
+			north_china_region = {
+				type = all
+				owned_by = ROOT
+			}                   
+			num_of_owned_provinces_with = {
+				value = 300
+				AND = {
+					OR = { 
+						continent = asia
+						continent = oceania 
+					}
+						is_core = ROOT
+				}
+			}
+		}
+		provinces_to_highlight = {		                                                                                                                          
+			OR = {
+				region = khorasan_region 
+				region = mongolia_region
+				region = manchuria_region
+				region = korea_region
+				region = tibet_region
+				region = hindusthan_region
+				region = bengal_region
+				region = west_india_region
+				region = deccan_region
+				region = coromandel_region
+				region = burma_region                                      
+				region = malaya_region
+				region = moluccas_region
+				region = indonesia_region
+				region = indo_china_region
+				region = central_asia_region                                                                           
+			} 
+            is_city = yes                               
+            NOT = {                                  
+                OR = {
+					owned_by = ROOT
+					owner = { is_subject_of = ROOT }                                    
+				}
+           	}                                
+		}
+		allow = {
+			imperial_mandate = 100
+			meritocracy = 100
+			stability = 3
+			prestige = 75
+			full_idea_group = influence_ideas       
+			custom_trigger_tooltip = {
+				tooltip = federation_claim_territory  
+				NOT = {
+					any_known_country = {
+						capital_scope = { 
+							OR = {
+								region = khorasan_region
+								region = mongolia_region
+								region = manchuria_region
+								region = korea_region
+								region = tibet_region
+								region = hindusthan_region
+								region = bengal_region
+								region = west_india_region
+								region = deccan_region
+								region = coromandel_region
+								region = burma_region							         
+								region = malaya_region
+								region = indonesia_region
+								region = indo_china_region
+								region = central_asia_region
+								region = moluccas_region 
+							} 
+						}
+						NOT = {									
+							is_subject_of = ROOT
+						}
+					}
+				}
+			}
+		}
+		effect = {
+            #change_tag = CHF
+			hidden_effect = {
+				remove_faction = bureaucrats
+				remove_faction = enuchs
+				remove_faction = temples
+			}
+			override_country_name = CHF
+            #country_event = { id = ideagroups.1 } #Swap Ideas						
+            set_global_flag = chinese_federation_formed   
+			add_country_modifier = {
+				name = the_mandate_eternal
+				duration = -1
+			}			
+			custom_tooltip = chf_forming
+			hidden_effect = { 
+				every_subject_country = {
+					limit = {
+						capital_scope = { 
+							OR = { 
+							continent = asia
+							continent = oceania 
+							} 
+						}
+						NOT = {is_subject_of_type = tributary_state }
+					}
+					every_owned_province = {
+						limit = {
+							OR = { 
+								continent = asia
+								continent = oceania 
+							}
+						}
+						cede_province = CHF
+						add_core = CHF
+					}
+				}
+				every_subject_country = {
+					limit = {
+						capital_scope = { 
+							OR = { 
+								continent = asia
+								continent = oceania 
+							}
+						}
+						is_subject_of_type = tributary_state
+					}
+					country_event = { id = mandate.999 }
+				}
+				every_province = {
+					limit = {
+						OR = { 
+							continent = asia
+							continent = oceania 
+						}
+						NOT = { is_core = CHF }                                        
+					}
+					add_permanent_claim = CHF
+				}
+			}						
+		}
+		ai_will_do = {
+			factor = 1
+		}			
+	}
+
+	#Keju
+	hold_keju_examination = {
+		potential = {
+			OR = {
+				religion = confucianism
+				AND = {
+					any_known_country = {
+						is_emperor_of_china = yes
+						overlord_of = ROOT
+						religion = confucianism
+					}
+					has_global_flag = chinesized_education
+				}
+			}
+			NOT = { has_country_flag = in_keju }
+			OR = {
+				NOT = { has_country_flag = keju_held }
+				had_country_flag = {
+					flag = keju_held
+					days = 1095 #Every three years
+				}
+			}
+			NOT = { has_country_modifier = new_kejv_cu }
+		}
+		allow = {
+			treasury = 500
+			years_of_income = 0.8
+			adm_power = 300
+			any_owned_province = {
+				religion = ROOT
+				cu_not_terr_trigger = yes
+				OR = {
+					has_owner_culture = yes
+					owner = { culture_group = ROOT }
+					has_owner_accepted_culture = yes
+				}
+			}
+		}
+		effect = {
+			add_treasury = -250
+			add_years_of_income = -0.5
+			add_adm_power = -200
+			if = {
+				limit = { 
+					NOT = { has_country_modifier = kejv_cu } 
+				}
+				if = {
+					limit = {
+						NOT = { has_country_modifier = foreign_ignorance }
+						OR = {
+							AND = {
+								OR = {
+									adm_tech = 17
+									full_idea_group = administrative_ideas
+								}
+								has_institution = enlightenment
+							}
+							full_idea_group = reform_ideas
+						}
+					}
+					add_country_modifier = {
+						name = new_kejv_cu
+						duration = -1
+					}
+				}
+				else = {
+					add_country_modifier = {
+						name = kejv_cu
+						duration = -1
+					}
+					custom_tooltip = keju_examination_tt
+					set_country_flag = in_keju
+					set_country_flag = keju_system
+					set_country_flag = keju_3year
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+			         factor = 0
+			         NOT = { years_of_income = 0.5 }
+			}
+			modifier = {
+			         factor = 0
+			         has_country_flag = keju_system
+			}
+		}			
+	}
+	keju_reform_decision = {
+		potential = {
+			has_country_modifier = kejv_cu
+			NOT = { has_country_modifier = new_kejv_cu }
+		}
+		allow = {
+			NOT = { has_country_modifier = foreign_ignorance }
+			OR = {
+				AND = {
+					OR = {
+						adm_tech = 17
+						full_idea_group = administrative_ideas
+					}
+					has_institution = enlightenment
+				}
+				full_idea_group = reform_ideas
+			}
+			years_of_income = 0.5
+			adm_power = 100
+		}
+		effect = {
+			remove_country_modifier = kejv_cu
+			clr_country_flag = keju_system
+			add_country_modifier = {
+				name = new_kejv_cu
+				duration = -1
+			}
+			add_meritocracy = -10
+			add_years_of_income = -0.5
+			add_adm_power = -100
+			cu_change_stability_point_n150 = yes
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				NOT = { years_of_income = 0.85 }
+			}
+		}
+	}
+
+	#Seaban
+	revoke_sea_trade_ban = {
+		potential = {
+            has_country_modifier = sea_trade_banned
+		}
+		allow = {
+            dip_power = 100
+		}
+		effect = {
+			add_dip_power = -100
+			remove_country_modifier = sea_trade_banned
+			custom_tooltip = revoke_sea_trade_ban_tooltip
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				check_variable = { which = wokou_strength value = 1 }
+				NOT = { check_variable = { which = wokou_strength value = 20 } } #Only revoke when wokou is too powerful or does not exist
+			}
+			modifier = {
+				factor = 0
+				OR = {
+					NOT = { is_year = 1567 }
+					tag = QNG
+				}
+			}
+		}			
+	}
+	announce_sea_trade_ban = {
+		potential = {
+			NOT = { has_country_modifier = sea_trade_banned }
+			is_emperor_of_china = yes
+		}
+		allow = {
+            dip_power = 100
+		}
+		effect = {
+			add_dip_power = -100
+			add_country_modifier = {
+				name = sea_trade_banned
+				duration = -1
+			}
+			custom_tooltip = announce_sea_trade_ban_tooltip
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+			    factor = 0
+				check_variable = { which = wokou_strength value = 20 }
+				NOT = {
+					AND = {
+						tag = QNG
+						OR = {
+							has_global_flag = cu_realistic_handicap_set
+							has_global_flag = cu_x_handicap_set
+						}
+					}
+				}
+			}
+			modifier = {
+				factor = 0
+				NOT = { 1 = { check_variable = { which = wokou_strength value = 0.1 } } }
+			}
+		}			
+	}
+}

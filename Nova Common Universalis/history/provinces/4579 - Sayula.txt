@@ -1,0 +1,35 @@
+# No previous file for Sayula
+
+owner = TON
+controller = TON
+add_core = TON
+is_city = yes
+culture = aztek
+religion = nahuatl
+capital = "Sayula"
+trade_goods = fish
+hre = no
+base_tax = 3
+base_production = 3
+base_manpower = 2
+
+
+
+discovered_by = mesoamerican
+
+1465.1.1 = { owner = TAR controller = TAR }
+1490.1.1 = { add_core = TAR }
+1510.1.1 = {
+ 	owner = CLM
+	controller = CLM 
+	remove_core = TAR	
+}#Salitre war
+1523.1.1 = {
+	owner = SPA
+	controller = SPA
+	add_core = SPA
+	religion = catholic
+	unrest = 5
+} #Forced to surrender by Alvarado, Colimotl murdered
+1541.1.1 = { culture = castillian } # growing aculturation
+1810.9.16 = { owner = MEX add_core = MEX controller = MEX } # Mexican War of Independence

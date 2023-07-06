@@ -1,0 +1,13 @@
+#Great Frigate
+type = light_ship
+trigger = { 
+				has_country_flag = lightship_mod_f
+}
+hull_size = 33
+base_cannons = 58
+blockade = 7
+sail_speed = 8 
+
+trade_power = 5
+
+sprite_level = 6

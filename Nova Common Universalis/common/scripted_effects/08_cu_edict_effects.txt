@@ -1,0 +1,72 @@
+improve_drainage_effect = {
+	owner = {
+		add_treasury = -75
+		hidden_effect = { 
+			set_variable = { which = cu_power value = 20 }
+			cu_calc_power_cost = yes
+			cu_subtract_adm_power = yes
+		}
+	}			 
+	add_province_modifier = {
+		name = cu_improve_drainage
+		duration = -1
+	}
+	hidden_effect = { province_event = { id = terra.08 days = 2556 } }
+	clr_province_flag = cu_improve_drainage_flag
+	set_province_flag = cu_improve_drainage_flag
+}
+
+improve_sanitation_effect = {
+	owner = {
+		add_treasury = -75
+		hidden_effect = { 
+			set_variable = { which = cu_power value = 20 }
+			cu_calc_power_cost = yes
+			cu_subtract_adm_power = yes
+		}
+	}
+	add_province_modifier = {
+		name = cu_improve_sanitation
+		duration = -1
+	}
+	clr_province_flag = cu_improve_sanitation_flag
+	set_province_flag = cu_improve_sanitation_flag
+	hidden_effect = { province_event = { id = terra.09 days = 1826 } }
+}
+
+reclaim_wasteland_effect = {
+    owner = {
+		add_manpower = -1
+		add_treasury = -40
+		hidden_effect = { set_variable = { which = cu_power value = 30 } }
+		cu_calc_power_cost = yes
+		cu_subtract_mil_power = yes
+	}
+	custom_tooltip = terra.7.at
+	add_province_modifier = {
+		name = ti_military_cultivation
+		duration = -1
+	}
+	hidden_effect = { province_event = { id = terra.071 days = 7300 } }
+}
+
+force_language_education_effect = {
+	owner = {
+		hidden_effect = { 
+			set_variable = { which = cu_power value = 60 }
+			cu_calc_power_cost = yes
+			cu_subtract_adm_power = yes
+			set_variable = { which = cu_power value = 60 }
+			cu_calc_power_cost = yes
+			cu_subtract_dip_power = yes
+			set_variable = { which = cu_prestige value = 6 }
+			cu_subtract_prestige = yes
+		}
+	}
+	custom_tooltip = urban.50.c7t
+	add_province_modifier = {
+			name = cu_language_education
+			duration = 7300
+	}
+	custom_tooltip = urban.50.c7t1
+}

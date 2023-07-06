@@ -1,0 +1,22 @@
+#6665 - Wakasa
+
+owner = TKD
+controller = TKD
+culture = japanese
+religion = shinto
+capital = "Wakasa"
+trade_goods = salt
+hre = no
+base_tax = 6
+base_production = 5
+base_manpower = 2
+is_city = yes
+add_core = TKD
+discovered_by = chinese
+discovered_by = MCH
+discovered_by = KHA
+discovered_by = OIR
+discovered_by = QNG
+discovered_by = ANU
+
+1542.1.1 = { discovered_by = POR }

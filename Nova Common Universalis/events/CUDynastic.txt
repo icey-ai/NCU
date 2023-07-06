@@ -1,0 +1,46 @@
+namespace = cu_dynastic
+#qinwang's heir
+country_event = {
+	id = cu_dynastic.9
+	title = "EVTNAMEQWH_titl"
+	desc = "EVTDESCQWH_desc"
+	picture = NEW_HEIR_eventPicture
+	#hidden = yes
+	trigger = {
+		has_country_flag = cu_qinwang_create_heir
+	}
+	option = {
+		name = "EVTDESCQWH.a"
+		define_heir = {
+			claim = 80
+			dynasty = ROOT
+			age = 13
+			male = yes
+			no_consort_with_heir = yes
+		}
+		if = { limit = { NOT = { heir_adm = 1 } } change_heir_adm = 1 }
+		if = { limit = { NOT = { heir_dip = 1 } } change_heir_dip = 1 }
+		clr_country_flag = cu_qinwang_create_heir
+	}
+}
+
+#est queen
+country_event = {
+	id = cu_dynastic.10
+	title = consort_events.2.t
+	desc = consort_events.2.d
+	picture = NEW_HEIR_eventPicture
+	#hidden = yes
+	trigger = {
+		has_country_flag = est_consort
+	}
+	option = {
+		name = "consort_events.2.a"
+		define_consort = {
+			country_of_origin = ROOT
+			religion = ROOT
+			culture = ROOT
+		}
+		clr_country_flag = est_consort
+	}
+}

@@ -1,0 +1,58 @@
+
+guarantee = {
+	first = ANS
+	second = FRT
+	start_date = 1444.1.1
+}
+guarantee = {
+	first = BAM
+	second = FRT
+	start_date = 1444.1.1
+}
+guarantee = {
+	first = NUM
+	second = FRT
+	start_date = 1444.1.1
+}
+
+union = {
+	first = TEC
+	second = SCW
+	start_date = 1444.1.1
+}
+
+union = {
+	first = BUR
+	second = LUX
+	start_date = 1444.1.1
+}
+
+union = {
+	first = BUR
+	second = HAI
+	start_date = 1444.1.1
+}
+
+union = {
+	first = BUR
+	second = BAR
+	start_date = 1444.1.1
+}
+
+vassal = {
+	first = BOH
+	second = MVA
+	start_date = 1444.1.1
+}
+
+vassal = {
+	first = STY
+	second = HAB
+	start_date = 1444.1.1
+}
+
+vassal = {
+	first = STY
+	second = TIR
+	start_date = 1444.1.1
+}

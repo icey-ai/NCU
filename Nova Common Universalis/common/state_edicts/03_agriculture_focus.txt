@@ -1,0 +1,20 @@
+edict_agriculture_focus = {
+	potential = {
+		always = yes		#we support "potential" if modders want to have lots and just show some.
+	}
+	
+	allow = {
+		adm_tech = 5
+	}
+	
+	modifier = {
+		local_manpower_modifier = -0.5
+		local_development_cost = -0.10
+	}
+	
+	color = { 244 164 96 }
+	
+	ai_will_do = {
+		factor = 0
+	}
+}

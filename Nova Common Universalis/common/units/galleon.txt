@@ -1,0 +1,15 @@
+#Galleon
+type = heavy_ship
+trigger = { 
+				NOT = {
+					has_country_flag = heavyship_mod_f
+					has_country_flag = heavyship_mod_h
+					has_country_flag = heavyship_mod_s
+				}
+}
+hull_size = 30
+base_cannons = 60 
+blockade = 8
+sail_speed = 5
+
+sprite_level = 3

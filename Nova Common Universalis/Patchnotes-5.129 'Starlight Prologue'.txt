@@ -1,0 +1,266 @@
+5.129 "Starlight Prologue" patchnotes
+重要更新：
+1. AI全面更新
+1.AI Overhaul
+	在最近数个版本迭代中我们重新编写了ai逻辑。现在ai不再如同过去一般极度依赖buff和结算作弊了，他们在策略性上有了极大的提升而额外buff则已经被大量去除了。哪怕是普通难度下，你也能感受到他们的强大。
+	We rewrote the AI logic in the recent updates. Now, AI no longer extremely relay on powerful buffs and cheating. We removed these buffs since the AI strategy is improved. You may see powerful AI even in the Normal Difficulty. 
+2. 政策全面加强
+2. Policies are Strengthened
+	cu的政策多是在较早期的版本中完成的，这使得他们buff较弱并且大多数政策在版本迭代中逐渐失去了意义。在这个版本中我们做了全面的加强来使政策更加具有选择性
+	Most policies in CU were designed in the early version. They only provided weak buffs and many of them became meaningless during the updates. In this version, we made a comprehensive enhancement on policies to make the policies more selective.
+3. 狂热度系统增加
+3.Religiousity system
+	现在传教不再如同老版本中只依赖于国家宗教政策的设定，新的狂热度系统允许你的宗教政策更加灵活和实际。理念、顾问、政策都会对其产生影响
+	Missionary no longer just relay on the State Religion Policy. The new Religiousity System allow you make more flexible and realistic religion policies. It is affected by your Ideas, Advisors, and Policies.
+4. 收入结构调整
+4. Income Structure Adjustment
+	在目前版本中 税收变得更加重要。在旧版本中生产与贸易为主要收入来源，但在新版本中税收也拥有了较高的地位，你可能会更加依赖于税收来帮助你的国家转型
+	Now, the Tax become more important compare with the Production and Trade were the main sources of income in the older version. You may be more dependent on taxes to help your country transformation.
+5. 部队人力相关机制修改
+5.  Manpower Consumption in the Army is modified.
+	在旧版本中大部分部队的人力消耗皆为统一的1k，但是新版本中不同部队消耗的人力不再相同。炮兵和骑兵都将会消耗更少的兵力。
+	In the old version, the manpower consumption of most troops was 1k. However, this is changed in the new version. Now, the artillery and cavalry consume less manpower.
+6. 厌战度机制更改
+6. War Exhaustion is more Difficult to Decrease
+	在新版本中，降低厌战度将会更加麻烦，你不再能如同原版一样直接迅速用外交点数抹除你国内的不满。你将需要通过一些决议和事件来解决它。
+	You are no longer able to remove War Exhaustion by DIP points directly as vanilla. Decreasing War Exhaustion become a trouble in this version. You need to use decisions and events to solve the War Exhaustion.
+7. 新的属国战争机制
+7. New Subjects War Mechanism
+	现在属国不再是无条件跟随你进入战争了。无论是防御还是进攻战争，你可能都需要付出一些信任来寻求他们的帮助。过高独立的属国将不再会帮助你作战！
+	Now your subjects are no longer unconditionally following you into the war. You may need to use some Trust to ask them to help you in either Defensive War or Offensive War. The subject has high Liberty Desire no longer join your war.
+8. 移除了所有劫掠海岸的理念
+8.  Raid Coasts Ideas are removed
+	海盗们的时代结束了！我会怀念的
+	The Era of Pirates is over! I will miss it!
+9. 高荒废度会减少当地发展度
+9. High Devastation would reduce the local Development 
+	这使得发展度机制更加真实和可靠，不再会有全国荒废却维持着超高发展度的不合理情况了，小心荒废。不过有些时候发展太高也不好，或许你也可以利用这个机制？
+	This makes the Development mechanism more realistic and reliable. There is no more crazy situation that a country has high Development with high countrywide Devastation. Beware of the Devastation! But sometime over-developed also is a problem, maybe you can use this mechanism to “regulate” your province?
+10. 战争机制修改
+10. Land Warfare
+	火力和冲击阶段都将只维持一天，这将会使骑兵更加强大并且减少战斗的不确定性，运气更难以帮助你赢下战争。此外撤退也只需要7天，打不过就快跑吧！
+	Both Fire phase and Shock phase become 1 day in the Land Warfare. This make the cavalry stronger and reduce the uncertainty of battle. You no longer able to win a war just depend on your luck. Also, it only takes 7 days CD to retreat. If you find you can’t win the battle, retreat is a wise choice.
+
+
+机制翻新：
+·小冰河期
+·中华帝国
+·沙哈鲁之死
+·玫瑰战争
+·复仇主义现在已经被移除
+
+Mechanism Update：
+·Little Ice Age
+·Celestial Empire
+·The death of Shaharu
+·The War of the Roses
+·Revengeism is removed
+
+
+
+
+
+次要更新：
+1.意大利地区国家、英格兰、勃兰登堡、卡斯蒂利亚新增国家理念
+2.重做萨伏伊、意大利、奥斯曼理念
+3.军需官、政治家、自然科学家、陆军队长、陆军组织者效果修改
+4.新增了部分奇观
+5.增加阿拉贡的事件
+
+1. New National Ideas for countries in Italy region, England, Brandenburg and Castile
+2. Redo the National Ideas of Savoy, Italy, and Ottoman
+3. Modifications to the buff of Quartermaster, Statesman, natural scientists, Grand Captain, and Army Organizer
+4. Added some new wonders
+5. Added Aragon events 
+
+优化:
+1.优化勃艮第加入百年战争的事件
+2.优化游戏内部分提示
+3.优化部分结算
+
+Optimization:
+1. Optimize the event of Burgundy joining the Hundred Years War
+2. Optimize some tips in the game
+3. Optimize calculation
+
+
+重要修复：
+Important Fix
+1.修复了establish krepost决议的数个bug
+1.Fixed bugs on "Establish Krepost" decision.
+
+
+次要修复：
+Minor Fix
+1.补充和修改了部分图标
+1.Added and modified some icons
+2.补充和修改了大量文本
+2.Added and modified a large number of text
+3.修复部分理念同名不同效果的bug
+3.Fixed a bug where some concepts had different effects with the same name
+4.修复部分理念和描述效果不同的bug
+4. Fix some bugs with different concepts and descriptions
+5.修复难度buff错误的问题
+5. Fixed difficulty buff bug
+6.修复几个define文件的问题
+6. Fix several problems of define files
+7.修复了某些情况下添加核心时不会移除贸易公司的bug
+7. Fixed a bug where adding cores would not remove trading companies in some cases
+8.修复了省政府一个省可以有多个的问题
+8. Fixed issue where provincial governments could have more than one province
+9.修复了非直辖区域能使用省份法令的问题
+9. Fixed issue with non-state regions being able to use provincial decrees
+10.修复了一个导致ai整合度可能不增长的问题
+10. Fixed an issue where ai province administrative integration might not grow
+11.修复了开局阶级设置问题的bug
+11.Fixed a bug in estates setting
+12.修复了一个导致ai可能突然很有钱的bug
+12. Fixed a bug that caused the AI to suddenly become rich
+13.修复了一个导致神罗扩张cb出现问题的bug
+13. Fixed a bug that caused problems with Holy Roman Empire Expansion CB
+14.修复了奥地利的理念数值bug
+14. Fixed the Austrian Ideas numerical bug
+15.修复了部分情况下迁都导致的行政整合度错误
+15. Fixed errors in administrative integration caused by capital relocation in some cases
+16.修复了动员系统的一个错误
+16. Fixed a bug in the mobilization system
+17.修复了The Prussian Confederation事件中释放的但泽没有正确的政体的问题
+17. Fixed an issue where Danzig released in the The Prussian Confederation Event did not have the correct government type
+18.自治领地不再能修建学校和政府类建筑了
+18. Autonomous territories can no longer build schools and government buildings
+19.大学教授不再可以身兼数职
+19. University professors can no longer wear multiple hats
+20.修正一个文化系统的错误
+20. Fix a bug in Culture System
+21.修复Cleves国家理念的错误
+21. Fix the Cleves Ideas numerical bug
+22.修复无法劫掠首都的bug
+22. Fixed a bug where capital raiding was not possible
+23.修复了弗洛伦萨开局没有文艺复兴发源地buff的问题
+23. Fixed an issue where Florence Province did not have Renaissance Birthplace buff
+24.修复了部分理念效果不生效的问题
+24. Fixed an issue where some ideas would not work
+25.修复了gc计算中将不同文化组计算为同一文化组的问题
+25. Fixed an issue where different culture groups were counted as the same culture group in GC calculations
+26.修复了教宗国能改换政体的问题
+26. Fixed the issue of papal states being able to change polity
+27.修复了地上天国决议可能导致游戏崩溃的问题
+27. Fixed an issue where heaven on Earth resolution could crash the game
+28.修复了革命卫队导致游戏崩溃的bug
+28. Fixed a crash caused by Revolutionary Guard
+29.修复了ai判断中部分的bug
+29. Fixed some bugs in AI judgment
+30.修复了部分修正缺失的问题
+30. Fixed the bug of the missing modifiers
+
+任务树修复：
+Mission Tree repair:
+1.修复了教宗任务中的一个bug
+1. Fixed a bug in the Papal tasks
+
+平衡性调整：
+Balance adjustment:
+1.补充部分奇观
+1. Supplement some of the wonders
+2.削弱法院和州议会的buff
+2. Nerf Court building and State Government building 
+3.陆军维护费现在随科技上升
+3.Now Military Technology will increase land maintenance
+4.下调了新朝初始天命
+4.Lowered the initial mandate of the new dynasty
+5.叛乱度整体调整
+5. Overall adjustment of the degree of rebellion
+6.修改排他叛军的出现条件以及要求
+6. Modify the conditions and requirements for the emergence of exclusive rebels
+7.调整废除禁卫军决议
+7. Adjustment of the resolution to abolish the Praetorian Guard
+8.略微加强禁卫军
+8. Slightly strengthen the Praetorian Guard
+9.调整改革禁卫军决议
+9. Adjustment and reform of the Praetorian Guard resolution
+10.AE调整
+10. AE adjustment
+11.提高了奥斯曼治理下的马穆鲁克自治度
+11. Increased Mamluk autonomy under Ottoman rule
+12.调整了分发战利品减少的厌战。每100杜卡特战利品减少1厌战
+12. Adjusted distribution of loot to reduce War Exhaustion. Reduced by 1 War Exhaustion per 100 ducats of loot
+13.增强匈牙利、比利时、波兰、摩洛哥、德国、Chernigov、普鲁士、不列颠、dual monarchy国家理念
+13. Strengthen country ideas of Hungary, Belgium, Poland, Morocco, Germany, Chernigov, Prussia, Great Britain, Dual Monarchy
+14.雇佣兵整体调整
+14. Overall adjustment of mercenaries
+15.Inti教事件调整
+15.Inti teaches event adjustment
+16.牧首权威事件调整
+16. Adjustment of patriarch authority events
+17.削弱了投资获得的科技进度并调整了投资花费
+17. Nerfed the progress of investments and reduced the cost of investments
+18.减少了部分事件给予的科研进度
+18. Reduced the scientific research progress given by some events
+19.航海、海军、贸易、军国、间谍、扩张、联盟、农业理念加强
+19. Navigation, Navy, Trade, Militarism, Espionage, Expansion, Union, and Agricultural ideas were strengthened
+20.战略、进攻、革新、官僚、宪政、防守、经济、传统、维新、外交、宗教、殖民理念调整
+20. Strategic, Offensive, Innovative, Bureaucratic, Constitutional, Defensive, Financial, Traditional, Reform, Diplomatic, Religious, Explore ideas adjustment
+21.贸易公司现在消耗更多ogc了
+21. Trading companies are now consuming more OGC
+22.加快了殖民地追赶母国科技的速度
+22. Accelerated the pace at which the colonies caught up with the technology of the mother country
+23.首都现在不再锁0自治度了
+23. The capital is no longer locked at zero autonomy
+24.发展度现在更容易提升了
+24. The provincial development is now easier to increase
+25.部分政改效果调整
+25. Adjustments were made to the effects of some government reforms
+26.学校维护费现在为提升直属州维护费了
+26. School maintenance are now being raised for state maintenance
+27.提升了索取赔款所需的战争分数
+27. Increased the war score required to ask for a war reparation
+28.调整了荒废度提供的buff
+28. Tweaked the buffs provided by devastation
+29.开局国家状态微调
+29. Fine-tuning of the state of the opening country
+30.微调了ogc的计算方式
+30. Fine-tuned the calculation method of OGC
+31.部分buff数值统一调整
+31. Some buff values are adjusted uniformly
+32.科技buff更改
+32. Technology buff changes
+33.科技花费计算修改
+33. Revised technology cost calculations
+34.删除了逐鹿中原
+34. Deleted Zhuluzhongyuan modifier
+35.在非直辖核心上使用直辖焦点会消耗更多ogc
+35. Using a state focus on a non-state core consumes more OGC
+36.羞辱宿敌花费减半，但获取点数只有25点
+36. Shaming an enemy costs half as much, but only gives you 25 points
+37.美国、德克萨斯、大元、俄罗斯国家理念调整
+37. United States, Texas, Yuan, And Russia
+38.毛皮收入略微下调
+38. Price of Fur was slightly downgraded
+39.现在可以对普通附庸强制统一王朝了
+39. It is now possible to force a unified dynasty on normal vassals
+40.修改了土地兼并的效果
+40. Revised the effect of land annexation
+41.部分政府相关修正修改
+41. Changed some government-related modifiers
+42.政府改革中消耗的点数与点数花费挂钩了
+42. The cost of points in government reforms is linked to the All Power Cost modifier
+43.加强了会晤精英的效果
+43. Enhanced the effectiveness of meetings with elites
+44.修改索要非法领土的要求
+44. Revision of claims to illegal territory
+45.加大了飞地的惩罚
+45. Penalties in enclave provinces have been increased
+46.修改了严酷镇压的效果
+46. Modified the effects of harsh repression
+47.和平时期补员速度提升
+47. Reinforce speed in peacetime increased
+48.现在商人引导贸易会提供更高幅度的额外贸易额加成
+48. Now merchants leading trade will provide a much higher level of additional trade output
+49.非直辖省份ogc下调
+49. Lower the ogc provided by non-state provinces
+50.劫掠速度提升
+50. Raiding speed increased
+51.部分思潮机制调整
+51. The mechanism of some institutions has been changed
+52.科技先进的邻国现在会使周边国家的科研花费减少了
+52. A technologically advanced neighbor will now make it cheaper for neighboring countries to spend on research

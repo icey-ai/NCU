@@ -1,0 +1,319 @@
+	shishen_anger = {
+	global_unrest = 10
+	state_maintenance_modifier = 0.25
+}
+
+estate_ai_helper = {
+	global_regiment_recruit_speed = -0.5
+}
+
+
+
+defeat_by_estates = {
+	yearly_absolutism = -4
+}
+coup_timer = {
+}
+cu_estate_reshuffle = {
+}
+
+
+
+#War support(estate)
+
+estate_nomadic_tribes_war_support = {
+	land_forcelimit_modifier = 0.33
+	#land_maintenance_modifier = -0.5
+	global_regiment_cost = -0.50
+	global_regiment_recruit_speed = -0.50
+}
+
+estate_nobles_war_support = {
+	land_forcelimit_modifier = 0.15
+	global_regiment_cost = -0.33
+	global_regiment_recruit_speed = -0.33
+}
+
+estate_church_war_support = {
+	war_exhaustion_cost = -0.25
+}
+
+estate_shizu_war_support = {
+	global_autonomy = 0.10
+	land_forcelimit = 200
+	land_maintenance_modifier = -0.10
+}
+
+estate_burghers_war_support = {
+	global_tax_modifier = 0.125
+}
+
+local_bur_lv_0 = {
+	local_autonomy = -0.001
+	picture = "cu_paper"
+}
+
+local_bur_lv_1 = {
+	local_autonomy = -0.005
+	local_build_time = -0.05
+	regiment_recruit_speed = -0.05
+	ship_recruit_speed = -0.05
+	#local_missionary_strength = 0.001
+	#local_state_maintenance_modifier = 0.1
+	picture = "cu_paper"
+}
+
+local_bur_lv_2 = {
+	local_autonomy = -0.01
+	local_build_time = -0.1
+	regiment_recruit_speed = -0.1
+	ship_recruit_speed = -0.1
+	#local_missionary_strength = 0.002
+	#local_state_maintenance_modifier = 0.2
+	picture = "cu_paper"
+}
+
+local_bur_lv_3 = {
+	local_autonomy = -0.015
+	local_build_time = -0.15
+	regiment_recruit_speed = -0.15
+	ship_recruit_speed = -0.15
+	#local_missionary_strength = 0.003
+	#local_state_maintenance_modifier = 0.3
+	picture = "cu_paper"
+}
+
+local_bur_lv_4 = {
+	local_autonomy = -0.02
+	local_build_time = -0.2
+	regiment_recruit_speed = -0.2
+	ship_recruit_speed = -0.2
+	#local_missionary_strength = 0.004
+	#local_state_maintenance_modifier = 0.4
+	picture = "cu_paper"
+}
+
+local_bur_lv_5 = {
+	local_autonomy = -0.025
+	local_build_time = -0.25
+	regiment_recruit_speed = -0.25
+	ship_recruit_speed = -0.25
+	#local_missionary_strength = 0.005
+	#local_state_maintenance_modifier = 0.5
+	picture = "cu_paper"
+}
+
+local_bur_lv_6 = {
+	local_autonomy = -0.03
+	local_build_time = -0.3
+	regiment_recruit_speed = -0.3
+	ship_recruit_speed = -0.3
+	#local_missionary_strength = 0.006
+	#local_state_maintenance_modifier = 0.6
+	picture = "cu_paper"
+}
+
+local_bur_lv_7 = {
+	local_autonomy = -0.035
+	local_build_time = -0.35
+	regiment_recruit_speed = -0.35
+	ship_recruit_speed = -0.35
+	#local_missionary_strength = 0.007
+	#local_state_maintenance_modifier = 0.7
+	picture = "cu_paper"
+}
+
+local_bur_lv_8 = {
+	local_autonomy = -0.04
+	local_build_time = -0.4
+	regiment_recruit_speed = -0.4
+	ship_recruit_speed = -0.4
+	#local_missionary_strength = 0.008
+	#local_state_maintenance_modifier = 0.8
+	picture = "cu_paper"
+}
+
+local_bur_lv_9 = {
+	local_autonomy = -0.045
+	local_build_time = -0.45
+	regiment_recruit_speed = -0.45
+	ship_recruit_speed = -0.45
+	#local_missionary_strength = 0.009
+	#local_state_maintenance_modifier = 0.9
+	picture = "cu_paper"
+}
+
+local_bur_lv_10 = {
+	local_autonomy = -0.05
+	local_build_time = -0.5
+	regiment_recruit_speed = -0.5
+	ship_recruit_speed = -0.5
+	#local_missionary_strength = 0.01
+	#local_state_maintenance_modifier = 1
+	picture = "cu_paper"
+}
+
+nobles_estate_high_loyalty = {
+	local_defensiveness = 0.10
+	local_manpower_modifier = 0.25
+	local_autonomy = 0.05
+	picture = "cu_nobles_high_loyalty"
+}
+
+nobles_estate_mid_loyalty = {
+	local_manpower_modifier = 0.25
+	local_autonomy = 0.075
+	picture = "cu_nobles_mid_loyalty"
+}
+
+nobles_estate_low_loyalty = {
+	local_unrest = 5
+	local_manpower_modifier = -0.20
+	local_autonomy = 0.10
+	picture = "cu_nobles_low_loyalty"
+}
+
+
+church_estate_high_loyalty = {
+	local_missionary_strength = 0.005
+	local_unrest = -3
+	local_tax_modifier = 0.2
+	local_autonomy = 0.05
+	picture = "cu_church_high_loyalty"
+}
+
+church_estate_mid_loyalty = {
+	local_missionary_strength = 0.0025
+	local_unrest = -2
+	local_tax_modifier = 0.1
+	local_autonomy = 0.075
+	picture = "cu_church_mid_loyalty"
+}
+
+church_estate_low_loyalty = {
+	local_missionary_strength = -0.0025
+	local_unrest = 5
+	local_autonomy = 0.10
+	picture = "cu_church_low_loyalty"
+}
+
+
+tribes_estate_high_loyalty = {
+	local_manpower_modifier = 0.3
+	local_state_maintenance_modifier = -0.2
+	local_development_cost = 0.25
+	land_forcelimit = 0.25
+	local_manpower = 0.5
+	min_local_autonomy = 40
+	picture = "cu_tribes_high_loyalty"
+}
+
+tribes_estate_mid_loyalty = {
+	local_manpower_modifier = 0.3
+	local_state_maintenance_modifier = -0.2
+	local_development_cost = 0.25
+	land_forcelimit = 0.15
+	local_manpower = 0.3
+	local_autonomy = 0.075
+	min_local_autonomy = 40
+	picture = "cu_tribes_mid_loyalty"
+}
+
+tribes_estate_low_loyalty = {
+	local_unrest = 5
+	local_state_maintenance_modifier = -0.2
+	local_development_cost = 0.25
+	local_autonomy = 0.10
+	min_local_autonomy = 40
+	picture = "cu_tribes_low_loyalty"
+}
+
+
+burghers_estate_high_loyalty = {
+	local_production_efficiency = 0.25
+	local_development_cost = -0.15
+	local_autonomy = 0.05
+	picture = "cu_burghers_high_loyalty"
+}
+
+burghers_estate_mid_loyalty = {
+	local_production_efficiency = 0.125
+	local_development_cost = -0.075
+	local_autonomy = 0.075
+	picture = "cu_burghers_mid_loyalty"
+}
+
+burghers_estate_low_loyalty = {
+	local_unrest = 5
+	local_autonomy = 0.10
+	picture = "cu_burghers_low_loyalty"
+}
+
+
+qinwang_estate_high_loyalty = {
+	local_unrest = -3
+	local_autonomy = 0.05
+	local_manpower_modifier = 0.2
+	picture = "cu_qinwang_high_loyalty"
+}
+
+qinwang_estate_mid_loyalty = {
+	local_unrest = -1
+	local_autonomy = 0.075
+	local_manpower_modifier = 0.2
+	picture = "cu_qinwang_mid_loyalty"
+}
+
+qinwang_estate_low_loyalty = {
+	local_unrest = 3
+	local_autonomy = 0.10
+	local_manpower_modifier = -0.2
+	picture = "cu_qinwang_low_loyalty"
+}
+
+
+shizu_estate_high_loyalty = {
+	local_unrest = -3
+	local_autonomy = 0.05
+	local_state_maintenance_modifier = -0.15
+	picture = "cu_church_high_loyalty"
+}
+
+shizu_estate_mid_loyalty = {
+	local_unrest = -1
+	local_autonomy = 0.075
+	local_state_maintenance_modifier = -0.075
+	picture = "cu_church_mid_loyalty"
+}
+
+shizu_estate_low_loyalty = {
+	local_unrest = 5
+	local_autonomy = 0.10
+	local_state_maintenance_modifier = 0.15
+	picture = "cu_church_low_loyalty"
+}
+
+cu_suppress_estates = {
+	min_local_autonomy = -10
+	local_unrest = 2.5
+	#Local Estate Influence Modifier = -5%
+	picture = "cu_suppress_estates"
+}
+
+revoke_gentrys_previledge = {
+	global_tax_modifier = -0.1
+	meritocracy = 0.25
+	shizu_loyalty_modifier = -0.40
+}
+
+measuring_land = {
+	global_unrest = -3
+	state_governing_cost = 0.25
+	meritocracy = 0.5
+	shizu_loyalty_modifier = -0.50
+}
+
+land_tax_reform = {
+	meritocracy = 0.1
+	shizu_loyalty_modifier = -0.30
+}

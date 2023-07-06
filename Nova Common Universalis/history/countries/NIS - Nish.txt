@@ -1,0 +1,7 @@
+government = monarchy
+add_government_reform = feudalism_reform
+primary_culture = torlakian
+religion = orthodox
+technology_group = eastern
+capital = 3000	# Nis
+fixed_capital = 3000 # Cannot move capital away from this province & no power cost to move to it

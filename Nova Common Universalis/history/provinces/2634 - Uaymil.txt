@@ -1,0 +1,32 @@
+# No previous file for Uaymil
+
+culture = yucatec
+owner = WAY
+controller = WAY
+add_core = WAY
+is_city = yes
+religion = mesoamerican_religion
+capital = "Bacalar"
+trade_goods = cocoa
+hre = no
+base_tax = 3 
+base_production = 3
+base_manpower = 1
+
+
+
+discovered_by = mesoamerican
+
+
+1547.1.1 = {
+	owner = SPA 
+	controller = SPA
+	add_core = SPA
+	unrest = 5
+} # final defeat of eastern Yucatan alliance
+1572.1.1 = {
+ 	unrest = 0
+	culture = castillian
+	religion = catholic 
+}
+1810.9.16 = { owner = MEX add_core = MEX controller = SPA } # Mexican War of Independence

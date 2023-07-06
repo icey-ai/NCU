@@ -1,0 +1,416 @@
+# If you add advisortypes, and use those tags, do not change them without changing everywhere they are used.
+#
+# Additional arguments: allow_only_male/allow_only_female
+# Contains skill_scaled_modifier for which the effects get multiplied by the advisor's skill level
+# Uses all 'modifiers' possible that are exported as a Modifier.
+
+# Note that ai_will_do calculates a priority.
+# An advisor may be chosen over another if its random priority exceeds it. RandomPriority(advisor) := rand[1, 2[ * Priority(advisor).
+
+
+######################################################
+# Administrative Advisors
+######################################################
+
+######################################################
+philosopher = {
+	monarch_power = ADM
+	
+	# Bonus
+	global_institution_spread = 0.1
+	skill_scaled_modifier = {  modifier = { global_prosperity_growth = 0.005 meritocracy = 0.02 global_institution_spread = 0.01 yearly_corruption = 0.04 } }
+	chance = {
+		factor = 4
+	}
+	
+	ai_will_do = {
+		factor = 2.5
+	}
+}
+
+######################################################
+natural_scientist = {
+	monarch_power = ADM
+	
+	# Bonus
+	monthly_reform_progress_modifier = 0.05
+	skill_scaled_modifier = {  modifier = { global_prosperity_growth = 0.005 meritocracy = 0.02 monthly_reform_progress_modifier = 0.01 yearly_corruption = 0.04 } }	
+	chance = {
+		factor = 4
+	}
+	
+	ai_will_do = {
+		factor = 1
+	}
+}
+
+######################################################
+artist = {
+	monarch_power = ADM
+	
+	# Bonus
+	reform_progress_growth = 0.10
+	skill_scaled_modifier = {  modifier = { global_prosperity_growth = 0.005 meritocracy = 0.02 reform_progress_growth = 0.03 yearly_corruption = 0.04 } }
+	chance = {
+		factor = 4
+	}
+	
+	ai_will_do = {
+		factor = 0
+	}	
+}
+
+######################################################
+treasurer = {
+	monarch_power = ADM
+	
+	# Bonus
+	global_tax_modifier = 0.10
+	skill_scaled_modifier = {  modifier = { global_prosperity_growth = 0.005 meritocracy = 0.02 global_tax_modifier = 0.01 yearly_corruption = 0.04 } }
+	chance = {
+		factor = 4
+	}
+	
+	ai_will_do = {
+		factor = 2
+	}
+}
+
+######################################################
+theologian = {
+	monarch_power = ADM
+	
+	# Bonus
+	tolerance_own = 0.75
+	skill_scaled_modifier = {  modifier = { global_prosperity_growth = 0.005 meritocracy = 0.02 tolerance_own = 0.1 yearly_corruption = 0.04 yearly_harmony = 0.1 } }
+
+	chance = {
+		factor = 4
+
+	}
+	
+	ai_will_do = {
+		factor = 1
+	}
+}
+
+######################################################
+master_of_mint = {
+	monarch_power = ADM
+	
+	# Bonus
+	trade_company_investment_cost = -0.05
+    skill_scaled_modifier = {  modifier = { global_prosperity_growth = 0.005 meritocracy = 0.02 trade_company_investment_cost = -0.01 yearly_corruption = 0.04 } }
+	chance = {
+		factor = 4
+	}
+	
+	ai_will_do = {
+		factor = 0
+	}	
+}
+
+######################################################
+inquisitor = {
+	monarch_power = ADM
+	
+	# Bonus
+	global_missionary_strength = 0.008
+	skill_scaled_modifier = {  modifier = { global_prosperity_growth = 0.005 meritocracy = 0.02 global_missionary_strength = 0.001 yearly_corruption = 0.04 yearly_harmony = 0.2 } }
+
+	chance = {
+		factor = 4
+	}
+	
+	ai_will_do = {
+		factor = 1.5
+	}
+}
+
+
+######################################################
+# Diplomatic Advisors
+######################################################
+
+######################################################
+statesman = {
+	monarch_power = DIP
+	
+	# Bonus
+	state_governing_cost = -0.025
+	skill_scaled_modifier = {  modifier = { dip_tech_cost_modifier = -0.01 meritocracy = 0.02 state_governing_cost = -0.005 yearly_corruption = 0.04 } }
+	chance = {
+		factor = 4
+	}
+	
+	ai_will_do = {
+		factor = 2
+		modifier = {
+			factor = 2
+			check_variable = { which = go value = 120 } #Not enough GC
+	 	}
+		modifier = {
+			factor = 2
+			check_variable = { which = go value = 130 } #Not enough GC
+		}
+	}
+}
+
+######################################################
+naval_reformer = {
+	monarch_power = DIP
+	
+	# Bonus
+	
+	navy_tradition = 1
+	skill_scaled_modifier = {  modifier = { dip_tech_cost_modifier = -0.01 meritocracy = 0.02 navy_tradition = 0.1 yearly_corruption = 0.04 } }
+
+	chance = {
+		factor = 4
+		modifier = {
+			factor = 0
+			has_port = no
+		}
+	}
+	
+	ai_will_do = {
+		factor = 1
+	}
+}
+
+######################################################
+trader = {
+	monarch_power = DIP
+	
+	# Bonus
+	trade_efficiency = 0.1
+	skill_scaled_modifier = {  modifier = { dip_tech_cost_modifier = -0.01 meritocracy = 0.02 trade_efficiency = 0.01 yearly_corruption = 0.04 } }
+
+	chance = {
+		factor = 4
+	}
+	
+	ai_will_do = {
+		factor = 2
+	}
+}
+
+######################################################
+spymaster = {
+	monarch_power = DIP
+	
+	# Bonus
+	spy_offence = 0.25
+    skill_scaled_modifier = {  modifier = { dip_tech_cost_modifier = -0.01 meritocracy = 0.02 spy_offence = 0.025 yearly_corruption = 0.04 } }
+	chance = {
+		factor = 4
+	}
+	
+	ai_will_do = {
+		factor = 1
+	}
+}
+
+######################################################
+colonial_governor = {
+	monarch_power = DIP
+	
+	# Bonus
+	global_colonial_growth = 10
+    skill_scaled_modifier = {  modifier = { dip_tech_cost_modifier = -0.01 meritocracy = 0.02 global_colonial_growth = 2 yearly_corruption = 0.04 } }
+	
+	chance = {
+		factor = 4
+		modifier = {
+			factor = 0
+			owner = { NOT = { num_of_colonists = 1 } }
+		}
+		modifier = {
+			factor = 0
+			owner = { is_colonial_nation = yes }
+		}
+	}
+	
+	ai_will_do = {
+		factor = 0
+	}
+}
+
+######################################################
+diplomat = {
+	monarch_power = DIP
+	
+	# Bonus
+	improve_relation_modifier = 0.25
+	skill_scaled_modifier = {  modifier = { dip_tech_cost_modifier = -0.01 meritocracy = 0.02 improve_relation_modifier = 0.02 yearly_corruption = 0.04 } }
+	chance = {
+		factor = 4
+	}
+	
+	ai_will_do = {
+		factor = 1.5
+		modifier = {
+			factor = 2
+			FROM = { is_part_of_hre = yes }
+		}
+	}
+}
+
+######################################################
+navigator = {
+	monarch_power = DIP
+	
+	# Bonus 
+    trade_steering = 0.10
+	skill_scaled_modifier = {  modifier = { dip_tech_cost_modifier = -0.01 range = 0.1 meritocracy = 0.02 trade_steering = 0.01 yearly_corruption = 0.04 } }
+
+	chance = {
+		factor = 4
+		modifier = {
+			factor = 0
+			owner = { NOT = { num_of_colonists = 1 } }
+		}
+	}
+	
+	ai_will_do = {
+		factor = 1
+	}
+}
+
+
+######################################################
+# Military Advisors
+######################################################
+
+######################################################
+army_reformer = {
+	monarch_power = MIL
+	
+	# Bonus
+	army_tradition = 1
+	skill_scaled_modifier = {  modifier = { yearly_army_professionalism = 0.001 meritocracy = 0.02 army_tradition = 0.1 yearly_corruption = 0.04 } }	
+
+	chance = {
+		factor = 4
+	}
+	
+	ai_will_do = {
+		factor = 2
+	}
+}
+
+######################################################
+army_organiser = {
+	monarch_power = MIL
+	
+	# Bonus
+	land_maintenance_modifier = -0.15
+	skill_scaled_modifier = {  modifier = { yearly_army_professionalism = 0.001 meritocracy = 0.02 land_maintenance_modifier = -0.01 yearly_corruption = 0.04 } }
+
+	chance = {
+		factor = 4
+	}
+	
+	ai_will_do = {
+		factor = 1.5
+	}
+}
+
+######################################################
+commandant = {
+	monarch_power = MIL
+	
+	# Bonus
+	discipline = 0.05
+	skill_scaled_modifier = {  modifier = { yearly_army_professionalism = 0.001 meritocracy = 0.02 discipline = 0.005 yearly_corruption = 0.04 } }
+
+	chance = {
+		factor = 2
+	}
+	
+	ai_will_do = {
+		factor = 150
+		modifier = {
+			factor = 2.0
+			FROM = { personality = ai_militarist }
+		}
+	}
+}
+
+######################################################
+quartermaster = {
+	monarch_power = MIL
+	
+	# Bonus
+	global_supply_limit_modifier = 0.10
+	skill_scaled_modifier = {  modifier = { yearly_army_professionalism = 0.001 meritocracy = 0.02 global_supply_limit_modifier = 0.025 yearly_corruption = 0.04 } }
+
+	chance = {
+		factor = 4
+	}
+	
+	ai_will_do = {
+		factor = 1
+		modifier = {
+			factor = 1.4
+			is_at_war = yes
+		}
+	}
+}
+
+######################################################
+recruitmaster = {
+	monarch_power = MIL
+	
+	# Bonus
+	global_manpower_modifier = 0.15
+	skill_scaled_modifier = {  modifier = { yearly_army_professionalism = 0.001 meritocracy = 0.02 global_manpower_modifier = 0.01 yearly_corruption = 0.04 } }
+
+	chance = {
+		factor = 4
+	}
+	
+	ai_will_do = {
+		factor = 1
+		modifier = {
+			factor = 1.5
+			is_at_war = yes
+		}
+	}
+}
+
+######################################################
+fortification_expert = {
+	monarch_power = MIL
+	
+	# Bonus
+	defensiveness = 0.25
+	skill_scaled_modifier = {  modifier = { yearly_army_professionalism = 0.001 meritocracy = 0.02 defensiveness = 0.025 yearly_corruption = 0.04 } }
+
+	chance = {
+		factor = 4
+		
+	}
+	
+	ai_will_do = {
+		factor = 1.5
+	}
+}
+
+######################################################
+grand_captain = {
+	monarch_power = MIL
+	
+	# Bonus
+	
+	land_morale = 0.1
+	skill_scaled_modifier = {  modifier = { yearly_army_professionalism = 0.001 meritocracy = 0.02 land_morale = 0.01 yearly_corruption = 0.04 } }
+
+	chance = {
+		factor = 3
+	}
+	
+	ai_will_do = {
+		factor = 150
+	}
+}

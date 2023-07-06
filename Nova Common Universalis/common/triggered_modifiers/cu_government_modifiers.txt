@@ -1,0 +1,32 @@
+# Triggered modifiers are here.
+# these are checked for each countries once/month and then applied.
+#
+# Effects are fully scriptable here.
+
+cu_terr_abandon = { #Make it to state!!!!!!!!!!!!
+	potential = {
+		any_owned_province = {
+			is_state = no
+			OR = {
+				is_territorial_core = owner
+				is_core = owner
+			}
+			is_city = yes
+			NOT = { has_province_flag = cu_nopenalty_terr }
+		}
+		ai = no
+	}
+	trigger = {
+		any_owned_province = {
+			is_state = no
+			OR = {
+				is_territorial_core = owner
+				is_core = owner
+			}
+			is_city = yes
+		}
+	}
+	yearly_corruption = 1.0
+	global_autonomy = 0.50
+}
+

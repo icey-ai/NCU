@@ -1,0 +1,316 @@
+cu_great_wall_1 = {
+    local_defensiveness = 0.1
+}
+
+cu_great_wall_2 = {
+	fort_level = 1
+	local_defensiveness = 0.1
+}
+
+cu_great_wall_3 = {
+	fort_level = 1
+	local_defensiveness = 0.3
+}
+
+
+theodosian_walls = {
+	garrison_growth = 0.20
+	local_defensiveness = 0.5
+}
+
+zoloti_vorata = {
+    garrison_growth = 0.10
+	local_defensiveness = 0.25
+}
+
+aurelian_walls = {
+    garrison_growth = 0.15
+	local_defensiveness = 0.33
+}
+
+cu_notre_dome = {
+    unrest_catholic_provinces = -0.5
+    province_trade_power_value = 0.01
+	picture = "cu_notre_dame"
+}
+
+cu_hagia_sophia = {
+    tolerance_own = 0.25
+    province_trade_power_value = 0.01
+	picture = "cu_hagia_sophia"
+}
+
+cu_piazza_san_marco = {
+	trade_efficiency = 0.05
+    province_trade_power_value = 0.01
+	picture = "cu_piazza_san_marco"
+}
+
+cu_forbidden_palace = {
+	state_governing_cost = -0.05
+    province_trade_power_value = 0.01
+	picture = "cu_forbidden_palace"
+}
+
+taj_mahal_local = {
+    local_tax_modifier = 0.25
+	local_unrest = -5
+    local_development_cost = -0.25
+    province_trade_power_value = 10
+	picture = "cu_taj_mahal"
+}
+
+cu_dome_of_the_rock = {
+    religious_unity = 0.075
+    province_trade_power_value = 0.01
+	picture = "cu_dome_of_the_rock"
+}
+
+cu_kofukuji_naru = {
+    defensiveness = 0.05
+    province_trade_power_value = 0.01
+	picture = "cu_kofukuji_naru"
+}
+
+cu_great_mosque_of_djenne = {
+    global_tax_modifier = 0.05
+    province_trade_power_value = 0.01
+    picture = "cu_great_mosque_of_djenne"
+}
+
+cu_umayyad_mosque = {
+   local_build_cost = -0.1
+   prestige = 0.25
+   province_trade_power_value = 0.01
+   picture = "cu_umayyad_mosque"
+}
+
+cu_machu_picchu = {
+   local_build_cost = -0.1
+   local_development_cost = -0.15
+   local_friendly_movement_speed = 0.1
+   local_hostile_movement_speed = 0.1
+   province_trade_power_value = 0.01
+   picture = "cu_machu_picchu"
+}
+
+cu_shwedagon_pagoda = {
+    local_autonomy = -0.01
+    province_trade_power_value = 0.01
+    picture = "cu_shwedagon_pagoda"
+}
+
+cu_templo_mayor_tenochtitlan = {
+    local_missionary_strength = -0.01
+    global_missionary_strength = 0.002
+    province_trade_power_value = 0.01
+    picture = "cu_templo_mayor_tenochtitlan"
+}
+
+cu_borobudur_temple = {
+    local_missionary_strength = -0.01
+    stability_cost_modifier = -0.1
+    province_trade_power_value = 0.01
+    picture = "cu_borobudur_temple"
+}
+
+cu_london_tower = {
+    administrative_efficiency = 0.01
+    local_defensiveness = 0.1
+    province_trade_power_value = 0.01
+    picture = "cu_london_tower"
+}
+
+cu_pyramid_of_khufu = {
+    province_trade_power_value = 0.01
+    prestige_decay = -0.005
+    picture = "cu_pyramid_of_khufu"
+}
+
+cu_angkor_wat = {
+    global_heathen_missionary_strength = 0.004
+    province_trade_power_value = 0.01
+    picture = "cu_angkor_wat"
+}
+
+cu_sun_temple = {
+    local_missionary_strength = -0.01
+    war_exhaustion_cost = -0.05
+    province_trade_power_value = 0.01
+    picture = "cu_sun_temple"
+}
+
+cu_ulugh_beg_observatory = {
+    idea_cost = -0.025
+    province_trade_power_value = 0.01
+    picture = "cu_ulugh_beg_observatory"
+}
+
+cu_kremlin = {
+    local_defensiveness = 0.2
+    province_trade_power_value = 0.01
+    picture = "cu_kremlin"
+}
+
+cu_porcelain_tower = {
+    global_heretic_missionary_strength = 0.004
+    province_trade_power_value = 0.01
+    picture = "cu_porcelain_tower"
+}
+
+cu_schloss_ambras = {
+    reform_progress_growth = 0.05
+    province_trade_power_value = 0.01
+    picture = "cu_schloss_ambras"
+}
+
+cu_jokhang = {
+    relation_with_heretics = 5
+    province_trade_power_value = 0.01
+    picture = "cu_jokhang"
+}
+
+cu_buddhas_of_bamiyan = {
+    prestige = 0.25
+    province_trade_power_value = 0.01
+    picture = "cu_buddhas_of_bamiyan"
+}
+
+cu_apostolic_palace = {
+    papal_influence = 0.25
+    province_trade_power_value = 0.01
+    picture = "cu_apostolic_palace"
+}
+
+cu_soltaniyeh = {
+    local_build_cost = -0.1
+    build_time = -0.05
+    province_trade_power_value = 0.01
+    picture = "cu_soltaniyeh"
+}
+
+cu_kaaba = {
+	picture = "cu_kaaba"    
+	manpower_in_true_faith_provinces = 0.025
+	province_trade_power_value = 0.01
+}
+
+cu_ise_grand_shrine = {
+    province_trade_power_value = 0.01
+    picture = "cu_ise_grand_shrine"
+}
+
+cu_the_chapel_of_the_tablet = {
+    province_trade_power_value = 0.01
+    picture = "cu_the_chapel_of_the_tablet"
+}
+
+cu_takht_e_soleyman = {
+    province_trade_power_value = 0.01
+    picture = "cu_takht_e_soleyman"
+}
+
+cu_chichen_itza = {
+    province_trade_power_value = 0.01
+    picture = "cu_chichen_itza"
+}
+
+cu_wawel_cathedral = {
+    legitimacy = 0.5
+    province_trade_power_value = 0.01
+    picture = "cu_wawel_cathedral"
+}
+
+cu_acropolis_of_athens = {
+    garrison_growth = 0.10
+    province_trade_power_value = 0.01
+    picture = "cu_acropolis_of_athens"
+}
+
+cu_gelati_monastery = {
+    prestige_per_development_from_conversion = 0.05
+    province_trade_power_value = 0.01
+    picture = "cu_gelati_monastery"
+}
+
+cu_obsolete_palace_of_alhambra = {
+    province_trade_power_value = 0.01
+	picture = "cu_alhambra"
+}
+
+#Andalusian Missions/Granadan Missions
+cu_renovated_palace_of_alhambra = {
+	local_institution_spread = 0.1
+	local_development_cost = -0.10
+    province_trade_power_value = 0.01
+	picture = "cu_alhambra"
+}
+
+cu_ellora_caves = {
+    tolerance_heathen = 0.25
+    tolerance_heretic = 0.25
+    province_trade_power_value = 0.01
+	picture = "cu_ellora_caves"
+}
+
+cu_monastery_of_the_kiev_caves = {
+    yearly_patriarch_authority = 0.002
+    province_trade_power_value = 0.01
+    picture = "cu_monastery_of_the_kiev_caves"
+}
+
+cu_malbork_castle = {
+    local_manpower_modifier = 0.1
+    local_regiment_cost = -0.05
+    regiment_recruit_speed = -0.05
+    picture = "cu_malbork_castle"
+}
+
+cu_temple_and_cemetery_of_confucius = { #Temple and Cemetery of Confucius and the Kong Family Mansion
+    province_trade_power_value = 0.01
+    picture = "cu_kong_mansion_qufu"
+}
+
+cu_burgos_cathedral = {
+    legitimacy = 0.05
+    province_trade_power_value = 0.01
+    picture = "cu_burgos_cathedral"
+}
+
+cu_aachen_cathedral = {
+    imperial_authority = 0.025
+    province_trade_power_value = 0.01
+    picture = "cu_aachen_cathedral"
+}
+
+cu_jelling_mounds = { #Jelling Mounds, Runic Stones and Church
+    promote_culture_cost = -0.025	
+    province_trade_power_value = 0.01
+    picture = "cu_jelling_mounds"
+}
+
+cu_iron_pillar_of_delhi = { #Iron Pillar of Delhi
+    land_maintenance_modifier = -0.025
+    province_trade_power_value = 0.01
+    picture = "cu_iron_pillar_of_delhi"
+}
+
+cu_citadel_of_aleppo = { #Citadel of Aleppo
+    local_monthly_devastation = -0.05
+    local_defensiveness = 0.20
+    local_manpower_modifier = 0.20
+    province_trade_power_value = 0.01
+    picture = "cu_citadel_of_aleppo"
+}
+
+cu_emerald_buddha = {
+	monthly_karma = 0.1
+	trade_value = 0.01
+    picture = "cu_emerald_buddha"
+}
+
+cu_emerald_buddha_alternate = {
+	monthly_karma = -0.1
+	trade_value = 0.01
+    picture = "cu_emerald_buddha"
+}

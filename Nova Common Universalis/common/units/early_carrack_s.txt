@@ -1,0 +1,14 @@
+#Early Carrack
+type = heavy_ship
+trigger = { 
+                NOT = { 
+                        unit_type = chinese
+                }
+				has_country_flag = heavyship_mod_s
+}
+hull_size = 20
+base_cannons = 40 
+blockade = 6
+sail_speed = 6
+
+sprite_level = 1

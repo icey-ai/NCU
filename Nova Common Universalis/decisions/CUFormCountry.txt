@@ -1,0 +1,46 @@
+country_decisions = {
+
+	unify_burma = {
+		potential = {
+			normal_or_historical_nations = yes
+			OR = {
+				ai = no
+				is_playing_custom_nation = no
+			}
+			NOT = { has_country_modifier = myanmar_united }
+			culture_group = burman
+		}
+		allow = {
+			NOT = { 
+				any_country = {
+					has_country_modifier = myanmar_united
+				}
+			}
+			NOT = {
+				any_province = {
+					culture_group = burman
+					NOT = { owned_by = ROOT }
+				}
+			}
+		}
+		effect = {
+			override_country_name = MYANMAR
+			add_absolutism = 10
+			add_legitimacy_equivalent = {
+				amount = 5
+				republican_tradition = 5
+			}
+			add_country_modifier = {
+				name = "myanmar_united"
+				duration = -1
+			}	
+			add_country_modifier = {
+				name = "centralization_modifier"
+				duration = 7300
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}	
+	}
+}

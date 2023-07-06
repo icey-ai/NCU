@@ -1,0 +1,22 @@
+connect_to_capital = {
+	local_autonomy = -0.04
+	local_state_maintenance_modifier = -0.20
+}
+connect_to_capital_oversea = {
+	local_autonomy = -0.02
+	local_state_maintenance_modifier = -0.10
+}
+
+second_capital = {
+	local_autonomy = -0.075
+	global_tax_income = -30
+	country_admin_power = -1
+	#Local Government Influnce: +50%
+}
+##computer power
+
+connect_to_capital_far_0 = {
+	#local_autonomy = -0.01
+	picture = "min_autonomy"
+}
+

@@ -1,0 +1,902 @@
+#Variable List
+
+#p_dev: Province Development, generic variable
+#cu_var1: Generic first variable for the following function, reset to 0 after that.
+#cu_var2: Generic second variable
+#cu_var3: Generic third variable
+#adm(dip,mil)_resp:research progress,5% a level
+#ntla(d,m):next tech level 
+#Country Scope
+#0.004x^2+0.02x+0.1
+#cu_calc_adm_tech_cost[]: Calculate Administrative Tech Cost
+cu_calc_adm_tech_cost = {
+    if = {
+		limit = { NOT = { check_variable = { which = p_resa value = 1 } } }
+		set_variable = { which = p_resa value = 1 }
+	}
+	set_variable = { which = cu_var1 value = 0 }
+	set_variable = { which = cu_var2 value = 0 }
+	set_variable = { which = cu_var3 value = 0 }
+    export_to_variable = { 
+		which = cu_var1
+		value = adm_tech
+	}
+	if = {
+		limit = {
+			OR = {
+				NOT = { check_variable = { which = s_dev value = 1 } }
+				NOT = { check_variable = { which = num_pp value = 1 } }
+			}
+		}
+		cu_export_s_weighted_dev = yes
+	}
+	set_variable = { which = adm_tc which = s_dev }
+	capital_scope = {
+	    export_to_variable = {
+		   which = cu_var3
+		   value = development
+	    }
+		owner = { set_variable = { which = cu_var3 which = PREV } }
+	}
+	change_variable = { which = adm_tc which = cu_var3 }
+	multiply_variable = { which = adm_tc value = 20 }
+	change_variable = { which = adm_tc value = 80 }
+	divide_variable = { which = adm_tc which = num_pp }
+	set_variable = { which = cu_var3 which = cu_var1 }
+	multiply_variable = { which = cu_var3 which = cu_var1 }
+	multiply_variable = { which = cu_var3 value = 0.004 }
+	multiply_variable = { which = cu_var1 value = 0.02 }
+	change_variable = { which = cu_var1 which = cu_var3 }
+	change_variable = { which = cu_var1 value = 0.1 }
+	multiply_variable = { which = adm_tc which = cu_var1 }
+	
+	#Technology Spread Bonus
+	if ={ #For colonial nations
+		limit = { 
+			is_colonial_nation = yes
+			NOT = { adm_tech = overlord }
+		}
+		multiply_variable = { which = adm_tc value = 0.25 }
+	}
+	else_if = { #Technology Sharing
+		limit = {
+			any_known_country = {
+				PREV = {
+					has_opinion_modifier = {
+						modifier = share_advanced_neighbor
+						who = PREV
+					}
+					NOT = { adm_tech = PREV }
+				}
+			}
+		}
+		
+		multiply_variable = { which = adm_tc value = 0.75 }
+	}
+ 	else_if = { #Same Technology Group
+		limit = {
+			any_known_country = {
+				technology_group = PREV
+				PREV = { NOT = { adm_tech = PREV } }
+			}
+		}
+		multiply_variable = { which = adm_tc value = 0.85 }
+	}
+	else_if = { #Neighbor Country
+		limit = {
+			any_neighbor_country = {
+				PREV = { NOT = { adm_tech = PREV } }
+			}
+		}
+		multiply_variable = { which = adm_tc value = 0.90 }
+	}
+	#Apply in-game modifiers
+	set_variable = { which = cu_var1 value = 0 }
+	set_variable = { which = cu_var2 value = 0 }
+	export_to_variable = {
+		which = cu_var1
+		value = modifier:adm_tech_cost_modifier
+	}
+	export_to_variable = {
+		which = cu_var2
+		value = modifier:technology_cost
+	}
+    
+	#subtract_variable = { which = cu_var2 value = 10 }
+	change_variable = { which = cu_var1 which = cu_var2 }
+	if = {  
+		limit = { NOT = { check_variable = { which = cu_var1 value = -0.9 } } }
+		set_variable = { which = cu_var1 value = -0.9 } #Minimum Technology Cost Modifier is 10%
+	}
+	set_variable = { which = cu_atcm which = cu_var1 }	
+	multiply_variable = { which = cu_atcm value = 100 } #Save cu_atcm - Administrative Technology Cost Modifier
+	change_variable = { which = cu_var1 value = 1 }
+	multiply_variable = { which = adm_tc which = cu_var1 }
+	
+	if = { #In case of data overflow
+		limit = { NOT = { check_variable = { which = adm_tc value = 0 } } }
+		set_variable = { which = adm_tc value = 10000 }
+	}
+	if = {
+		limit = { NOT = { check_variable = { which = resa value = 0 } } }
+		set_variable = { which = resa value = 0 }
+	}
+	
+	set_variable = { which = adm_resp which = resa }
+	multiply_variable = { which = adm_resp value = 10 }
+	divide_variable = { which = adm_resp which = adm_tc }
+	multiply_variable = { which = adm_resp value = 10 }
+	set_variable = { which = at_asy which = adm_tc }
+	subtract_variable = { which = at_asy which = resa }
+	if = { # same effect as what game does, but without the report in the error log
+		limit = {
+			is_variable_equal = { which = p_resa value = 0 }
+		}
+		set_variable = { which = p_resa value = 0.001 }
+	}
+	divide_variable = { which = at_asy which = p_resa }
+	
+	
+}
+
+#cu_calc_dip_tech_cost[]: Calculate Diplomatic Tech Cost
+cu_calc_dip_tech_cost = {
+    if = {
+	       limit = { NOT = { check_variable = { which = p_resd value = 1 } } }
+		   set_variable = { which = p_resd value = 1 }
+	}
+	set_variable = { which = cu_var1 value = 0 }
+	set_variable = { which = cu_var2 value = 0 }
+	set_variable = { which = cu_var3 value = 0 }
+	export_to_variable = { 
+		which = cu_var1
+		value = dip_tech
+	}
+	if = {
+		limit = {
+			OR = {
+				NOT = { check_variable = { which = s_dev value = 1 } }
+				NOT = { check_variable = { which = num_pp value = 1 } }
+			}
+		}
+		cu_export_s_weighted_dev = yes
+	}
+	set_variable = { which = dip_tc which = s_dev }
+	capital_scope = {
+	    export_to_variable = {
+		   which = cu_var3
+		   value = development
+	    }
+		owner = { set_variable = { which = cu_var3 which = PREV } }
+	}
+	change_variable = { which = dip_tc which = cu_var3 }
+	multiply_variable = { which = dip_tc value = 20 }
+	change_variable = { which = dip_tc value = 80 }
+	divide_variable = { which = dip_tc which = num_pp }
+	set_variable = { which = cu_var3 which = cu_var1 }
+	multiply_variable = { which = cu_var3 which = cu_var1 }
+	multiply_variable = { which = cu_var3 value = 0.004 }
+	multiply_variable = { which = cu_var1 value = 0.02 }
+	change_variable = { which = cu_var1 which = cu_var3 }
+	change_variable = { which = cu_var1 value = 0.1 }
+	multiply_variable = { which = dip_tc which = cu_var1 }
+	
+	#Technology Spread Bonus
+	if ={ #For colonial nations
+	      limit = { 
+		        is_colonial_nation = yes
+				NOT = { dip_tech = overlord }
+		  }
+		  multiply_variable = { which = dip_tc value = 0.5 }
+	}
+	else_if = { #Technology Sharing
+		limit = {
+			any_known_country = {
+		         PREV = {
+				      has_opinion_modifier = {
+			                  modifier = share_advanced_neighbor
+			                  who = PREV
+		              }
+					  NOT = { dip_tech = PREV }
+				 }
+			}
+		}
+	      
+		  multiply_variable = { which = dip_tc value = 0.75 }
+	}
+ 	else_if = { #Same Technology Group
+		limit = {
+			any_known_country = {
+		        technology_group = PREV
+				PREV = { NOT = { dip_tech = PREV } }
+		  }
+		}
+	      
+		multiply_variable = { which = dip_tc value = 0.85 }
+	}
+	#Apply in-game modifiers
+	set_variable = { which = cu_var1 value = 0 }
+	set_variable = { which = cu_var2 value = 0 }
+	export_to_variable = {
+		which = cu_var1
+		value = modifier:dip_tech_cost_modifier
+	}
+	export_to_variable = {
+		which = cu_var2
+		value = modifier:technology_cost
+	}
+    
+	#subtract_variable = { which = cu_var2 value = 10 }
+	change_variable = { which = cu_var1 which = cu_var2 }
+	if = {  
+	      limit = { NOT = { check_variable = { which = cu_var1 value = -0.9 } } }
+		  set_variable = { which = cu_var1 value = -0.9 } #Minimum Technology Cost Modifier is 10%
+	}
+	set_variable = { which = cu_dtcm which = cu_var1 } 
+	multiply_variable = { which = cu_dtcm value = 100 } #Save cu_dtcm - Diplomatic Technology Cost Modifier
+	change_variable = { which = cu_var1 value = 1 }
+	multiply_variable = { which = dip_tc which = cu_var1 }
+	
+	if = { #In case of data overflow
+	      limit = { NOT = { check_variable = { which = dip_tc value = 0 } } }
+		  set_variable = { which = dip_tc value = 10000 }
+	}
+	if = {
+	      limit = { NOT = { check_variable = { which = resd value = 0 } } }
+		  set_variable = { which = resd value = 0 }
+	}
+	set_variable = { which = dip_resp which = resd }
+	multiply_variable = { which = dip_resp value = 10 }
+	divide_variable = { which = dip_resp which = dip_tc }
+	multiply_variable = { which = dip_resp value = 10 }
+	set_variable = { which = dt_asy which = dip_tc }
+	subtract_variable = { which = dt_asy which = resd }
+	if = { # same effect as what game does, but without the report in the error log
+		limit = {
+			is_variable_equal = { which = p_resd value = 0 }
+		}
+		set_variable = { which = p_resd value = 0.001 }
+	}
+	divide_variable = { which = dt_asy which = p_resd }
+	
+	
+}
+
+#cu_calc_mil_tech_cost[]: Calculate Militray Tech Cost
+cu_calc_mil_tech_cost = {
+    if = {
+		limit = { NOT = { check_variable = { which = p_resm value = 1 } } }
+		set_variable = { which = p_resm value = 1 }
+	}
+	set_variable = { which = cu_var1 value = 0 }
+	set_variable = { which = cu_var2 value = 0 }
+	set_variable = { which = cu_var3 value = 0 }
+	export_to_variable = { 
+		which = cu_var1
+		value = mil_tech
+	}
+	if = {
+		limit = {
+			OR = {
+				NOT = { check_variable = { which = s_dev value = 1 } }
+				NOT = { check_variable = { which = num_pp value = 1 } }
+			}
+		}
+		cu_export_s_weighted_dev = yes
+	}
+	set_variable = { which = mil_tc which = s_dev }
+	capital_scope = {
+		export_to_variable = {
+			which = cu_var3
+			value = development
+		}
+		owner = { set_variable = { which = cu_var3 which = PREV } }
+	}
+	change_variable = { which = mil_tc which = cu_var3 }
+	multiply_variable = { which = mil_tc value = 20 }
+	change_variable = { which = mil_tc value = 80 }
+	divide_variable = { which = mil_tc which = num_pp }
+	set_variable = { which = cu_var3 which = cu_var1 }
+	multiply_variable = { which = cu_var3 which = cu_var1 }
+	multiply_variable = { which = cu_var3 value = 0.004 }
+	multiply_variable = { which = cu_var1 value = 0.02 }
+	change_variable = { which = cu_var1 which = cu_var3 }
+	change_variable = { which = cu_var1 value = 0.1 }
+	multiply_variable = { which = mil_tc which = cu_var1 }
+	#Technology Spread Bonus
+	if ={ #For colonial nations
+		limit = { 
+			is_colonial_nation = yes
+			NOT = { mil_tech = overlord }
+		}
+		multiply_variable = { which = mil_tc value = 0.5 }
+	}
+	else_if = { #Technology Sharing
+		limit = {
+			any_known_country = {
+				PREV = {
+					has_opinion_modifier = {
+						modifier = share_advanced_neighbor
+						who = PREV
+					}
+					NOT = { mil_tech = PREV }
+				}
+			}
+		}
+	    multiply_variable = { which = mil_tc value = 0.75 }
+	}
+ 	else_if = { #Same Technology Group
+		limit = {
+			any_known_country = {
+				technology_group = PREV
+				PREV = { NOT = { mil_tech = PREV } }
+			}
+		} 
+		multiply_variable = { which = mil_tc value = 0.85 }
+	}
+	#Apply in-game modifiers
+	set_variable = { which = cu_var1 value = 0 }
+	set_variable = { which = cu_var2 value = 0 }
+	export_to_variable = {
+		which = cu_var1
+		value = modifier:mil_tech_cost_modifier
+	}
+	export_to_variable = {
+		which = cu_var2
+		value = modifier:technology_cost
+	}
+    #subtract_variable = { which = cu_var2 value = 10 }
+	change_variable = { which = cu_var1 which = cu_var2 }
+	if = {  
+	      limit = { NOT = { check_variable = { which = cu_var1 value = -0.9 } } }
+		  set_variable = { which = cu_var1 value = -0.9 } #Minimum Technology Cost Modifier is 10%
+	}
+	set_variable = { which = cu_mtcm which = cu_var1 } 
+	multiply_variable = { which = cu_mtcm value = 100 } #Save cu_mtcm - Diplomatic Technology Cost Modifier
+	change_variable = { which = cu_var1 value = 1 }
+	multiply_variable = { which = mil_tc which = cu_var1 }
+	
+	if = { #In case of data overflow
+	      limit = { NOT = { check_variable = { which = mil_tc value = 0 } } }
+		  set_variable = { which = mil_tc value = 10000 }
+	}
+	if = {
+	      limit = { NOT = { check_variable = { which = resm value = 0 } } }
+		  set_variable = { which = resm value = 0 }
+	}
+	set_variable = { which = mil_resp which = resm }
+	multiply_variable = { which = mil_resp value = 10 }
+	divide_variable = { which = mil_resp which = mil_tc }
+	multiply_variable = { which = mil_resp value = 10 }
+	set_variable = { which = mt_asy which = mil_tc }
+	subtract_variable = { which = mt_asy which = resm }
+	if = { # same effect as what game does, but without the report in the error log
+		limit = {
+			is_variable_equal = { which = p_resm value = 0 }
+		}
+		set_variable = { which = p_resm value = 0.001 }
+	}
+	divide_variable = { which = mt_asy which = p_resm }
+						
+	
+}
+
+#cu_calc_tech_cost[]: Calculate All Technology Cost
+cu_calc_tech_cost = {
+	cu_check_ins_cost = yes
+    cu_calc_adm_tech_cost = yes
+	cu_finish_adm_tech = yes
+	cu_calc_dip_tech_cost = yes
+	cu_finish_dip_tech = yes
+	cu_calc_mil_tech_cost = yes
+	cu_finish_mil_tech = yes
+}
+#Check Institution Cost
+cu_check_ins_cost = {
+	set_variable = { which = cu_ins_cost value = 0 }
+	#set_variable = { which = cu_var3 value = 0 }
+	if = {
+		limit = {
+			NOT = { has_institution = feudalism }
+		}
+		change_variable = { which = cu_ins_cost value = 50 }
+	}
+	if = {
+		limit = {
+			NOT = { has_institution = gunpowder }
+		}
+		change_variable = { which = cu_ins_cost value = 50 }
+	}
+	if = {
+		limit = {
+			NOT = { has_institution = printing_press }
+			is_institution_enabled = printing_press
+		}
+		set_variable = { which = cu_var3 which = cu_year }
+		subtract_variable = { which = cu_var3 which = printing_press_sdate }
+		if = { limit = { check_variable = { which = cu_var3 value = 20 } } change_variable = { which = cu_ins_cost value = 20 } }
+		else = { change_variable = { which = cu_ins_cost which = cu_var3 } }
+	}
+	if = {
+		limit = {
+			NOT = { has_institution = new_world_i }
+			is_institution_enabled = new_world_i
+		}
+		set_variable = { which = cu_var3 which = cu_year }
+		subtract_variable = { which = cu_var3 which = new_world_i_sdate }
+		if = { limit = { check_variable = { which = cu_var3 value = 5 } } change_variable = { which = cu_ins_cost value = 5 } }
+		else = { change_variable = { which = cu_ins_cost which = cu_var3 } }
+	}
+	if = {
+		limit = {
+			NOT = { has_institution = global_trade }
+			is_institution_enabled = global_trade
+		}
+		set_variable = { which = cu_var3 which = cu_year }
+		subtract_variable = { which = cu_var3 which = global_trade_sdate }
+		if = { limit = { check_variable = { which = cu_var3 value = 20 } } change_variable = { which = cu_ins_cost value = 20 } }
+		else = { change_variable = { which = cu_ins_cost which = cu_var3 } }
+	}
+	if = {
+		limit = {
+			NOT = { has_institution = manufactories }
+			is_institution_enabled = manufactories
+		}
+		set_variable = { which = cu_var3 which = cu_year }
+		subtract_variable = { which = cu_var3 which = manufactories_sdate }
+		if = { limit = { check_variable = { which = cu_var3 value = 40 } } change_variable = { which = cu_ins_cost value = 40 } }
+		else = { change_variable = { which = cu_ins_cost which = cu_var3 } }
+	}
+	if = {
+		limit = {
+			NOT = { has_institution = enlightenment }
+			is_institution_enabled = enlightenment
+		}
+		set_variable = { which = cu_var3 which = cu_year }
+		subtract_variable = { which = cu_var3 which = enlightenment_sdate }
+		if = { limit = { check_variable = { which = cu_var3 value = 50 } } change_variable = { which = cu_ins_cost value = 50 } }
+		else = { change_variable = { which = cu_ins_cost which = cu_var3 } }
+	}
+	if = {
+		limit = {
+			NOT = { has_institution = industrial_revolution }
+			is_institution_enabled = industrial_revolution
+		}
+		set_variable = { which = cu_var3 which = cu_year }
+		subtract_variable = { which = cu_var3 which = industrial_revolution_sdate }
+		if = { limit = { check_variable = { which = cu_var3 value = 50 } } change_variable = { which = cu_ins_cost value = 50 } }
+		else = { change_variable = { which = cu_ins_cost which = cu_var3 } }
+	}
+	change_innovativeness = -500
+	while = {
+		limit = { check_variable = { which = cu_ins_cost value = 1 } }
+		change_innovativeness = 1
+		change_variable = { which = cu_ins_cost value = -1 }
+	}
+}
+
+
+#Check All Tech Cost And Update Them
+cu_finish_adm_tech = {
+	
+	#Finish Tech
+	if = {
+		  limit = { 
+		         NOT = { check_variable = { which = at_asy value = 0.001 }  }
+				 check_variable = { which = adm_tc value = 1 }
+		  }
+		  set_variable = { which = resa value = 0 }
+		  add_adm_tech = 1
+		  cu_calc_adm_tech_cost = yes
+	}
+}
+
+cu_finish_dip_tech = {
+	#Finish Tech
+	if = {
+		  limit = { 
+		         NOT = { check_variable = { which = dt_asy value = 0.001 }  }
+				 check_variable = { which = dip_tc value = 1 }
+		  }
+		  set_variable = { which = resd value = 0 }
+		  cu_upgrade_ship = yes #add tech after this effect.
+	}
+}
+
+cu_upgrade_ship = {
+	if = {
+		limit = { cu_can_update_heavy_ship = yes }
+		set_country_flag = cu_updating_heavy_ship
+		#country_event = { id = ideagroups.4936 }
+	}
+	if = {
+		limit = { cu_can_update_light_ship = yes }
+		set_country_flag = cu_updating_light_ship
+		#country_event = { id = ideagroups.4937 }
+	}
+	if = {
+		limit = { cu_can_update_galley = yes }
+		set_country_flag = cu_updating_galley
+		#country_event = { id = ideagroups.4938 }
+	}
+	if = {
+		limit = { cu_can_update_transport = yes }
+		set_country_flag = cu_updating_transport
+		#country_event = { id = ideagroups.4939 }
+	}
+	cu_upgrade_ship_check_tech = yes
+}
+
+cu_upgrade_ship_check_tech = {
+	add_dip_tech = 1 #Moved to cu_upgrade_ship
+	cu_calc_dip_tech_cost = yes
+	if = {
+		limit = {
+			has_country_flag = cu_updating_heavy_ship
+		}
+		country_event = { id = ideagroups.4936 }
+		clr_country_flag = cu_updating_heavy_ship
+	}
+	if = {
+		limit = {
+			has_country_flag = cu_updating_light_ship
+		}
+		country_event = { id = ideagroups.4937 }
+		clr_country_flag = cu_updating_light_ship
+	}
+	if = {
+		limit = {
+			has_country_flag = cu_updating_galley
+		}
+		country_event = { id = ideagroups.4938 }
+		clr_country_flag = cu_updating_galley
+	}
+	if = {
+		limit = {
+			has_country_flag = cu_updating_transport
+		}
+		country_event = { id = ideagroups.4939 }
+		clr_country_flag = cu_updating_transport
+	}
+}
+
+cu_finish_mil_tech = {
+	#Finish Tech
+	if = {
+		  limit = { 
+		         NOT = { check_variable = { which = mt_asy value = 0.001 }  }
+				 check_variable = { which = mil_tc value = 1 }
+		  }
+		  set_variable = { which = resm value = 0 }
+		  add_mil_tech = 1
+		  cu_calc_mil_tech_cost = yes
+	}
+}
+
+#Receive one year's ADM research points
+cu_get_1year_adm = {
+    hidden_effect = {
+	    set_variable = { which = cu_var1 which = p_resa }
+	    change_variable = { which = resa which = cu_var1 }
+        cu_calc_adm_tech_cost = yes
+	    cu_finish_adm_tech = yes
+	}
+	custom_tooltip = cu_get_1year_adm_tt
+}
+
+#Receive two years' ADM research points
+cu_get_2year_adm = {
+    hidden_effect = {
+	    set_variable = { which = cu_var1 which = p_resa }
+		multiply_variable = { which = cu_var1 value = 2 }
+	    change_variable = { which = resa which = cu_var1 }
+		if = {
+		      limit = { NOT = { check_variable = { which = resa value = 0 } } }
+			  set_variable = { which = resa value = 0 }
+		}
+        cu_calc_adm_tech_cost = yes
+	    cu_finish_adm_tech = yes
+	}
+	custom_tooltip = cu_get_2year_adm_tt
+}
+
+#Receive three years' ADM research points
+cu_get_3year_adm = {
+    hidden_effect = {
+	    set_variable = { which = cu_var1 which = p_resa }
+		multiply_variable = { which = cu_var1 value = 3 }
+	    change_variable = { which = resa which = cu_var1 }
+		if = {
+		      limit = { NOT = { check_variable = { which = resa value = 0 } } }
+			  set_variable = { which = resa value = 0 }
+		}
+        cu_calc_adm_tech_cost = yes
+	    cu_finish_adm_tech = yes
+	}
+	custom_tooltip = cu_get_3year_adm_tt
+}
+
+#Receive five years' ADM research points
+cu_get_5year_adm = {
+    hidden_effect = {
+	    set_variable = { which = cu_var1 which = p_resa }
+		multiply_variable = { which = cu_var1 value = 5 }
+	    change_variable = { which = resa which = cu_var1 }
+		if = {
+		      limit = { NOT = { check_variable = { which = resa value = 0 } } }
+			  set_variable = { which = resa value = 0 }
+		}
+        cu_calc_adm_tech_cost = yes
+	    cu_finish_adm_tech = yes
+	}
+	custom_tooltip = cu_get_5year_adm_tt
+}
+
+#Receive one year's DIP research points
+cu_get_1year_dip = {
+    hidden_effect = {
+	    set_variable = { which = cu_var1 which = p_resd }
+	    change_variable = { which = resd which = cu_var1 }
+		if = {
+		      limit = { NOT = { check_variable = { which = resd value = 0 } } }
+			  set_variable = { which = resd value = 0 }
+		}
+        cu_calc_dip_tech_cost = yes
+	    cu_finish_dip_tech = yes
+	}
+	custom_tooltip = cu_get_1year_dip_tt
+}
+
+#Receive two years' DIP research points
+cu_get_2year_dip = {
+    hidden_effect = {
+	    set_variable = { which = cu_var1 which = p_resd }
+		multiply_variable = { which = cu_var1 value = 2 }
+	    change_variable = { which = resd which = cu_var1 }
+		if = {
+		      limit = { NOT = { check_variable = { which = resd value = 0 } } }
+			  set_variable = { which = resd value = 0 }
+		}
+        cu_calc_dip_tech_cost = yes
+	    cu_finish_dip_tech = yes
+	}
+	custom_tooltip = cu_get_2year_dip_tt
+}
+
+#Receive three years' DIP research points
+cu_get_3year_dip = {
+    hidden_effect = {
+	    set_variable = { which = cu_var1 which = p_resd }
+		multiply_variable = { which = cu_var1 value = 3 }
+	    change_variable = { which = resd which = cu_var1 }
+		if = {
+		      limit = { NOT = { check_variable = { which = resd value = 0 } } }
+			  set_variable = { which = resd value = 0 }
+		}
+        cu_calc_dip_tech_cost = yes
+	    cu_finish_dip_tech = yes
+	}
+	custom_tooltip = cu_get_3year_dip_tt
+}
+
+#Receive five years' DIP research points
+cu_get_5year_dip = {
+    hidden_effect = {
+	    set_variable = { which = cu_var1 which = p_resd }
+		multiply_variable = { which = cu_var1 value = 5 }
+	    change_variable = { which = resd which = cu_var1 }
+		if = {
+		      limit = { NOT = { check_variable = { which = resd value = 0 } } }
+			  set_variable = { which = resd value = 0 }
+		}
+        cu_calc_dip_tech_cost = yes
+	    cu_finish_dip_tech = yes
+	}
+	custom_tooltip = cu_get_5year_dip_tt
+}
+
+#Receive one year's MIL research points
+cu_get_1year_mil = {
+    hidden_effect = {
+	    set_variable = { which = cu_var1 which = p_resm }
+	    change_variable = { which = resm which = cu_var1 }
+		if = {
+		      limit = { NOT = { check_variable = { which = resm value = 0 } } }
+			  set_variable = { which = resm value = 0 }
+		}
+        cu_calc_mil_tech_cost = yes
+	    cu_finish_mil_tech = yes
+	}
+	custom_tooltip = cu_get_1year_mil_tt
+}
+
+#Receive two years' MIL research points
+cu_get_2year_mil = {
+    hidden_effect = {
+	    set_variable = { which = cu_var1 which = p_resm }
+		multiply_variable = { which = cu_var1 value = 2 }
+	    change_variable = { which = resm which = cu_var1 }
+		if = {
+		      limit = { NOT = { check_variable = { which = resm value = 0 } } }
+			  set_variable = { which = resm value = 0 }
+		}
+        cu_calc_mil_tech_cost = yes
+	    cu_finish_mil_tech = yes
+	}
+	custom_tooltip = cu_get_2year_mil_tt
+}
+
+#Receive three years' MIL research points
+cu_get_3year_mil = {
+    hidden_effect = {
+	    set_variable = { which = cu_var1 which = p_resm }
+		multiply_variable = { which = cu_var1 value = 3 }
+	    change_variable = { which = resm which = cu_var1 }
+		if = {
+		      limit = { NOT = { check_variable = { which = resm value = 0 } } }
+			  set_variable = { which = resm value = 0 }
+		}
+        cu_calc_mil_tech_cost = yes
+	    cu_finish_mil_tech = yes
+	}
+	custom_tooltip = cu_get_3year_mil_tt
+}
+
+#Receive five years' MIL research points
+cu_get_5year_mil = {
+    hidden_effect = {
+	    set_variable = { which = cu_var1 which = p_resm }
+		multiply_variable = { which = cu_var1 value = 5 }
+	    change_variable = { which = resm which = cu_var1 }
+		if = {
+		      limit = { NOT = { check_variable = { which = resm value = 0 } } }
+			  set_variable = { which = resm value = 0 }
+		}
+        cu_calc_mil_tech_cost = yes
+	    cu_finish_mil_tech = yes
+	}
+	custom_tooltip = cu_get_5year_mil_tt
+}
+
+
+
+cu_tech_settings = {
+	#FROM 3
+	if = {
+		limit = {
+			technology_group = nomad_group
+		}
+		if = {
+			limit = {
+				capital_scope = {
+					continent = asia
+				}
+			}
+			add_mil_tech = 1
+		}
+		add_mil_tech = 1
+	}
+	else_if = {
+		limit = {
+			technology_group = chinese
+		}
+		if = {
+			limit = {
+				capital_scope = {
+					region = tibet_region
+				}
+			}
+			add_adm_tech = 1
+		}
+		else_if = {
+			limit = {
+				capital_scope = {
+					region = moluccas_region
+				}
+			}
+			add_dip_tech = 1
+		}
+		else_if = {
+			limit = {
+				OR = {
+					capital_scope = {
+						superregion = china_superregion
+					}
+					capital_scope = {
+						superregion = far_east_superregion
+					}
+					tag = DAI
+				}
+			}
+			add_mil_tech = 2
+			add_adm_tech = 2
+			add_dip_tech = 1
+		}
+		else_if = {
+			limit = {
+				capital_scope = {
+					superregion = east_indies_superregion
+				}
+			}
+			add_mil_tech = 2
+			add_adm_tech = 1
+			add_dip_tech = 2
+		}
+		else = {
+			add_mil_tech = 1
+			add_adm_tech = 1
+			add_dip_tech = 1
+		}
+	}
+	else_if = {
+		limit = {
+			technology_group = indian
+		}
+		add_adm_tech = 2
+		add_dip_tech = 2
+	}
+	else_if = {
+		limit = {
+			OR = {
+				technology_group = ottoman
+				technology_group = muslim
+				tag = BYZ
+			}
+		}
+		add_mil_tech = 2
+		add_adm_tech = 1
+		add_dip_tech = 2
+	}
+	else_if = {
+		limit = {
+			technology_group = western
+		}
+		add_mil_tech = 1
+		add_adm_tech = 1
+		add_dip_tech = 2
+	}
+	else_if = {
+		limit = {
+			technology_group = eastern
+		}
+		add_mil_tech = 1
+		add_adm_tech = 1
+		add_dip_tech = 1
+	}
+	#FROM 1
+	else_if = {
+		limit = {
+			technology_group = east_african
+		}
+		add_mil_tech = 2
+		add_adm_tech = 2
+		add_dip_tech = 2
+	}
+	else_if = {
+		limit = {
+			technology_group = sub_saharan
+		}
+		add_mil_tech = 2
+		add_adm_tech = 2
+		add_dip_tech = 1
+	}
+	else_if = {
+		limit = {
+			technology_group = central_african
+		}
+		add_mil_tech = 2
+		add_adm_tech = 1
+		add_dip_tech = 1
+	}
+	else_if = {
+		limit = {
+			OR = {
+				technology_group = andean
+				technology_group = mesoamerican
+			}
+		}
+		add_mil_tech = 1
+		add_adm_tech = 1
+		add_dip_tech = 1
+	}
+}

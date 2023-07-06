@@ -1,0 +1,318 @@
+namespace = cutest
+country_event = {
+	id = cutest.1
+	title = institution_events.4.t
+	desc = institution_events.4.d
+	is_triggered_only = yes
+	
+
+	trigger = {
+		always = yes			#
+	}
+	picture = {
+		trigger = { NOT = { has_dlc = "Rights of Man" } }
+		picture = BIG_BOOK_eventPicture
+	}
+	picture = {
+		trigger = { has_dlc = "Rights of Man" }
+		picture = PRINTING_PRESS_eventPicture
+	}
+
+	mean_time_to_happen = {
+		days = 1
+	}
+
+	option = {
+		name = institution_events.4.a
+		every_province = {
+			limit = { 
+				is_empty = yes 
+				has_climate = arctic
+				#base_manpower = 0
+				#NOT = { base_manpower = 1 }
+			}
+		#	export_to_variable = {
+		#		which = cu_var1
+		#		value = trigger_value:native_size
+		#	}
+		#	set_base_tax = 0
+		#	set_base_production = 0
+		#	set_base_manpower = 0
+		#	multiply_variable = { which = cu_var1 value = 0.1 }
+		#	while = {
+		#		limit = { check_variable = { which = cu_var1 value = 0 } }
+		#		add_base_manpower = 1
+		#		change_variable = { which = cu_var1 value = -1 }
+		#	}
+		#	if = {
+		#		limit = { base_manpower = 10 }
+		#		add_base_manpower = -2
+		#		add_base_production = 1
+		#		add_base_tax = 1
+		#	}
+		#	if = {
+		#		limit = { base_manpower = 5 }
+		#		add_base_manpower = -2
+		#		add_base_production = 1
+		#		add_base_tax = 1
+		#	}
+		#	if = {
+		#		limit = { base_manpower = 5 }
+		#		add_base_manpower = -2
+		#		add_base_production = 1
+		#		add_base_tax = 1
+		#	}
+			set_base_manpower = 1
+			set_base_production = 0
+			set_base_tax = 0
+			hidden_effect = {
+				export_to_variable = {
+					which = cu_var1
+					value = base_tax
+				}
+				export_to_variable = {
+					which = cu_var2
+					value = base_production
+				}
+				export_to_variable = {
+					which = cu_var3
+					value = base_manpower
+				}
+				log = "[This.province_id_cu.GetValue]"
+				log = "base_tax = [This.cu_var1.GetValue] base_production = [This.cu_var2.GetValue] base_manpower = [This.cu_var3.GetValue]"
+			}
+		}
+		#every_country = {
+		#	log = "[This.GetName]"
+		#	every_owned_province = {
+		#		limit = {
+		#			OR = {
+		#				NOT = { superregion = india_superregion }
+		#				AND = {
+		#					superregion = india_superregion
+		#					NOT = {
+		#						OR = {
+		#							province_group = severe_monsoon_g
+		#							province_group = mild_monsoon_g
+		#							province_group = normal_monsoon_g
+		#						}
+		#					}
+		#				}
+		#			}
+		#		}
+		#		if = {
+		#			limit = { region = korea_region }
+		#			log = "[This.province_id_cu.GetValue] Kpa"
+		#		}
+		#		else_if = {
+		#			limit = {
+		#				NOT = {
+		#					OR = {
+		#						province_group = severe_monsoon_g
+		#						province_group = mild_monsoon_g
+		#						province_group = normal_monsoon_g
+		#					}
+		#				}
+		#			}
+		#			log = "[This.province_id_cu.GetValue]"
+		#		}
+		#	}
+		#}
+		every_country = {
+			limit = { is_playing_custom_nation = yes }
+			log = "[This.GetName]"
+			every_owned_province = {
+		#		if = {
+		#			limit = {
+		#				NOT = {
+		#					OR = {
+		#						has_climate = arid
+		#						has_climate = tropical
+		#						has_climate = arctic
+		#					}
+		#				}
+		#			}
+		#			log = "[This.province_id_cu.GetValue]"
+		#		}
+				hidden_effect = {
+					export_to_variable = {
+						which = cu_var1
+						value = base_tax
+					}
+					export_to_variable = {
+						which = cu_var2
+						value = base_production
+					}
+					export_to_variable = {
+						which = cu_var3
+						value = base_manpower
+					}
+		#			multiply_variable = { which = cu_var1 value = 0.6 }
+		#			multiply_variable = { which = cu_var2 value = 0.6 }
+		#			multiply_variable = { which = cu_var3 value = 0.6 }
+					if = {
+						limit = { owner = { tag = D00 } }
+						multiply_variable = { which = cu_var1 value = 0.4 }
+						multiply_variable = { which = cu_var2 value = 0.4 }
+						multiply_variable = { which = cu_var3 value = 0.4 }
+					}
+					else_if = {
+						limit = { owner = { tag = D01 } }
+						multiply_variable = { which = cu_var1 value = 0.2 }
+						multiply_variable = { which = cu_var2 value = 0.2 }
+						multiply_variable = { which = cu_var3 value = 0.2 }
+					}
+					else_if = {
+						limit = { owner = { tag = D02 } }
+						multiply_variable = { which = cu_var1 value = 0.66 }
+						multiply_variable = { which = cu_var2 value = 0.66 }
+						multiply_variable = { which = cu_var3 value = 0.66 }
+					}
+					log = "[This.province_id_cu.GetValue]"
+					log = "base_tax = [This.cu_var1.GetValue] base_production = [This.cu_var2.GetValue] base_manpower = [This.cu_var3.GetValue]"
+				}
+			}
+		}
+		#hidden_effect = {
+		#	every_province = {
+		#		export_to_variable = {
+		#			which = cu_var1
+		#			value = base_tax
+		#		}
+		#		export_to_variable = {
+		#			which = cu_var2
+		#			value = base_production
+		#		}
+		#		export_to_variable = {
+		#			which = cu_var3
+		#			value = base_manpower
+		#		}
+		#		log = "[This.province_id_cu.GetValue]"
+		#		log = "base_tax = [This.cu_var1.GetValue] base_production = [This.cu_var2.GetValue] base_manpower = [This.cu_var3.GetValue]"
+		#	}
+		#}
+		#log = "asia = {"
+		#every_province = {
+		#	limit = {
+		#		OR = {
+		#			superregion = india_superregion
+		#			superregion = east_indies_superregion
+		#			superregion = indo_china_superregion
+		#			superregion = china_superregion
+		#			superregion = inner_asia_superregion
+		#			superregion = far_east_superregion
+		#			AND = {
+		#				superregion = middle_east_superregion
+		#				NOT = { region = egypt_region }
+		#			}
+		#			AND = {
+		#				superregion = near_east_superregion
+		#				NOT = { region = balkan_region }
+		#				NOT = { region = caucasia_region }
+		#			}
+		#			AND = {
+		#				region = caucasia_region
+		#				NOT = { area = circassia_area }
+		#				NOT = { area = dagestan_area }
+		#			}
+		#		}
+		#	}
+		#	log = "[This.province_id_cu.GetValue]"
+		#}
+		#log = "}"
+		#log = "europe = {"
+		#every_province = {
+		#	limit = {
+		#		OR = {
+		#			superregion = west_europe_superregion
+		#			superregion = central_europe_superregion
+		#			superregion = north_europe_superregion
+		#			superregion = eastern_europe_superregion
+		#			region = balkan_region
+		#			area = circassia_area
+		#			area = dagestan_area
+		#			AND = {
+		#				superregion = west_mediterraneansea_superregion
+		#				NOT = { region = maghreb_region }
+		#			}
+		#		}
+		#	}
+		#	log = "[This.province_id_cu.GetValue]"
+		#}
+		#log = "}"
+		#log = "africa = {"
+		#every_province = {
+		#	limit = {
+		#		OR = {
+		#			superregion = west_africa_superregion
+		#			superregion = southern_africa_superregion
+		#			superregion = eastern_africa_superregion
+		#			superregion = eastern_europe_superregion
+		#			region = maghreb_region 
+		#			region = egypt_region
+		#		}
+		#	}
+		#	log = "[This.province_id_cu.GetValue]"
+		#}
+		#log = "}"
+		#log = "north_america = {"
+		#every_province = {
+		#	limit = {
+		#		OR = {
+		#			superregion = north_america_superregion
+		#			superregion = central_america_superregion
+		#		}
+		#	}
+		#	log = "[This.province_id_cu.GetValue]"
+		#}
+		#log = "}"
+		#every_province = {
+		#	limit = {
+		#		OR = {
+		#			AND = {
+		#				owner = {
+		#					OR = {
+		#						religion = animism
+		#						religion = totemism
+		#					}
+		#				}
+		#				OR = {
+		#					superregion = north_america_superregion
+		#					superregion = central_america_superregion
+		#					superregion = andes_superregion
+		#					superregion = south_america_superregion
+		#				}
+		#
+		#			}
+		#			AND = {
+		#				is_empty = yes
+		#				OR = {
+		#					superregion = north_america_superregion
+		#					superregion = central_america_superregion
+		#					superregion = andes_superregion
+		#					superregion = south_america_superregion
+		#					superregion = oceania_superregion
+		#				}
+		#			}
+		#		}
+		#	}
+		#	export_to_variable = {
+		#		which = cu_var3
+		#		value = base_manpower
+		#	}
+		#	if = {
+		#		limit = { NOT = { check_variable = { which = cu_vark which = cu_var3 } } }
+		#		export_to_variable = {
+		#			which = cu_var1
+		#			value = base_tax
+		#		}
+		#		export_to_variable = {
+		#			which = cu_var2
+		#			value = base_production
+		#		}
+		#		log = "[This.province_id_cu.GetValue]"
+		#		log = "base_tax = [This.cu_var1.GetValue] base_production = [This.cu_var2.GetValue] base_manpower = [This.cu_var3.GetValue]"
+		#	}
+		#}
+	}
+}

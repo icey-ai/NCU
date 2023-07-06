@@ -1,0 +1,5 @@
+every_province = {
+	limit = { region = ROOT }
+		cede_province = ROOT                                      
+		add_core = ROOT
+}	

@@ -1,0 +1,7 @@
+government = monarchy
+add_government_reform = feudalism_reform
+primary_culture = macedonian_slav
+religion = orthodox
+technology_group = eastern
+capital = 3001	# Skopje
+fixed_capital = 3001 # Cannot move capital away from this province & no power cost to move to it

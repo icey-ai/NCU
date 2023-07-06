@@ -1,0 +1,269 @@
+estate_cossacks = {
+	icon = 4
+	
+	
+	# If true, country will get estate
+	
+	trigger = {	
+		has_dlc = "The Cossacks"
+		NOT = { has_reform = pirate_republic_reform }
+		NOT = { has_reform = cossacks_reform }
+		NOT = { has_government_attribute = is_merchant_republic }
+		NOT = { has_reform = trading_city }
+		NOT = { has_reform = revolutionary_republic_reform }
+		NOT = {  cu_estate_preload_native = yes }
+		NOT = { has_reform = siberian_tribe }
+		NOT = { has_reform = veche_republic }
+		is_nomad = no
+		is_colonial_nation = no
+		NOT = { has_reform = celestial_empire }
+		unit_type = eastern
+		religion_group = christian
+		NOT = { 
+			AND = {
+				has_country_flag = revoke_cossacks
+				has_reform = court_despotism
+			}
+		}
+		NOT = { 
+			AND = {
+				has_country_flag = revoke_all_estates
+				has_reform = parliament_reform
+			}
+		}
+		always = no
+	}
+
+	# These scale with loyalty & power
+	country_modifier_happy = {
+		cavalry_cost = -0.1
+		yearly_corruption = 0.06
+	}
+	country_modifier_neutral = {
+		cavalry_cost = -0.05
+		yearly_corruption = 0.12
+	}	
+	country_modifier_angry = {
+		cavalry_cost = 0.1
+		yearly_corruption = 0.18
+	}
+	
+	# Influence modifiers
+	base_influence = 0
+	influence_modifier = {
+		desc = calc_estate
+		trigger = {
+			has_country_flag = useless_estates
+		}	
+		influence = -100
+	}
+	influence_modifier = {
+		desc = EST_VAL_OTHER_ESTATE_IN_POWER
+		trigger = {
+			OR = {
+				has_disaster = estate_nobility_disaster
+				has_disaster = estate_church_disaster
+				has_disaster = estate_burghers_disaster
+			}
+		}
+		influence = -40
+	}
+	
+	influence_modifier = {
+		desc = EST_VAL_NOMADIC_TRIBES_ADVANCE
+		trigger = {
+			has_reform = oral_tradition
+		}
+		influence = 5
+	}
+	
+	influence_modifier = {
+		desc = EST_VAL_PROVINCE_0
+		trigger = {
+			check_variable = { which = etie value = 5 }
+			NOT = { check_variable = { which = etie value = 10 } }
+		}	
+		influence = 5
+	}
+	influence_modifier = {
+		desc = EST_VAL_PROVINCE_1
+		trigger = {
+			check_variable = { which = etie value = 10 }
+			NOT = { check_variable = { which = etie value = 20 } }
+		}	
+		influence = 10
+	}
+	influence_modifier = {
+		desc = EST_VAL_PROVINCE_2
+		trigger = {
+			check_variable = { which = etie value = 20 }
+			NOT = { check_variable = { which = etie value = 30 } }
+		}	
+		influence = 20
+	}
+	influence_modifier = {
+		desc = EST_VAL_PROVINCE_3
+		trigger = {
+			check_variable = { which = etie value = 30 }
+			NOT = { check_variable = { which = etie value = 40 } }
+		}	
+		influence = 30
+	}
+	influence_modifier = {
+		desc = EST_VAL_PROVINCE_4
+		trigger = {
+			check_variable = { which = etie value = 40 }
+			NOT = { check_variable = { which = etie value = 50 } }
+		}	
+		influence = 40
+	}
+	influence_modifier = {
+		desc = EST_VAL_PROVINCE_5
+		trigger = {
+			check_variable = { which = etie value = 50 }
+			NOT = { check_variable = { which = etie value = 60 } }
+		}	
+		influence = 50
+	}
+	influence_modifier = {
+		desc = EST_VAL_PROVINCE_6
+		trigger = {
+			check_variable = { which = etie value = 60 }
+			NOT = { check_variable = { which = etie value = 70 } }
+		}	
+		influence = 60
+	}
+	influence_modifier = {
+		desc = EST_VAL_PROVINCE_7
+		trigger = {
+			check_variable = { which = etie value = 70 }
+			NOT = { check_variable = { which = etie value = 80 } }
+		}	
+		influence = 70
+	}
+	influence_modifier = {
+		desc = EST_VAL_PROVINCE_8
+		trigger = {
+			check_variable = { which = etie value = 80 }
+			NOT = { check_variable = { which = etie value = 90 } }
+		}	
+		influence = 80
+	}
+	influence_modifier = {
+		desc = EST_VAL_PROVINCE_9
+		trigger = {
+			check_variable = { which = etie value = 90 }
+			NOT = { check_variable = { which = etie value = 100 } }
+		}	
+		influence = 90
+	}
+	influence_modifier = {
+		desc = EST_VAL_PROVINCE_10
+		trigger = {
+			check_variable = { which = etie value = 100 }
+		}	
+		influence = 100
+	}
+	
+	loyalty_modifier = {
+		desc = EST_VAL_NOMADIC_TRIBES_ADVANCE
+		trigger = {
+			has_reform = oral_tradition
+		}
+		loyalty = 10
+	}
+	
+	loyalty_modifier = {
+		desc = EST_VAL_OTHER_ESTATE_IN_POWER_LOY
+		trigger = {
+			OR = {
+				has_disaster = estate_nobility_disaster
+				has_disaster = estate_church_disaster
+				has_disaster = estate_burghers_disaster
+			}
+		}
+		loyalty = -20
+	}
+	loyalty_modifier = {
+		desc = EST_VAL_UNREST
+		trigger = {
+			check_variable = { which = el_unrest value = -10 }
+			NOT = { check_variable = { which = el_unrest value = -5 } }
+		}	
+		loyalty = -10
+	}
+	loyalty_modifier = {
+		desc = EST_VAL_UNREST
+		trigger = {
+			check_variable = { which = el_unrest value = -15 }
+			NOT = { check_variable = { which = el_unrest value = -10 } }
+		}	
+		loyalty = -15
+	}
+	loyalty_modifier = {
+		desc = EST_VAL_UNREST
+		trigger = {
+			check_variable = { which = el_unrest value = -20 }
+			NOT = { check_variable = { which = el_unrest value = -15 } }
+		}	
+		loyalty = -20
+	}
+	loyalty_modifier = {
+		desc = EST_VAL_UNREST
+		trigger = {
+			NOT = { check_variable = { which = el_unrest value = -20 } }
+		}	
+		loyalty = -25
+	}
+	loyalty_modifier = {
+		desc = EST_VAL_UNREST
+		trigger = {
+			check_variable = { which = el_unrest value = 5 }
+			NOT = { check_variable = { which = el_unrest value = 10 } }
+		}	
+		loyalty = 5
+	}
+	loyalty_modifier = {
+		desc = EST_VAL_UNREST
+		trigger = {
+			check_variable = { which = el_unrest value = 10 }
+			NOT = { check_variable = { which = el_unrest value = 15 } }
+		}	
+		loyalty = 10
+	}
+	loyalty_modifier = {
+		desc = EST_VAL_UNREST
+		trigger = {
+			check_variable = { which = el_unrest value = 15 }
+			NOT = { check_variable = { which = el_unrest value = 20 } }
+		}	
+		loyalty = 15
+	}
+	loyalty_modifier = {
+		desc = EST_VAL_UNREST
+		trigger = {
+			check_variable = { which = el_unrest value = 20 }
+		}	
+		loyalty = 20
+	}
+		
+	
+
+	#Interactions
+	privileges = {
+	    ask_for_contribution
+		fund_the_loyalists
+		marry_with_estate
+		grant_autonomy
+		demand_more_troops
+		supply_arms
+		cu_military_coup
+	}
+	
+	agendas = {
+	
+	}
+	
+	influence_from_dev_modifier = 1.0
+	color = { 200 150 150 }
+}

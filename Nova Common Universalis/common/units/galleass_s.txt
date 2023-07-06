@@ -1,0 +1,14 @@
+#Galleas
+type = galley
+trigger = { 
+                NOT = { 
+                        tag = KOR
+                }
+				has_country_flag = galley_mod_s
+}
+hull_size = 12
+base_cannons = 17
+blockade = 3
+sail_speed = 10
+
+sprite_level = 3

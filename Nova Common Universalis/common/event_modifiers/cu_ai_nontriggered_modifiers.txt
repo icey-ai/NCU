@@ -1,0 +1,12 @@
+ai_navy_oversized = {
+	global_ship_recruit_speed = 10
+	naval_maintenance_modifier = -1
+}
+
+ai_missionary_construction = {
+	missionaries = -1
+}
+
+ai_building_help = {
+	allowed_num_of_buildings = 3
+}

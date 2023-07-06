@@ -1,0 +1,38 @@
+cu_not_terr_trigger = {
+	OR = {
+		AND = {
+			owner = { ai = no }
+			is_state_core = owner
+		}
+		AND = {
+			owner = { ai = yes }
+			NOT = { cu_is_in_trade_company = yes }
+		}
+	}
+}
+
+cu_is_terr_trigger = {	#In case of bugs
+	OR = {
+		AND = {
+			owner = { ai = no }
+			NOT = { is_state_core = owner }
+		}
+		AND = {
+			owner = { ai = yes }
+			cu_is_in_trade_company = yes
+		}
+	}
+}
+
+cu_is_in_trade_company = {
+	OR = {
+		has_province_modifier = trade_company_off_1
+		has_province_modifier = trade_company_off_2
+		has_province_modifier = trade_company_off_3
+		has_province_modifier = trade_company_off_4
+		has_province_modifier = trade_company_pri_1
+		has_province_modifier = trade_company_pri_2
+		has_province_modifier = trade_company_pri_3
+		has_province_modifier = trade_company_pri_4		
+	}
+}

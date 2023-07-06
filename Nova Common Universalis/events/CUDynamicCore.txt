@@ -1,0 +1,600 @@
+namespace = core
+
+###Integration of newly conquered province
+province_event = {
+	id = core.1
+	title = "core.1.t"
+	desc = "core.1.d"
+	picture = GOOD_WITH_MONARCH_eventPicture
+	
+	trigger = {
+		owner = {
+			NOT = { has_country_flag = cu_core_event_auto }
+			NOT = { has_country_flag = cu_core_event_fired }
+			NOT = { has_country_flag = cabinet_auto_integration }
+		}
+		is_state_core = owner
+		NOT = { has_province_flag = statelize_cu }
+		NOT = { has_province_flag = cu_colony_flag }
+		OR = {
+		    owner = { adm_power = 10 }
+		    owner = { dip_power = 10 }
+			owner = { mil_power = 10 }
+		}
+		NOT = {
+			OR = {
+				has_province_modifier = cu_diplomatic_integration
+				has_province_modifier = cu_military_integration
+				has_province_modifier = cu_civilian_integration
+			}
+		}
+	}
+
+	mean_time_to_happen = {
+		months = 1
+	}
+
+	immediate = {
+		set_province_flag = cu_noncored
+		if = {
+			limit = { is_capital = no }
+			owner = { add_adm_power = 1 }
+		}
+	    hidden_effect = {
+		    owner = {
+			    set_country_flag = cu_core_event_fired 
+				export_to_variable = {
+					which = cu_power_pac
+					value = development
+					who = ROOT
+				}
+				multiply_variable = { which = cu_power_pac value = 4 }
+				if = {
+					limit = { check_variable = { which = cu_power_pac value = 300 } }
+					set_variable = { which = cu_power_pac value = 300 }
+				}
+				cu_calc_power_cost_pac = yes
+			}
+		}
+	}
+	
+	after = {
+		owner = {
+			clr_country_flag = cu_core_event_fired
+		}
+		if = {
+			limit = {
+				has_province_flag = cu_noncored
+			}
+			remove_core = owner
+			add_territorial_core = owner
+			clr_province_flag = cu_noncored
+		}
+	}
+
+	option = {
+		name = "core.1.a" #Set up civilian administration
+		trigger = {
+			is_capital = no
+		    owner = {
+				OR = {
+					AND = {
+					    adm_power = 1
+						NOT = { check_variable = { which = cu_power_pac value = 100 } }
+					}
+					AND = {
+					    adm_power = 100
+						NOT = { check_variable = { which = cu_power_pac value = 200 } }
+					}
+					AND = {
+					    adm_power = 200
+					}
+				}
+			}
+		}
+		cu_metropolitan_effect = yes
+		remove_province_modifier = cu_local_autonomy_administration
+		owner = { cu_subtract_adm_power_pac = yes }
+		add_province_modifier = {
+		    name = cu_civilian_integration
+			duration = 3650
+		}
+		custom_tooltip = core.1.at
+		hidden_effect = {
+			set_variable = { which = cu_var1 value = 15 }
+			cu_add_cultural_acceptance = yes
+		}
+		custom_tooltip = cu_add_cultural_acceptance_15tt
+		ai_chance = {
+		    factor = 30
+			modifier = {
+			    factor = 0.5
+			    owner = { check_variable = { which = go value = 101 } }
+			}
+			modifier = {
+			    factor = 0.1
+			    owner = { check_variable = { which = go value = 130 } }
+			}
+			modifier = {
+			    factor = 0.5
+				owner = {
+					government = tribal
+					is_nomad = no
+				}
+			}
+			modifier = {
+			    factor = 0.5
+				owner = {
+					is_nomad = yes
+				}
+			}
+		}
+	}
+	option = {
+		name = "core.1.e" #Corporate with local nobles
+		trigger = {
+			is_capital = no
+		    owner = {
+				OR = {
+					AND = {
+					    dip_power = 1
+						NOT = { check_variable = { which = cu_power_pac value = 100 } }
+					}
+					AND = {
+					    dip_power = 100
+						NOT = { check_variable = { which = cu_power_pac value = 200 } }
+					}
+					AND = {
+					    dip_power = 200
+					}
+				}
+			}
+		}
+		cu_metropolitan_effect = yes
+		owner = { cu_subtract_dip_power_pac = yes }
+		add_local_autonomy = 10
+		add_nationalism = -2
+		add_province_modifier = {
+		    name = cu_diplomatic_integration
+			duration = 3650
+		}
+		custom_tooltip = core.1.et
+		ai_chance = {
+		    factor = 30
+			modifier = {
+			    factor = 0.5
+			    owner = { check_variable = { which = go value = 101 } }
+			}
+			modifier = {
+			    factor = 0.1
+			    owner = { check_variable = { which = go value = 130 } }
+			}
+			modifier = {
+			    factor = 0.5
+				owner = {
+					government = tribal
+					is_nomad = no
+				}
+			}
+			modifier = {
+			    factor = 0.5
+				owner = {
+					is_nomad = yes
+				}
+			}
+		}
+	}
+	option = {
+		name = "core.1.b" #Set up military administration
+		trigger = {
+			is_capital = no
+		    owner = {
+				OR = {
+					AND = {
+					    mil_power = 1
+						NOT = { check_variable = { which = cu_power_pac value = 100 } }
+					}
+					AND = {
+					    mil_power = 100
+						NOT = { check_variable = { which = cu_power_pac value = 200 } }
+					}
+					AND = {
+					    mil_power = 200
+					}
+				}
+				manpower_percentage = 0.1
+			}
+		}
+		cu_metropolitan_effect = yes
+		owner = { add_manpower = -0.5 }
+		owner = { cu_subtract_mil_power_pac = yes }
+		add_province_modifier = {
+		    name = cu_military_integration
+			duration = 3650
+		}
+		custom_tooltip = core.1.bt
+		ai_chance = {
+		    factor = 30
+			modifier = {
+			    factor = 0.5
+			    owner = { check_variable = { which = go value = 101 } }
+			}
+			modifier = {
+			    factor = 0.1
+			    owner = { check_variable = { which = go value = 130 } }
+			}
+			modifier = {
+			    factor = 2
+				owner = {
+					government = tribal
+					is_nomad = no
+				}
+			}
+			modifier = {
+			    factor = 3
+				owner = {
+					is_nomad = yes
+				}
+			}
+		}
+	}
+	option = {
+		name = "core.1.c" #Leave it to locals
+		trigger = {
+			is_capital = no
+		}
+		custom_tooltip = core.1.ct
+		ai_chance = {
+		    factor = 0
+		}
+	}
+	option = {
+		name = "core.1.d1" #A New Capital
+		trigger = {
+			is_capital = yes
+		}
+		clr_province_flag = east_africa_company_local
+		clr_province_flag = india_company_local
+		clr_province_flag = indochina_company_local
+		clr_province_flag = indonesia_company_local
+		clr_province_flag = china_company_local
+		clr_province_flag = japan_korea_company_local
+		clr_province_flag = persia_company_local
+		clr_province_flag = west_africa_company_local
+		clr_province_flag = south_africa_company_local
+		clr_province_flag = east_africa_company_local 
+		clr_province_flag = west_europe_company_local
+		clr_province_flag = eastern_europe_company_local
+		clr_province_flag = central_europe_company_local
+		clr_province_flag = balticsea_company_local
+		clr_province_flag = near_east_company_local
+		clr_province_flag = tartary_company_local
+		remove_province_modifier = trade_company_off_1
+		remove_province_modifier = trade_company_off_2
+		remove_province_modifier = trade_company_off_3
+		remove_province_modifier = trade_company_off_4
+		remove_province_modifier = trade_company_pri_1
+		remove_province_modifier = trade_company_pri_2
+		remove_province_modifier = trade_company_pri_3
+		remove_province_modifier = trade_company_pri_4	
+
+		clr_province_flag = cu_noncored
+		set_province_flag = statelize_cu
+		custom_tooltip = core.1.d1t
+		hidden_effect = {
+			set_variable = { which = p_ca value = 60 }
+			cu_check_cultural_acceptance = yes
+		}
+		ai_chance = {
+		    factor = 100
+		}
+	}
+}
+
+###Supress Nationalism
+province_event = {
+    id = core.2
+	title = "core.2.t"
+	desc = "core.2.d"
+	picture = BAD_WITH_MONARCH_eventPicture
+	immediate = {
+		hidden_effect = {
+			owner = {
+				export_to_variable = {
+					which = cu_power
+					value = development
+					who = ROOT
+				}
+				if = {
+					limit = { check_variable = { which = cu_power value = 41 } }
+					set_variable = { which = cu_power which = 40 }
+				}
+				multiply_variable = { which = cu_power value = 2 }
+				cu_calc_power_cost_pac = yes
+			}
+		}
+	}
+	is_triggered_only = yes
+
+	option = {
+		hidden_effect = {
+			owner = {
+				export_to_variable = {
+					which = cu_power
+					value = development
+					who = ROOT
+				}
+				if = {
+					limit = { check_variable = { which = cu_power value = 41 } }
+					set_variable = { which = cu_power which = 40 }
+				}
+				multiply_variable = { which = cu_power value = 2 }
+				cu_calc_power_cost_pac = yes
+			}
+		}
+		name = "core.2.a" #Do it.
+		if = {
+			limit = { has_province_modifier = suppress_nationalism_2 }
+			remove_province_modifier = suppress_nationalism_2
+			add_province_modifier = {
+				name = suppress_nationalism_3
+				duration = 7300
+			}
+		}
+		else_if = {
+			limit = { has_province_modifier = suppress_nationalism_1 }
+			remove_province_modifier = suppress_nationalism_1
+			add_province_modifier = {
+				name = suppress_nationalism_2
+				duration = 7300
+			}
+		}
+		else_if = {
+			limit = {
+				NOT = { has_province_modifier = suppress_nationalism_1 }
+				NOT = { has_province_modifier = suppress_nationalism_2 }
+				NOT = { has_province_modifier = suppress_nationalism_3 }
+			}
+			add_province_modifier = {
+				name = suppress_nationalism_1
+				duration = 7300
+			}
+		}
+		owner = { cu_subtract_mil_power = yes }
+		hidden_effect = {
+			set_variable = { which = cu_var1 value = 2 }
+			cu_add_cultural_acceptance = yes
+		}
+		custom_tooltip = cu_add_cultural_acceptance_2tt
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 0
+				OR = {
+					AND = { 
+						has_construction = core
+						NOT = { unrest = 1 }
+					}
+					NOT = { owner = { mil_power = 150 } }
+				}
+			}
+			modifier = {
+				factor = 0.1
+				OR = {
+					has_construction = core
+					NOT = { unrest = 1 }
+					NOT = { owner = { mil_power = 300 } }
+				}
+			}
+		} 
+	}
+
+	option = {
+		name = "core.2.b" #Don't bother them.
+		clr_province_flag = supress_nationalism_denied
+		set_province_flag = supress_nationalism_denied
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 0
+				unrest = 1
+				owner = { mil_power = 10 }
+			}
+		}
+	}
+}
+
+
+###Supress Heathens
+province_event = {
+    id = core.3
+	title = "core.3.t"
+	desc = "core.3.d"
+	picture = RELIGIOUS_TURMOIL_eventPicture
+	
+	trigger = {
+        is_colony = no
+		NOT = { religion = secondary }
+		NOT = { owner = { religion_group = ROOT } }
+		owner = { harmony = 90 }
+		cu_not_terr_trigger = yes
+		OR = {
+			owner = { 
+				adm_power = 50  
+				mil_power = 50 
+			}
+			AND = {
+				owner = { 
+					adm_power = 25  
+					mil_power = 25
+				}
+				NOT = { development = 6 }
+			}
+		}
+	}
+
+	mean_time_to_happen = {
+		months = 600
+		modifier = {
+			factor = 0.75
+			OR = {
+				has_owner_culture = yes
+				has_owner_accepted_culture = yes
+				owner = { culture_group = ROOT }
+			}
+		}
+		modifier = {
+			factor = 1.25
+			development = 20
+		}
+		modifier = {
+			factor = 1.25
+			development = 30
+		}
+		modifier = {
+			factor = 1.25
+			development = 40
+		}
+		modifier = {
+			factor = 0.9
+			owner = { has_country_modifier = large_state }
+		}
+		modifier = {
+			factor = 0.85
+			owner = { has_country_modifier = huge_state }
+		}
+		modifier = {
+			factor = 0.80
+			owner = { has_country_modifier = continental_state }
+		}
+		modifier = {
+			factor = 0.75
+			owner = { has_country_modifier = world_state }
+		}
+		modifier = {
+			factor = 0.85
+			is_claim = owner
+		}
+	}
+
+	option = {
+		name = "core.3.a" #Force Conversion
+		add_nationalism = 10
+		add_unrest = 10
+		if = {
+			limit = { development = 6 }
+			owner = { 
+				add_adm_power = -50
+				add_mil_power = -50 
+			}
+		}
+		else = {
+			owner = { 
+				add_adm_power = -25
+				add_mil_power = -25
+			}
+		}
+		change_religion = owner
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 0
+				NOT = { 
+					owner = { mil_power = 50 } 
+				}
+			}
+		} 
+	}
+
+    option = {
+		name = "core.3.b" #Don't bother them.
+		add_unrest = -3
+		owner = {
+			add_legitimacy_equivalent = {
+				amount = 5
+				republican_tradition = 5
+			}
+		}
+        ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 0
+				AND = { 
+					owner = { mil_power = 50 } 
+					owner = { adm_power = 50 } 
+				}
+			}
+        }
+	}
+}
+
+###Added province core event
+province_event = {
+    id = core.6
+	title = "core.6.t"
+	desc = "core.6.d"
+	picture = RELIGIOUS_TURMOIL_eventPicture
+	hidden = yes
+	is_triggered_only = yes
+	option = {
+	    name = "core.6.a"
+		add_territorial_core = owner
+		clr_province_flag = cu_nopenalty_terr
+	}
+}
+
+
+###Remove trade company
+province_event = {
+    id = core.7
+	title = "core.7.t"
+	desc = "core.7.d"
+	picture = TRADECOMPANY_eventPicture
+	trigger = {
+		is_state_core = owner
+		NOT = {
+			owner = { ai = yes }
+		}
+		OR = {
+			has_province_modifier = trade_company_off_1
+			has_province_modifier = trade_company_off_2
+			has_province_modifier = trade_company_off_3
+			has_province_modifier = trade_company_off_4
+			has_province_modifier = trade_company_pri_1
+			has_province_modifier = trade_company_pri_2
+			has_province_modifier = trade_company_pri_3
+			has_province_modifier = trade_company_pri_4	
+		}
+	}
+	mean_time_to_happen = {
+	    days = 1
+	}
+	option = {
+	    name = "core.7.a"
+		clr_province_flag = east_africa_company_local
+		clr_province_flag = india_company_local
+		clr_province_flag = indochina_company_local
+		clr_province_flag = indonesia_company_local
+		clr_province_flag = china_company_local
+		clr_province_flag = japan_korea_company_local
+		clr_province_flag = persia_company_local
+		clr_province_flag = west_africa_company_local
+		clr_province_flag = south_africa_company_local
+		clr_province_flag = east_africa_company_local 
+		clr_province_flag = west_europe_company_local
+		clr_province_flag = eastern_europe_company_local
+		clr_province_flag = central_europe_company_local
+		clr_province_flag = balticsea_company_local
+		clr_province_flag = near_east_company_local
+		clr_province_flag = tartary_company_local
+		remove_province_modifier = trade_company_off_1
+		remove_province_modifier = trade_company_off_2
+		remove_province_modifier = trade_company_off_3
+		remove_province_modifier = trade_company_off_4
+		remove_province_modifier = trade_company_pri_1
+		remove_province_modifier = trade_company_pri_2
+		remove_province_modifier = trade_company_pri_3
+		remove_province_modifier = trade_company_pri_4	
+	}
+}
+

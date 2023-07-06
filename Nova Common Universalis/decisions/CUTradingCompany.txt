@@ -1,0 +1,48 @@
+country_decisions = {
+
+	manage_trading_company = {
+		potential = {
+			ai = yes
+		}
+		allow = {	
+			OR = {
+				num_of_colonists = 1
+				has_country_flag = india_company
+				has_country_flag = indochina_company
+				has_country_flag = indonesia_company
+				has_country_flag = china_company
+				has_country_flag = japan_korea_company
+				has_country_flag = persia_company
+				has_country_flag = south_africa_company
+				has_country_flag = east_africa_company
+				has_country_flag = west_africa_company
+				has_country_flag = west_europe_company
+				has_country_flag = west_mediterraneansea_company
+				has_country_flag = central_europe_company
+				has_country_flag = balticsea_company
+				has_country_flag = eastern_company
+				has_country_flag = tartary_company
+				has_country_flag = near_east_company
+			}
+			OR = {
+				NOT = { has_country_flag = ai_managed_company }
+				had_country_flag = {
+					flag = ai_managed_company  #AI checks company once per year.
+					days = 365
+				}
+			}
+			ai = yes
+			NOT = {has_global_flag = cu_fast_mode }
+			has_institution = new_world_i
+		}
+		effect = {
+            clr_country_flag = ai_managed_company
+            set_country_flag = ai_managed_company #AI Timer
+			country_event = { id = company.10 }
+			country_event = { id = company.4 }
+		}
+		ai_will_do = {
+			factor = 1
+		}
+    }
+}

@@ -1,0 +1,37 @@
+country_decisions = {
+
+	
+	australia_song_future = {
+		major = yes
+		potential = {
+			ai = no
+			has_country_flag = lingaoqiming
+			any_province = {
+				owned_by = ROOT
+				superregion = china_superregion
+			}	
+			OR = {
+				NOT = {
+					num_of_owned_provinces_with = {
+						value = 60
+						superregion = china_superregion
+					}
+				}
+				AND = {
+					num_of_owned_provinces_with = {
+						value = 60
+						superregion = china_superregion
+					}
+					NOT = { has_country_flag = no_more_celestial }
+				}
+			}
+		}
+		allow = {
+			ai = no
+			tag = ASM	
+		}
+		effect = {
+			country_event = { id = australia_song.2 }
+		}
+	}		
+}

@@ -1,0 +1,13 @@
+#Clipper
+type = transport
+trigger = {
+	has_country_flag = transport_mod_t
+}
+hull_size = 32
+base_cannons = 11
+blockade = 2
+sail_speed = 10
+
+trade_power = 9.2
+
+sprite_level = 6

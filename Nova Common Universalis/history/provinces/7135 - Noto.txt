@@ -1,0 +1,23 @@
+#6591 - Noto
+
+owner = HTK
+controller = HTK
+culture = togoku
+religion = shinto
+capital = "Noto"
+trade_goods = fish
+hre = no
+base_tax = 4 
+base_production = 4
+base_manpower = 3
+is_city = yes
+add_core = HTK
+
+
+
+discovered_by = chinese
+discovered_by = MCH
+discovered_by = KHA
+discovered_by = OIR
+discovered_by = QNG
+discovered_by = ANU

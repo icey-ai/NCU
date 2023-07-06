@@ -1,0 +1,21 @@
+edict_resettlement_focus = {
+	potential = {
+		always = yes		#we support "potential" if modders want to have lots and just show some.
+	}
+	
+	allow = {
+		has_institution = new_world_i
+	}
+	
+	modifier = {
+		global_tax_income = -6
+		local_build_time = -0.1
+		#Immigration Pull: +100%
+	}
+	
+	color = { 192 255 62 }
+	
+	ai_will_do = {
+		factor = 0
+	}
+}

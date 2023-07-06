@@ -1,0 +1,20 @@
+edict_industrial_focus = {
+	potential = {
+		always = yes
+	}
+	
+	allow = {
+		has_institution = manufactories
+	}
+	
+	modifier = {
+	    local_production_efficiency = 0.2
+		province_trade_power_modifier = -0.5
+	}
+	
+	color = { 39 64 139  }
+	
+	ai_will_do = {
+		factor = 0
+	}
+}

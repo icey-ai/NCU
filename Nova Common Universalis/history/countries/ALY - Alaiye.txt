@@ -1,0 +1,23 @@
+government = monarchy
+add_government_reform = autocracy_reform
+government_rank = 1
+primary_culture = turkish
+religion = sunni
+technology_group = ottoman
+capital = 6773	# Alanya
+religious_school = hanafi_school
+
+1441.1.1 = {
+	monarch = {
+		name = "Lütfi"
+		monarch_name = "Lütfi I"
+		dynasty = Alaiye
+		birth_date = 1421.1.1
+		adm = 4
+		dip = 1
+		mil = 2
+	}
+	add_piety = 0.1
+
+
+# Annexed by the Ottoman Empire in 1471

@@ -1,0 +1,38 @@
+country_decisions = {
+
+	cu_fast_mode = {
+		potential = {
+			ai = no
+			NOT = { has_global_flag = cu_fast_mode }
+		}
+		allow = {
+			has_country_flag = cu_host
+		}
+		effect = {
+		    set_global_flag = cu_fast_mode
+			custom_tooltip = cu_fast_mode_tt
+		}
+		ai_will_do = {
+			factor = 0
+		}
+		ai_importance = 400
+	}
+	
+	cu_normal_mode = {
+		potential = {
+			ai = no
+			has_global_flag = cu_fast_mode
+		}
+		allow = {
+			has_country_flag = cu_host
+		}
+		effect = {
+		    clr_global_flag = cu_fast_mode
+			custom_tooltip = cu_normal_mode_tt
+		}
+		ai_will_do = {
+			factor = 0
+		}
+		ai_importance = 400
+	}
+}

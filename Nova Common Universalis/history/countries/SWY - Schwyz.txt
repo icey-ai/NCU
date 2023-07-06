@@ -1,0 +1,19 @@
+government = republic
+add_government_reform = united_cantons_reform
+government_rank = 1
+primary_culture = swabian
+religion = catholic
+technology_group = western
+capital = 166	# Schwyz
+fixed_capital = 166 # Cannot move capital away from this province & no power cost to move to it
+add_army_professionalism = 0.1
+
+1399.1.1 = {
+	monarch = {
+		name = "Die Tagsatzung"
+		adm = 3
+		dip = 3
+		mil = 3
+		regent = yes
+	}
+}

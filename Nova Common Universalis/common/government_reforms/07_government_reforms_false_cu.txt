@@ -1,0 +1,4243 @@
+##################################################################
+##	tur_janissaries_timer is used as Government Reform CD Timer !
+##################################################################
+#Taxation
+tax_policy_1_false = {
+	icon = "subsidize_my_love"
+	allow_normal_conversion = yes
+	#legacy_equivalent = feudal_monarchy
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = tax_policy_1 }
+	}
+	trigger = {
+	    cu_didnt_change_tax_policy = yes  
+		hidden_trigger = { 
+			ai = no
+		}
+		estate_influence = {	estate = estate_government	influence = 10	}
+		adm_tech = 5
+		custom_trigger_tooltip = {
+			tooltip = has_tax_policy_2
+			has_country_flag = tax_policy_2
+		}
+		adm_power = 50
+	}
+	modifiers = {
+		global_tax_modifier = -0.4
+        production_efficiency = -0.4
+		development_cost = -0.2
+		trade_company_investment_cost = -0.2
+		global_unrest = -4
+		state_maintenance_modifier = -0.2
+		qinwang_loyalty_modifier = -0.025
+		shizu_loyalty_modifier = -0.025
+		church_loyalty_modifier = -0.025
+		nobles_loyalty_modifier = -0.025
+		nomadic_tribes_loyalty_modifier = -0.025
+		burghers_loyalty_modifier = 0.05
+	}
+	effect = {
+		hidden_effect = { 
+			remove_government_reform = tax_policy_1_false
+			add_government_reform = tax_policy_1 
+		}
+		tooltip = {
+			if = { 
+				limit = { has_country_flag = tax_policy_2 }
+				adm_power_cost = 50
+				add_legitimacy = 10
+				add_meritocracy = 10
+				if = {
+					limit = { NOT = { has_country_flag = cu_stability_fixed } }
+					cu_change_stability_point_hidden = yes
+					custom_tooltip = cu_change_stability_p25
+					if = {
+						limit = {
+							has_estate = estate_nobles
+						}
+						add_estate_loyalty = {
+							estate = estate_nobles
+							loyalty = -15
+						}
+					}
+					else_if = {
+						limit = {
+							has_estate = estate_qinwang
+						}
+						add_estate_loyalty = {
+							estate = estate_qinwang
+							loyalty = -15
+						}
+					}
+					if = {
+						limit = {
+							has_estate = estate_church
+						}
+						add_estate_loyalty = {
+							estate = estate_church
+							loyalty = -15
+						}
+					}
+					else_if = {
+						limit = {
+							has_estate = estate_shizu
+						}
+						add_estate_loyalty = {
+							estate = estate_shizu
+							loyalty = -15
+						}
+					}
+					if = {
+						limit = {
+							has_estate = estate_burghers
+						}
+						add_estate_loyalty = {
+							estate = estate_burghers
+							loyalty = 15
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+tax_policy_2_false = {
+	icon = "it's_all_money"
+	allow_normal_conversion = yes
+	#legacy_equivalent = feudal_monarchy
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = tax_policy_2 }
+	}
+	trigger = {
+		cu_didnt_change_tax_policy = yes  
+		hidden_trigger = { ai = no }
+		estate_influence = {	estate = estate_government	influence = 10	}
+		adm_tech = 5
+		OR = {
+			militarised_society = 3
+			absolutism = 5
+		}
+		if = {
+			limit = {
+				has_country_flag = tax_policy_3
+			}
+			custom_trigger_tooltip = {
+				tooltip = has_tax_policy_3
+				has_country_flag = tax_policy_3
+			}
+			adm_power = 50
+		}
+		else = {
+			custom_trigger_tooltip = {
+					tooltip = has_tax_policy_1
+					has_country_flag = tax_policy_1
+				}
+			stability = 0
+			NOT = { has_estate_privilege = gentrys_landholding }
+		}
+	}
+	modifiers = {
+		global_tax_modifier = -0.2
+        production_efficiency = -0.2
+		development_cost = -0.1
+		trade_company_investment_cost = -0.1
+		global_unrest = -1
+		state_maintenance_modifier = -0.1
+	}
+	effect = {
+		hidden_effect = { 
+			remove_government_reform = tax_policy_2_false
+			add_government_reform = tax_policy_2
+		}
+		tooltip = {
+			if = {
+				limit = { has_country_flag = tax_policy_3 }
+				adm_power_cost = 50
+				add_legitimacy = 10
+				add_meritocracy = 10
+				if = {
+					limit = { NOT = { has_country_flag = cu_stability_fixed } }
+					cu_change_stability_point_hidden = yes
+					custom_tooltip = cu_change_stability_p25
+					if = {
+						limit = {
+							has_estate = estate_nobles
+						}
+						add_estate_loyalty = {
+							estate = estate_nobles
+							loyalty = -15
+						}
+					}
+					else_if = {
+						limit = {
+							has_estate = estate_qinwang
+						}
+						add_estate_loyalty = {
+							estate = estate_qinwang
+							loyalty = -15
+						}
+					}
+					if = {
+						limit = {
+							has_estate = estate_church
+						}
+						add_estate_loyalty = {
+							estate = estate_church
+							loyalty = -15
+						}
+					}
+					else_if = {
+						limit = {
+							has_estate = estate_shizu
+						}
+						add_estate_loyalty = {
+							estate = estate_shizu
+							loyalty = -15
+							}
+					}
+					if = {
+						limit = {
+							has_estate = estate_burghers
+						}
+						add_estate_loyalty = {
+							estate = estate_burghers
+							loyalty = 15
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = { has_country_flag = tax_policy_1 }
+				add_legitimacy = -20
+				add_meritocracy = -10
+				if = {
+					limit = { NOT = { has_country_flag = cu_stability_fixed } }
+					cu_change_stability_point_hidden = yes
+					custom_tooltip = cu_change_stability_n50
+					if = {
+						limit = {
+							has_estate = estate_nobles
+						}
+						add_estate_loyalty = {
+							estate = estate_nobles
+							loyalty = 15
+						}
+					}
+					else_if = {
+						limit = {
+							has_estate = estate_qinwang
+						}
+						add_estate_loyalty = {
+							estate = estate_qinwang
+							loyalty = 15
+						}
+					}
+					if = {
+						limit = {
+							has_estate = estate_church
+						}
+						add_estate_loyalty = {
+							estate = estate_church
+							loyalty = 15
+						}
+					}
+					else_if = {
+						limit = {
+							has_estate = estate_shizu
+						}
+						add_estate_loyalty = {
+							estate = estate_shizu
+							loyalty = 15
+						}
+					}
+					if = {
+						limit = {
+							has_estate = estate_burghers
+						}
+						add_estate_loyalty = {
+							estate = estate_burghers
+							loyalty = -15
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+tax_policy_3_false = {
+	icon = "pile_of_gold"
+	allow_normal_conversion = yes
+	#legacy_equivalent = feudal_monarchy
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = tax_policy_3 }
+	}
+	trigger = {
+		cu_didnt_change_tax_policy = yes  
+		hidden_trigger = { ai = no }
+		estate_influence = {	estate = estate_government	influence = 10	}
+		adm_tech = 5
+		OR = {
+			militarised_society = 5
+			absolutism = 10
+		}
+		if = {
+			limit = { 
+				has_country_flag = tax_policy_4
+			}
+			custom_trigger_tooltip = {
+				tooltip = has_tax_policy_4
+				has_country_flag = tax_policy_4
+			}
+			adm_power = 50
+		}
+		else = {
+			custom_trigger_tooltip = {
+				tooltip = has_tax_policy_2
+				has_country_flag = tax_policy_2
+			}
+			stability = 0
+			NOT = { has_estate_privilege = gentrys_landholding } 
+		}
+	}
+	modifiers = {
+		global_tax_modifier = 0.0001
+	}
+	effect = {
+		hidden_effect = { 
+			remove_government_reform = tax_policy_3_false
+			add_government_reform = tax_policy_3
+		}
+		tooltip = {
+			add_absolutism = -5
+			if = {
+				limit = { has_country_flag = tax_policy_4 }
+				adm_power_cost = 50
+				add_legitimacy = 10
+				add_meritocracy = 10
+				if = {
+					limit = { NOT = { has_country_flag = cu_stability_fixed } }
+					cu_change_stability_point_hidden = yes
+					custom_tooltip = cu_change_stability_p25
+					if = {
+						limit = {
+							has_estate = estate_nobles
+						}
+						add_estate_loyalty = {
+							estate = estate_nobles
+							loyalty = -15
+						}
+					}
+					else_if = {
+						limit = {
+							has_estate = estate_qinwang
+						}
+						add_estate_loyalty = {
+							estate = estate_qinwang
+							loyalty = -15
+						}
+					}
+					if = {
+						limit = {
+							has_estate = estate_church
+						}
+						add_estate_loyalty = {
+							estate = estate_church
+							loyalty = -15
+						}
+					}
+					else_if = {
+						limit = {
+							has_estate = estate_shizu
+						}
+						add_estate_loyalty = {
+							estate = estate_shizu
+							loyalty = -15
+						}
+					}
+					if = {
+						limit = {
+							has_estate = estate_burghers
+						}
+						add_estate_loyalty = {
+							estate = estate_burghers
+							loyalty = 15
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = { has_country_flag = tax_policy_2 }
+				add_legitimacy = -20
+				add_meritocracy = -10
+				if = {
+					limit = { NOT = { has_country_flag = cu_stability_fixed } }
+					cu_change_stability_point_hidden = yes
+					custom_tooltip = cu_change_stability_n50
+					if = {
+						limit = {
+							has_estate = estate_nobles
+						}
+						add_estate_loyalty = {
+							estate = estate_nobles
+							loyalty = 15
+						}
+					}
+					else_if = {
+						limit = {
+							has_estate = estate_qinwang
+						}
+						add_estate_loyalty = {
+							estate = estate_qinwang
+							loyalty = 15
+						}
+					}
+					if = {
+						limit = {
+							has_estate = estate_church
+						}
+						add_estate_loyalty = {
+							estate = estate_church
+							loyalty = 15
+						}
+					}
+					else_if = {
+						limit = {
+							has_estate = estate_shizu
+						}
+						add_estate_loyalty = {
+							estate = estate_shizu
+							loyalty = 15
+						}
+					}
+					if = {
+						limit = {
+							has_estate = estate_burghers
+						}
+						add_estate_loyalty = {
+							estate = estate_burghers
+							loyalty = -15
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+tax_policy_4_false = {
+	icon = "all_shall_be_mine"
+	allow_normal_conversion = yes
+	#legacy_equivalent = feudal_monarchy
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = tax_policy_4 }
+	}
+	trigger = {
+		cu_didnt_change_tax_policy = yes  
+		hidden_trigger = { ai = no }
+		estate_influence = {	estate = estate_government	influence = 10	}
+		adm_tech = 5
+		OR = {
+			militarised_society = 8
+			absolutism = 15
+		}
+		if = {
+			limit = { 
+				has_country_flag = tax_policy_5
+			}
+			custom_trigger_tooltip = {
+				tooltip = has_tax_policy_5
+				has_country_flag = tax_policy_5
+			}
+			adm_power = 50
+		}
+		else = {
+			custom_trigger_tooltip = {
+				tooltip = has_tax_policy_3
+				has_country_flag = tax_policy_3
+			}
+			stability = 0
+		}
+	}
+	modifiers = {
+		global_tax_modifier = 0.2
+        production_efficiency = 0.2
+        development_cost = 0.1
+		trade_company_investment_cost = 0.1
+		global_unrest = 1
+		state_maintenance_modifier = 0.10
+	}
+	effect = {
+		hidden_effect = { 
+			remove_government_reform = tax_policy_4_false
+			add_government_reform = tax_policy_4
+		}
+		tooltip = {
+			add_absolutism = -5
+			if = {
+				limit = { has_country_flag = tax_policy_5 }
+				adm_power_cost = 50
+				add_legitimacy = 10
+				add_meritocracy = 10
+				if = {
+					limit = { NOT = { has_country_flag = cu_stability_fixed } }
+					cu_change_stability_point_hidden = yes
+					custom_tooltip = cu_change_stability_p25
+					if = {
+						limit = {
+							has_estate = estate_nobles
+						}
+						add_estate_loyalty = {
+							estate = estate_nobles
+							loyalty = -15
+						}
+					}
+					else_if = {
+						limit = {
+							has_estate = estate_qinwang
+						}
+						add_estate_loyalty = {
+							estate = estate_qinwang
+							loyalty = -15
+						}
+					}
+					if = {
+						limit = {
+							has_estate = estate_church
+						}
+						add_estate_loyalty = {
+							estate = estate_church
+							loyalty = -15
+						}
+					}
+					else_if = {
+						limit = {
+							has_estate = estate_shizu
+						}
+						add_estate_loyalty = {
+							estate = estate_shizu
+							loyalty = -15
+						}
+					}
+					if = {
+						limit = {
+							has_estate = estate_burghers
+						}
+						add_estate_loyalty = {
+							estate = estate_burghers
+							loyalty = 15
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = { has_country_flag = tax_policy_3 }
+				add_legitimacy = -20
+				add_meritocracy = -10
+				if = {
+					limit = { NOT = { has_country_flag = cu_stability_fixed } }
+					cu_change_stability_point_hidden = yes
+					custom_tooltip = cu_change_stability_n50
+					if = {
+						limit = {
+							has_estate = estate_nobles
+						}
+						add_estate_loyalty = {
+							estate = estate_nobles
+							loyalty = 15
+						}
+					}
+					else_if = {
+						limit = {
+							has_estate = estate_qinwang
+						}
+						add_estate_loyalty = {
+							estate = estate_qinwang
+							loyalty = 15
+						}
+					}
+					if = {
+						limit = {
+							has_estate = estate_church
+						}
+						add_estate_loyalty = {
+							estate = estate_church
+							loyalty = 15
+						}
+					}
+					else_if = {
+						limit = {
+							has_estate = estate_shizu
+						}
+						add_estate_loyalty = {
+							estate = estate_shizu
+							loyalty = 15
+						}
+					}
+					if = {
+						limit = {
+							has_estate = estate_burghers
+						}
+						add_estate_loyalty = {
+							estate = estate_burghers
+							loyalty = -15
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+tax_policy_5_false = {
+	icon = "bleed_them_dry"
+	allow_normal_conversion = yes
+	#legacy_equivalent = feudal_monarchy
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = tax_policy_5 }
+	}
+	trigger = {
+		cu_didnt_change_tax_policy = yes
+		hidden_trigger = { ai = no }
+		estate_influence = {	estate = estate_government	influence = 10	}
+		custom_trigger_tooltip = {
+			tooltip = has_tax_policy_4
+			has_country_flag = tax_policy_4
+		}
+		stability = 0
+		adm_tech = 5
+		OR = {
+			militarised_society = 10
+			absolutism = 20
+		}
+	}
+	modifiers = {
+		global_tax_modifier = 0.4
+        production_efficiency = 0.4
+        development_cost = 0.2
+		trade_company_investment_cost = 0.2
+		global_unrest = 4
+		state_maintenance_modifier = 0.2
+		qinwang_loyalty_modifier = 0.025
+		shizu_loyalty_modifier = 0.025
+		church_loyalty_modifier = 0.025
+		nobles_loyalty_modifier = 0.025
+		nomadic_tribes_loyalty_modifier = 0.025
+		burghers_loyalty_modifier = -0.05
+	}
+	effect = {
+		hidden_effect = { 
+			remove_government_reform = tax_policy_5_false
+			add_government_reform = tax_policy_5
+		}
+		tooltip = {
+			add_absolutism = -5
+			if = {
+				limit = { has_country_flag = tax_policy_4 }
+				add_legitimacy = -20
+				add_meritocracy = -10
+				if = {
+					limit = { NOT = { has_country_flag = cu_stability_fixed } }
+					cu_change_stability_point_hidden = yes
+					custom_tooltip = cu_change_stability_n50
+					if = {
+						limit = {
+							has_estate = estate_nobles
+						}
+						add_estate_loyalty = {
+							estate = estate_nobles
+							loyalty = 15
+						}
+					}
+					else_if = {
+						limit = {
+							has_estate = estate_qinwang
+						}
+						add_estate_loyalty = {
+							estate = estate_qinwang
+							loyalty = 15
+						}
+					}
+					if = {
+						limit = {
+							has_estate = estate_church
+						}
+						add_estate_loyalty = {
+							estate = estate_church
+							loyalty = 15
+						}
+					}
+					else_if = {
+						limit = {
+							has_estate = estate_shizu
+						}
+						add_estate_loyalty = {
+							estate = estate_shizu
+							loyalty = 15
+						}
+					}
+					if = {
+						limit = {
+							has_estate = estate_burghers
+						}
+						add_estate_loyalty = {
+							estate = estate_burghers
+							loyalty = -15
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+#Currency
+economic_policy_1_false = {
+	icon = "great_depression"
+	allow_normal_conversion = yes
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = economic_policy_1 }
+	}
+	trigger = {
+		cu_didnt_change_economic_policy = yes
+		hidden_trigger = { ai = no }
+		estate_influence = {	estate = estate_government	influence = 10	}
+		adm_tech = 5
+		adm_power = 80
+	}
+	modifiers = {
+		inflation_reduction = -0.1
+		
+	}
+	effect = {
+	    hidden_effect = { 
+			remove_government_reform = economic_policy_1_false
+			add_government_reform = economic_policy_1
+		}
+		tooltip = {
+			if = {
+				limit = { NOT = { has_country_flag = cu_stability_fixed } }
+				cu_change_stability_point_hidden = yes
+				custom_tooltip = cu_change_stability_n25
+			}
+			adm_power_cost = 80
+		}
+	}
+}
+
+economic_policy_2_false = {
+	icon = "rags_and_riches"
+	allow_normal_conversion = yes
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = economic_policy_2 }
+	}
+	trigger = {
+		cu_didnt_change_economic_policy = yes
+		hidden_trigger = { ai = no }
+		estate_influence = {	estate = estate_government	influence = 10	}
+		adm_tech = 5
+		adm_power = 40
+	}
+	modifiers = {
+		inflation_reduction = -0.05
+	}
+	effect = {
+	    hidden_effect = { 
+			remove_government_reform = economic_policy_2_false
+			add_government_reform = economic_policy_2
+		}
+		tooltip = {
+			if = {
+				limit = { NOT = { has_country_flag = cu_stability_fixed } }
+				cu_change_stability_point_hidden = yes
+				custom_tooltip = cu_change_stability_n25
+			}
+			adm_power_cost = 40
+		}
+	}
+}
+
+economic_policy_3_false = {
+	icon = "just_resting_in_my_account"
+	allow_normal_conversion = yes
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = economic_policy_3 }
+	}
+	trigger = {
+		cu_didnt_change_economic_policy = yes
+		hidden_trigger = { ai = no }
+		estate_influence = {	estate = estate_government	influence = 10	}
+		adm_tech = 5
+		OR = {
+			militarised_society = 3
+			absolutism = 5
+		}
+	}
+	modifiers = {
+		global_trade_goods_size_modifier = 0.01
+	}
+	effect = {
+	    hidden_effect = { 
+			remove_government_reform = economic_policy_3_false
+			add_government_reform = economic_policy_3
+		}
+		tooltip = {
+			if = {
+				limit = { NOT = { has_country_flag = cu_stability_fixed } }
+				cu_change_stability_point_hidden = yes
+				custom_tooltip = cu_change_stability_n25
+			}
+			add_absolutism = -10
+		}
+	}
+}
+
+economic_policy_4_false = {
+	icon = "great_perm"
+	allow_normal_conversion = yes
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = economic_policy_4 }
+	}
+	trigger = {
+		cu_didnt_change_economic_policy = yes
+		hidden_trigger = { ai = no }
+		estate_influence = {	estate = estate_government	influence = 10	}
+		adm_tech = 5
+		adm_power = 40
+	}
+	modifiers = {
+		inflation_reduction = 0.05
+	}
+	effect = {
+	   hidden_effect = { 
+			remove_government_reform = economic_policy_4_false
+			add_government_reform = economic_policy_4
+		}
+		tooltip = {
+			if = {
+					limit = { NOT = { has_country_flag = cu_stability_fixed } }
+					cu_change_stability_point_hidden = yes
+					custom_tooltip = cu_change_stability_n25
+			}
+			adm_power_cost = 40
+		}
+	}
+}
+
+economic_policy_5_false = {
+	icon = "AAA_credit"
+	allow_normal_conversion = yes
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = economic_policy_5 }
+	}
+	trigger = {
+		cu_didnt_change_economic_policy = yes
+		hidden_trigger = { ai = no }
+		estate_influence = {	estate = estate_government	influence = 10	}
+		adm_tech = 5
+		adm_power = 80
+	}		
+	modifiers = {
+		inflation_reduction = 0.10
+	}
+	effect = {
+	    hidden_effect = { 
+			remove_government_reform = economic_policy_5_false
+			add_government_reform = economic_policy_5
+		}
+		tooltip = {
+			if = {
+				limit = { NOT = { has_country_flag = cu_stability_fixed } }
+				cu_change_stability_point_hidden = yes
+				custom_tooltip = cu_change_stability_n25
+			}
+			adm_power_cost = 80
+		}
+	}
+}
+
+#Trade
+trade_policy_5_false = {
+	icon = "magellan"
+	allow_normal_conversion = yes
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = trade_policy_5 }
+	}
+	trigger = {
+		cu_didnt_change_trade_policy = yes
+		hidden_trigger = { ai = no }
+		estate_influence = {	estate = estate_government	influence = 10	}
+		adm_tech = 5
+		NOT = { mercantilism = 30 }
+	}
+	modifiers = {
+		global_trade_power = -0.4
+		trade_efficiency = 0.4
+		trade_steering = -0.2
+		global_tariffs = -0.3
+	}
+	effect = {
+	    hidden_effect = { 
+			remove_government_reform = trade_policy_5_false
+			add_government_reform = trade_policy_5
+		}
+		tooltip = {
+			if = {
+				limit = { NOT = { has_country_flag = cu_stability_fixed } }
+				cu_change_stability_point_hidden = yes
+				custom_tooltip = cu_change_stability_n33
+			}
+			add_mercantilism = -3
+		}
+	}
+}
+
+trade_policy_4_false = {
+	icon = "market_control"
+	allow_normal_conversion = yes
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = trade_policy_4 }
+	}
+	trigger = {
+		cu_didnt_change_trade_policy = yes
+		hidden_trigger = { ai = no }
+		estate_influence = {	estate = estate_government	influence = 10	}
+		adm_tech = 5
+		NOT = { mercantilism = 56 }
+	}
+	modifiers = {
+		global_trade_power = -0.2
+		trade_efficiency = 0.2
+		trade_steering = -0.1
+		global_tariffs = -0.1
+	}
+	effect = {
+	    hidden_effect = { 
+			remove_government_reform = trade_policy_4_false
+			add_government_reform = trade_policy_4
+		}
+		tooltip = {
+			if = {
+				limit = { NOT = { has_country_flag = cu_stability_fixed } }
+				cu_change_stability_point_hidden = yes
+				custom_tooltip = cu_change_stability_n33
+			}
+			add_mercantilism = -3
+		}
+	}
+}
+
+trade_policy_3_false = {
+	icon = "merchant"
+	allow_normal_conversion = yes
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = trade_policy_3 }
+	}
+	trigger = {
+		cu_didnt_change_trade_policy = yes
+		hidden_trigger = { ai = no }
+		estate_influence = {	estate = estate_government	influence = 10	}
+		NOT = { mercantilism = 81 }
+		mercantilism = 20
+	}
+	modifiers = {
+		global_trade_power = 0.05
+		trade_efficiency = 0.05
+	}
+	effect = {
+	    hidden_effect = { 
+			remove_government_reform = trade_policy_3_false
+			add_government_reform = trade_policy_3
+		}
+		tooltip = {
+			if = {
+				limit = { NOT = { has_country_flag = cu_stability_fixed } }
+				cu_change_stability_point_hidden = yes
+				custom_tooltip = cu_change_stability_n33
+			}
+		}       
+	}
+}
+
+trade_policy_2_false = {
+	icon = "trade_hegemon"
+	allow_normal_conversion = yes
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = trade_policy_2 }
+	}
+	trigger = {
+		cu_didnt_change_trade_policy = yes
+		hidden_trigger = { ai = no }
+		estate_influence = {	estate = estate_government	influence = 10	}
+		adm_tech = 5
+		mercantilism = 45
+	}
+	modifiers = {
+		global_trade_power = 0.2
+		trade_efficiency = -0.2
+		trade_steering = 0.1
+		global_tariffs = 0.15
+	}
+	effect = {
+	    hidden_effect = { 
+			remove_government_reform = trade_policy_2_false
+			add_government_reform = trade_policy_2
+		}
+		tooltip = {
+			if = {
+				limit = { NOT = { has_country_flag = cu_stability_fixed } }
+				cu_change_stability_point_hidden = yes
+				custom_tooltip = cu_change_stability_n33
+			}
+			add_mercantilism = 3
+		}
+	}
+}
+
+trade_policy_1_false = {
+	icon = "sakoku_law"
+	allow_normal_conversion = yes
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = trade_policy_1 }
+	}
+	trigger = {
+		cu_didnt_change_trade_policy = yes
+		hidden_trigger = { ai = no }
+		estate_influence = {	estate = estate_government	influence = 10	}
+		adm_tech = 5
+		mercantilism = 70
+	}
+	modifiers = {
+		global_trade_power = 0.4
+		trade_efficiency = -0.4
+		trade_steering = 0.2
+		global_tariffs = 0.3
+	}
+	effect = {
+	    hidden_effect = { 
+			remove_government_reform = trade_policy_1_false
+			add_government_reform = trade_policy_1
+		}
+		tooltip = {
+			if = {
+					limit = { NOT = { has_country_flag = cu_stability_fixed } }
+					cu_change_stability_point_hidden = yes
+					custom_tooltip = cu_change_stability_n33
+			}
+			add_mercantilism = 3
+		}
+	}
+}
+
+#Bureaucracy
+minimum_government_capacity_false = {
+	icon = "Louis_XVI_in_sleeping"
+	allow_normal_conversion = yes
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = minimum_government_capacity }
+	}
+	trigger = {
+		cu_didnt_change_GC_policy = yes
+		hidden_trigger = { ai = no }
+		estate_influence = {	estate = estate_government	influence = 10	}
+		adm_tech = 5
+		OR = {
+			militarised_society = 3
+			absolutism = 5
+		}
+	}
+	modifiers = {
+		monthly_militarized_society = -0.08
+		all_power_cost = 0.10
+		state_maintenance_modifier = -0.40
+		# -20% GC
+	}
+	effect = {
+	    hidden_effect = { 
+			remove_government_reform = minimum_government_capacity_false
+			add_government_reform = minimum_government_capacity
+		}
+		tooltip = {
+			add_absolutism = -10
+			if = {
+					limit = { NOT = { has_country_flag = cu_stability_fixed } }
+					cu_change_stability_point_hidden = yes
+					custom_tooltip = cu_change_stability_n33
+			}
+			if = {
+				limit = { has_reform = shrink_government_capacity }
+				add_adm_power = 20
+			}
+			else = {
+				add_adm_power = 40
+			}
+			custom_tooltip = GC_minimum_policy
+		}
+	}
+}
+
+shrink_government_capacity_false = {
+	icon = "fine_financials"
+	allow_normal_conversion = yes
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = shrink_government_capacity }
+	}
+	trigger = {
+		cu_didnt_change_GC_policy = yes
+		hidden_trigger = { ai = no }
+		estate_influence = {	estate = estate_government	influence = 10	}
+		adm_tech = 5
+		OR = {
+			militarised_society = 3
+			absolutism = 5
+		}
+	}
+	modifiers = {
+		monthly_militarized_society = -0.04
+		all_power_cost = 0.05
+		state_maintenance_modifier = -0.20
+		# -10% GC
+	}
+	effect = {
+		hidden_effect = { 
+			remove_government_reform = shrink_government_capacity_false
+			add_government_reform = shrink_government_capacity
+		}
+		tooltip = {
+			add_absolutism = -10
+			if = {
+					limit = { NOT = { has_country_flag = cu_stability_fixed } }
+					cu_change_stability_point_hidden = yes
+					custom_tooltip = cu_change_stability_n33
+			}
+			if = {
+				limit = { NOT = { has_reform = minimum_government_capacity } }
+				add_adm_power = 20
+			}
+			custom_tooltip = GC_shrink_policy
+		}
+	}
+}
+
+cur_government_capacity_false = {
+	icon = "man_in_writing"
+	allow_normal_conversion = yes
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = cur_government_capacity }
+	}
+	trigger = {
+		cu_didnt_change_GC_policy = yes
+		hidden_trigger = { ai = no }
+		estate_influence = {	estate = estate_government	influence = 10	}
+		adm_tech = 5
+		OR = {
+			militarised_society = 3
+			absolutism = 5
+		}
+	}
+	effect = {
+		hidden_effect = { 
+			remove_government_reform = cur_government_capacity_false
+			add_government_reform = cur_government_capacity
+		}
+		tooltip = {
+			add_absolutism = -10
+			if = {
+					limit = { NOT = { has_country_flag = cu_stability_fixed } }
+					cu_change_stability_point_hidden = yes
+					custom_tooltip = cu_change_stability_n33
+			}
+			add_adm_power = 5
+		}
+	}
+}
+
+expand_government_capacity_false = {
+	icon = "tax_collectors"
+	allow_normal_conversion = yes
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = expand_government_capacity }
+	}
+	trigger = {
+		cu_didnt_change_GC_policy = yes
+		hidden_trigger = { ai = no }
+		estate_influence = {	estate = estate_government	influence = 10	}
+		adm_tech = 5
+		adm_power = -60
+		OR = {
+			militarised_society = 3
+			absolutism = 5
+		}
+	}
+	modifiers = {
+		monthly_militarized_society = 0.04
+		all_power_cost = -0.05
+		state_maintenance_modifier = 0.20
+		# +10% GC
+	}
+	effect = {
+		hidden_effect = { 
+			remove_government_reform = expand_government_capacity_false
+			add_government_reform = expand_government_capacity
+		}
+		tooltip = {
+			add_absolutism = -10
+			if = {
+					limit = { NOT = { has_country_flag = cu_stability_fixed } }
+					cu_change_stability_point_hidden = yes
+					custom_tooltip = cu_change_stability_n33
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_reform = maximum_government_capacity
+					}
+				}
+				adm_power_cost = 40
+			}
+			else = {
+				add_adm_power = 20
+			}
+			custom_tooltip = GC_expand_policy
+		}
+	}
+}
+
+maximum_government_capacity_false = {
+	icon = "overwork"
+	allow_normal_conversion = yes
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = maximum_government_capacity }
+	}
+	trigger = { 
+		cu_didnt_change_GC_policy = yes
+		hidden_trigger = { ai = no }
+		estate_influence = {	estate = estate_government	influence = 10	}
+		adm_tech = 5
+		adm_power = 0
+		OR = {
+			militarised_society = 3
+			absolutism = 5
+		}
+	}
+	modifiers = {
+		monthly_militarized_society = 0.08
+		all_power_cost = -0.10
+		state_maintenance_modifier = 0.40
+		# +20% GC
+	}
+	effect = {
+		hidden_effect = { 
+			remove_government_reform = maximum_government_capacity_false
+			add_government_reform = maximum_government_capacity
+		}
+		tooltip = {
+			add_absolutism = -10
+			if = {
+					limit = { NOT = { has_country_flag = cu_stability_fixed } }
+					cu_change_stability_point_hidden = yes
+					custom_tooltip = cu_change_stability_n33
+			}
+			if = {
+				limit = {
+					has_reform = expand_government_capacity
+				}
+				adm_power_cost = 60
+			}
+			else = {
+				adm_power_cost = 100
+			}
+			custom_tooltip = GC_maximum_policy
+		}
+	}
+}
+
+#Culture
+cu_cultural_policy_1_false = {
+	icon = "massacre_of_indians"
+	allow_normal_conversion = yes
+	#legacy_equivalent = feudal_monarchy
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = cu_cultural_policy_1 }
+	}
+	trigger = {
+		cu_didnt_change_cultural_policy = yes
+		OR = {
+			dip_tech = 24
+			has_institution = enlightenment
+		}
+		custom_trigger_tooltip = {
+			tooltip = has_cu_cultural_policy_2
+			ai = no
+			has_country_flag = cu_cultural_policy_2
+		}
+		OR = {
+			militarised_society = 8
+			absolutism = 10
+		}
+		estate_influence = {	estate = estate_government	influence = 10	}
+	}
+	modifiers = {
+		num_accepted_cultures = -5
+		same_culture_advisor_cost = -0.1
+		harmonization_speed = 0.1
+		mercantilism_cost = 0.15
+		years_of_nationalism = 6
+		#Accepted Culture Base Cultural Acceptance: +10%
+		#Unaccepted Culture Base Cultural Acceptance: -10%
+	}
+	effect = {
+		hidden_effect = { 
+			remove_government_reform = cu_cultural_policy_1_false
+			add_government_reform = cu_cultural_policy_1
+		}
+		tooltip = {
+			custom_tooltip = cu_cultural_policy_1_tooltip
+			custom_tooltip = cu_administrative_integraty_toolbar
+			custom_tooltip = Unaccepted_CA_10cent_lower
+			custom_tooltip = Accepted_CA_10cent_higher
+			add_absolutism = -15
+			if = { 
+				limit = { has_country_flag = cu_cultural_policy_2 }
+				add_stability = -1
+			}
+		}
+	}
+}
+
+cu_cultural_policy_2_false = {
+	icon = "hellas"
+	allow_normal_conversion = yes
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = cu_cultural_policy_2 }
+	}
+	trigger = {
+		cu_didnt_change_cultural_policy = yes
+		adm_tech = 5
+		custom_trigger_tooltip = {
+			tooltip = has_cu_cultural_policy_13
+			ai = no
+			OR = {
+				has_country_flag = cu_cultural_policy_1
+				has_country_flag = cu_cultural_policy_3
+			}
+		}
+		OR = {
+			militarised_society = 8
+			absolutism = 10
+		}
+		estate_influence = {	estate = estate_government	influence = 10	}
+	}
+	modifiers = {
+		num_accepted_cultures = -2
+		same_culture_advisor_cost = -0.05
+		harmonization_speed = 0.05
+		mercantilism_cost = 0.05
+		years_of_nationalism = 3
+		#Accepted Culture Base Cultural Acceptance: +5%
+		#Unaccepted Culture Base Cultural Acceptance: -5%
+	}
+	effect = {
+		hidden_effect = { 
+			remove_government_reform = cu_cultural_policy_2_false
+			add_government_reform = cu_cultural_policy_2
+		}
+		tooltip = {
+			custom_tooltip = cu_cultural_policy_2_tooltip
+			custom_tooltip = cu_administrative_integraty_toolbar
+			custom_tooltip = Unaccepted_CA_5cent_lower
+			custom_tooltip = Accepted_CA_5cent_higher
+			add_absolutism = -10
+			if = { 
+				limit = {
+					OR = {
+						has_country_flag = cu_cultural_policy_1
+						has_country_flag = cu_cultural_policy_3
+					}
+				}
+				add_stability = -1
+			}
+		}
+	}
+}
+
+cu_cultural_policy_3_false = {
+	icon = "sweet_harmony"
+	allow_normal_conversion = yes
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = cu_cultural_policy_3 }
+	}
+	trigger = {
+		cu_didnt_change_cultural_policy = yes
+		adm_tech = 5
+		custom_trigger_tooltip = {
+			tooltip = has_cu_cultural_policy_24
+			ai = no
+			OR = {
+				has_country_flag = cu_cultural_policy_2
+				has_country_flag = cu_cultural_policy_4
+			}
+		}
+		OR = {
+			militarised_society = 8
+			absolutism = 10
+		}
+		estate_influence = {	estate = estate_government	influence = 10	}
+	}
+	modifiers = {
+		stability_cost_modifier = -0.05
+	}
+	effect = {
+		hidden_effect = { 
+			remove_government_reform = cu_cultural_policy_3_false
+			add_government_reform = cu_cultural_policy_3
+		}
+		tooltip = {
+			add_absolutism = -10
+			if = { 
+				limit = {
+					OR = {
+						has_country_flag = cu_cultural_policy_2
+						has_country_flag = cu_cultural_policy_4
+					}
+				}
+				add_stability = -1
+			}
+		}
+	}
+}
+
+cu_cultural_policy_4_false = {
+	icon = "multiculturalism"
+	allow_normal_conversion = yes
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = cu_cultural_policy_4 }
+	}
+	trigger = {
+		cu_didnt_change_cultural_policy = yes
+		adm_tech = 5
+		custom_trigger_tooltip = {
+			tooltip = has_cu_cultural_policy_35
+			ai = no
+			OR = {
+				has_country_flag = cu_cultural_policy_3
+				has_country_flag = cu_cultural_policy_5
+			}
+		}
+		OR = {
+			militarised_society = 8
+			absolutism = 10
+		}
+		estate_influence = {	estate = estate_government	influence = 10	}
+	}
+	modifiers = {
+		num_accepted_cultures = 3
+	    harmonization_speed = -0.1
+	    mercantilism_cost = -0.1
+		stability_cost_modifier= 0.10
+		years_of_nationalism = -3
+		#Accepted Culture Base Cultural Acceptance: -2.5%
+		#Unaccepted Culture Base Cultural Acceptance: +5%
+	}
+	effect = {
+		hidden_effect = { 
+			remove_government_reform = cu_cultural_policy_4_false
+			add_government_reform = cu_cultural_policy_4
+		}
+		tooltip = {
+			custom_tooltip = cu_cultural_policy_4_tooltip
+			custom_tooltip = cu_administrative_integraty_toolbar
+			custom_tooltip = Unaccepted_CA_5cent_higher
+			custom_tooltip = Accepted_CA_2.5cent_lower
+			add_absolutism = -10
+			if = { 
+				limit = {
+					OR = {
+						has_country_flag = cu_cultural_policy_3
+						has_country_flag = cu_cultural_policy_5
+					}
+				}
+				add_stability = -1
+			}
+		}
+	}
+}
+
+cu_cultural_policy_5_false = {
+	icon = "eu3_humanist_tolerance"
+	allow_normal_conversion = yes
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = cu_cultural_policy_5 }
+	}
+	trigger = {
+		cu_didnt_change_cultural_policy = yes
+		adm_tech = 5
+		OR = {
+			adm_tech = 33
+			full_idea_group = humanist_ideas
+		}
+		custom_trigger_tooltip = {
+			tooltip = has_cu_cultural_policy_4
+			ai = no
+			has_country_flag = cu_cultural_policy_4
+		}
+		OR = {
+			militarised_society = 8
+			absolutism = 10
+		}
+		estate_influence = {	estate = estate_government	influence = 10	}
+	}
+	modifiers = {
+		num_accepted_cultures = 10
+		harmonization_speed = -0.2
+		mercantilism_cost = -0.2
+		stability_cost_modifier= 0.15
+		years_of_nationalism = -6
+		#Accepted Culture Base Cultural Acceptance: -5%
+		#Unaccepted Culture Base Cultural Acceptance: +10%
+	}
+	effect = {
+		hidden_effect = { 
+			remove_government_reform = cu_cultural_policy_5_false
+			add_government_reform = cu_cultural_policy_5
+		}
+		tooltip = {
+			custom_tooltip = cu_cultural_policy_5_tooltip
+			custom_tooltip = cu_administrative_integraty_toolbar
+			custom_tooltip = Unaccepted_CA_10cent_higher
+			custom_tooltip = Accepted_CA_5cent_lower
+			add_absolutism = -10
+			if = {
+				limit = { has_country_flag = cu_cultural_policy_4 }
+				add_stability = -1
+			}
+		}
+	}
+}
+
+#Religion
+cu_religious_policy_1_false = {
+	icon = "forgive_me_for_i_have_sindh"
+	allow_normal_conversion = yes
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = cu_religious_policy_1 }
+	}
+	trigger = {
+		cu_didnt_change_religious_policy = yes
+		adm_tech = 5
+		custom_trigger_tooltip = {
+			tooltip = has_cu_religious_policy_2
+			ai = no
+			has_country_flag = cu_religious_policy_2
+		}
+		OR = {
+			militarised_society = 8
+			absolutism = 10
+		}
+		estate_influence = {	estate = estate_government	influence = 10	}
+	}
+	modifiers = {
+		yearly_harmony = -4
+		tolerance_of_heretics_capacity = 2
+		tolerance_of_heathens_capacity = 2
+	}
+	effect = {
+		hidden_effect = { 
+			remove_government_reform = cu_religious_policy_1_false
+			add_government_reform = cu_religious_policy_1
+		}
+		tooltip = {
+			custom_tooltip = religious_policy_1_estate_tt
+			add_absolutism = -10
+			if = {
+				limit = { has_country_flag = cu_religious_policy_2 }
+				custom_tooltip = cu_change_stability_n1
+				cu_change_stability = yes		
+				add_piety = 0.4
+			}
+		}
+	}
+}
+
+cu_religious_policy_2_false = {
+	icon = "muslim"
+	allow_normal_conversion = yes
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = cu_religious_policy_2 }
+	}
+	trigger = {
+		cu_didnt_change_religious_policy = yes
+		adm_tech = 5
+		custom_trigger_tooltip = {
+			tooltip = has_cu_religious_policy_13
+			ai = no
+			OR = {
+				has_country_flag = cu_religious_policy_1
+				has_country_flag = cu_religious_policy_3
+			}
+		}
+		OR = {
+			militarised_society = 8
+			absolutism = 10
+		}
+		estate_influence = {	estate = estate_government	influence = 10	}
+	}
+	modifiers = {
+		yearly_harmony = -2
+		tolerance_of_heretics_capacity = 1
+		tolerance_of_heathens_capacity = 1
+	}
+	effect = {
+		hidden_effect = { 
+			remove_government_reform = cu_religious_policy_2_false
+			add_government_reform = cu_religious_policy_2
+		}
+		tooltip = {
+			custom_tooltip = religious_policy_2_estate_tt
+			add_absolutism = -10
+			custom_tooltip = cu_change_stability_n1
+			cu_change_stability = yes
+			if = {
+				limit = { has_country_flag = cu_religious_policy_3 }
+				add_piety = 0.2
+			}
+			else_if = {
+				limit = { has_country_flag = cu_religious_policy_1 }
+				add_piety = -0.10
+			}
+		}
+	}
+}
+
+cu_religious_policy_3_false = {
+	icon = "pope"
+	allow_normal_conversion = yes
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = cu_religious_policy_3 }
+	}
+	trigger = {
+		cu_didnt_change_religious_policy = yes
+		adm_tech = 5
+		custom_trigger_tooltip = {
+			tooltip = has_cu_religious_policy_24
+			ai = no
+			OR = {
+				has_country_flag = cu_religious_policy_2
+				has_country_flag = cu_religious_policy_4
+			}
+		}
+		OR = {
+			militarised_society = 8
+			absolutism = 10
+		}
+		estate_influence = {	estate = estate_government	influence = 10	}
+	}
+	modifiers = {
+	}
+	effect = {
+		hidden_effect = { 
+			remove_government_reform = cu_religious_policy_3_false
+			add_government_reform = cu_religious_policy_3
+		}
+		tooltip = {
+			custom_tooltip = religious_policy_3_estate_tt
+			add_absolutism = -10
+			hidden_effect = {
+				set_variable = { which = cu_var1 value = -1 }
+			}		
+			custom_tooltip = cu_change_stability_n1
+			cu_change_stability = yes
+			if = {
+				limit = { has_country_flag = cu_religious_policy_4 }
+				add_piety = 0.2
+			}
+			else_if = {
+				limit = { has_country_flag = cu_religious_policy_2 }
+				add_piety = -0.20
+			}
+		}
+	}
+}
+
+cu_religious_policy_4_false = {
+	icon = "secluded_in_prayer"
+	allow_normal_conversion = yes
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = cu_religious_policy_4 }
+	}
+	trigger = {
+		cu_didnt_change_religious_policy = yes
+		adm_tech = 5
+		custom_trigger_tooltip = {
+			tooltip = has_cu_religious_policy_35
+			ai = no
+			OR = {
+				has_country_flag = cu_religious_policy_3
+				has_country_flag = cu_religious_policy_5
+			}
+		}
+		OR = {
+			militarised_society = 8
+			absolutism = 10
+		}
+		estate_influence = {	estate = estate_government	influence = 10	}
+	}
+	modifiers = {
+		yearly_harmony = 1.5
+		manpower_in_true_faith_provinces = 0.1
+		missionary_maintenance_cost = -0.2
+	}
+	effect = {
+		hidden_effect = { 
+			remove_government_reform = cu_religious_policy_4_false
+			add_government_reform = cu_religious_policy_4
+		}
+		tooltip = {
+			custom_tooltip = religious_policy_4_estate_tt
+			add_absolutism = -10
+			custom_tooltip = cu_change_stability_n1
+			cu_change_stability = yes
+			if = {
+				limit = { has_country_flag = cu_religious_policy_5 }
+				add_piety = 0.4
+			}
+			else = {
+				limit = { has_country_flag = cu_religious_policy_3 }
+				add_piety = -0.30
+			}
+		}
+	}
+}
+
+cu_religious_policy_5_false = {
+	icon = "burning_witches"
+	allow_normal_conversion = yes
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = cu_religious_policy_5 }
+	}
+	trigger = { 
+		cu_didnt_change_religious_policy = yes
+		adm_tech = 5
+		custom_trigger_tooltip = {
+			tooltip = has_cu_religious_policy_4
+			ai = no
+			has_country_flag = cu_religious_policy_4
+		}
+		OR = {
+			militarised_society = 8
+			absolutism = 10
+		}
+		estate_influence = {	estate = estate_government	influence = 10	}
+	}
+	modifiers = {
+		yearly_harmony = 3
+		manpower_in_true_faith_provinces = 0.2
+		missionary_maintenance_cost = -0.4
+	}
+	effect = {
+		hidden_effect = { 
+			remove_government_reform = cu_religious_policy_5_false
+			add_government_reform = cu_religious_policy_5
+		}
+		tooltip = {
+			custom_tooltip = religious_policy_5_estate_tt
+			add_absolutism = -10
+			custom_tooltip = cu_change_stability_n1
+			cu_change_stability = yes		
+			add_piety = -0.4
+		}
+	}
+}
+
+#Conscription
+volunteer_training_false = {
+    icon = "soldiers_3"
+	allow_normal_conversion = yes
+	#legacy_equivalent = feudal_monarchy
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		OR = {
+			has_reform = standing_army
+			has_reform = limited_conscription
+			has_reform = extensive_conscription
+			has_reform = tribal_conscription
+			has_reform = military_household
+			has_reform = mercenary_conscription
+			has_reform = feudal_conscription
+		}		
+		NOT = { has_reform =  steppe_horde }
+		#NOT = { has_reform =  steppe_empire }
+		NOT = { has_reform = volunteer_training }
+	}
+	trigger = {
+		cu_didnt_change_conscription_policy = yes
+		if = {
+			limit = { has_country_modifier = tur_janissary }
+			NOT = { has_country_modifier = tur_janissary }
+		}
+		if = {
+			limit = { has_reform = steppe_horde }
+			NOT = { has_reform = steppe_horde }
+		}
+		OR = {
+			mil = 5
+			custom_trigger_tooltip = {
+					tooltip = has_fulfill_at_least_a_mil_idea_group
+					OR = {
+						full_idea_group = aristocracy_ideas
+						full_idea_group = plutocracy_ideas
+						full_idea_group = offensive_ideas
+						full_idea_group = defensive_ideas
+						full_idea_group = quality_ideas
+						full_idea_group = quantity_ideas
+						full_idea_group = militarist_ideas
+					}
+			}
+			army_tradition = 30
+		}
+		mil_tech = 10
+		mil_power = 200
+		army_tradition = 20
+		stability = 1
+		if = {
+			limit = { 
+				OR = {
+					has_reform = celestial_empire
+					has_reform = celestial_empire_2
+					has_reform = military_household
+				}
+			}
+			OR = {
+				NOT = { has_reform = military_household }
+				NOT = { has_country_modifier = weisuo_system }
+			}
+		}
+		custom_trigger_tooltip = {
+			tooltip = tooltip_positive_militarism
+			has_global_modifier_value = {
+				which = yearly_army_professionalism
+				value = 0.001
+			}
+		}
+		OR = {
+			custom_trigger_tooltip = {
+			   tooltip = tooltip_ave_literacy_5
+			   check_variable = { which = ave_literacy value = 5 }
+			}
+			AND = {
+				custom_trigger_tooltip = {
+					 tooltip = tooltip_ave_literacy_3
+					 check_variable = { which = ave_literacy value = 3 }
+				}
+				OR = {
+					mil = 6
+					mil_tech = 11
+					army_tradition = 50
+				}
+				army_tradition = 40
+			}	
+		}
+		hidden_trigger = { ai = no }
+		estate_influence = {	estate = estate_government	influence = 10	}
+	}
+	modifiers = {
+		land_forcelimit_modifier = 0.125
+		global_manpower_modifier = 0.10
+		manpower_recovery_speed = 0.05
+		mercenary_manpower = 0.2
+		free_leader_pool = -10
+		yearly_army_professionalism = 0.005
+		drill_gain_modifier = -0.1
+	}
+	effect = {
+		hidden_effect = { 
+			remove_government_reform = volunteer_training_false
+			add_government_reform = volunteer_training
+		}
+		tooltip = {
+			mil_power_cost = 200
+			add_army_tradition = -20
+			if = {
+					limit = { NOT = { has_country_flag = cu_stability_fixed } }
+					cu_change_stability_point_hidden = yes
+					custom_tooltip = cu_change_stability_n75
+			}
+		}
+	}
+}
+	
+standing_army_false = {
+    icon = "dovmont's own"
+	allow_normal_conversion = yes
+	#legacy_equivalent = feudal_monarchy
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+        OR = {
+			has_reform = limited_conscription
+			has_reform = extensive_conscription
+			has_reform = volunteer_training
+			has_reform = tribal_conscription
+			has_reform = military_household
+			has_reform = mercenary_conscription
+			has_reform = feudal_conscription
+		}
+		NOT = { has_reform = steppe_horde }
+		NOT = { has_reform = steppe_empire }
+		NOT = { has_reform = standing_army }
+	}
+	trigger = {
+		OR = {
+			has_reform = volunteer_training
+			has_reform = limited_conscription
+		}
+		cu_didnt_change_conscription_policy = yes
+		mil_tech = 14
+		OR = {
+			custom_trigger_tooltip = {
+				tooltip = has_fulfill_at_least_a_mil_idea_group
+				OR = {
+					full_idea_group = aristocracy_ideas
+					full_idea_group = plutocracy_ideas
+					full_idea_group = offensive_ideas
+					full_idea_group = defensive_ideas
+					full_idea_group = quality_ideas
+					full_idea_group = quantity_ideas
+					full_idea_group = militarist_ideas
+				}
+			}
+			mil_tech = 17
+		}
+		mil_power = 200
+		army_tradition = 20
+		stability = 1
+		OR = {
+			custom_trigger_tooltip = {
+				tooltip = tooltip_ave_literacy_10
+				check_variable = { which = ave_literacy value = 10 }
+			}
+			AND = {
+				custom_trigger_tooltip = {
+					tooltip = tooltip_ave_literacy_8
+					check_variable = { which = ave_literacy value = 8 }
+				}
+				mil = 4
+				mil_tech = 16
+				army_tradition = 30
+			}	
+			AND = {
+				custom_trigger_tooltip = {
+					tooltip = tooltip_ave_literacy_6
+					check_variable = { which = ave_literacy value = 6 }
+				}
+				mil = 5
+				mil_tech = 18
+				army_tradition = 30
+			}
+		}
+		custom_trigger_tooltip = {
+			tooltip = tooltip_positive_militarism
+			has_global_modifier_value = {
+				which = yearly_army_professionalism
+				value = 0.001
+			}
+		}
+		hidden_trigger = { ai = no }
+		estate_influence = {	estate = estate_government	influence = 10	}
+	}
+	modifiers = {
+		land_forcelimit_modifier = 0.25
+		global_manpower_modifier = 0.4
+		manpower_recovery_speed = 0.2
+		land_morale = 0.05
+		army_tradition = 0.5
+		yearly_army_professionalism = 0.01
+		drill_gain_modifier = 0.1
+		global_unrest = 0.5
+	}
+	effect = {
+		hidden_effect = { 
+			remove_government_reform = standing_army_false
+			add_government_reform = standing_army
+		}
+		tooltip = {
+			mil_power_cost = 200
+			add_army_tradition = -20
+			if = {
+					limit = { NOT = { has_country_flag = cu_stability_fixed } }
+					cu_change_stability_point_hidden = yes
+					custom_tooltip = cu_change_stability_n75
+			}
+		}
+	}
+}
+	
+limited_conscription_false = {
+    icon = "eu3_conscription"
+	allow_normal_conversion = yes
+	#legacy_equivalent = feudal_monarchy
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		OR = {
+			has_reform = standing_army
+			has_reform = extensive_conscription
+			has_reform = volunteer_training
+			has_reform = tribal_conscription
+			has_reform = military_household
+			has_reform = mercenary_conscription
+			has_reform = feudal_conscription
+		}
+		NOT = { has_reform = steppe_horde }
+		NOT = { has_reform = steppe_empire }
+		NOT = { has_reform = limited_conscription }
+	}
+	trigger = {
+		OR = {
+			has_reform = standing_army
+			has_reform = extensive_conscription
+		}
+		#cu_didnt_change_conscription_policy = yes
+		mil_tech = 18
+		OR = {
+			custom_trigger_tooltip = {
+				tooltip = has_fulfill_at_least_a_mil_idea_group
+				OR = {
+					full_idea_group = aristocracy_ideas
+					full_idea_group = plutocracy_ideas
+					full_idea_group = offensive_ideas
+					full_idea_group = defensive_ideas
+					full_idea_group = quality_ideas
+					full_idea_group = quantity_ideas
+					full_idea_group = militarist_ideas
+				}
+			}
+			mil_tech = 20
+		}
+		mil_power = 200
+		army_tradition = 20
+		stability = 1
+		OR = {
+			custom_trigger_tooltip = {
+				tooltip = tooltip_ave_literacy_20
+				check_variable = { which = ave_literacy value = 20 }
+			}
+			AND = {
+				custom_trigger_tooltip = {
+					tooltip = tooltip_ave_literacy_15
+					check_variable = { which = ave_literacy value = 15 }
+				}
+				mil = 4
+				mil_tech = 21
+				army_tradition = 30
+			}	
+			AND = {
+				custom_trigger_tooltip = {
+					 tooltip = tooltip_ave_literacy_10
+					 check_variable = { which = ave_literacy value = 10 }
+				}
+				mil = 5
+				mil_tech = 25
+				army_tradition = 40
+			}
+		}
+		hidden_trigger = { ai = no }
+		estate_influence = {	estate = estate_government	influence = 10	}
+	}
+	modifiers = {
+		land_forcelimit_modifier = 0.625
+		global_manpower_modifier = 0.8
+		manpower_recovery_speed = 0.4
+		land_morale = 0.025
+		free_leader_pool = 10
+		yearly_army_professionalism = 0.005
+		drill_gain_modifier = 0.05
+		global_unrest = 1
+		development_cost = 0.075
+		trade_company_investment_cost = 0.075
+		build_time = 0.15
+		global_trade_goods_size_modifier = -0.05
+		war_exhaustion_cost = 0.1
+		war_exhaustion = 0.005
+		global_regiment_recruit_speed = 0.125
+	}
+	effect = {
+		hidden_effect = { 
+			remove_government_reform = limited_conscription_false
+			add_government_reform = limited_conscription
+		}
+		tooltip = {
+			mil_power_cost = 200
+			add_army_tradition = -20
+			if = {
+					limit = { NOT = { has_country_flag = cu_stability_fixed } }
+					cu_change_stability_point_hidden = yes
+					custom_tooltip = cu_change_stability_n75
+			}
+		}
+	}
+}
+
+extensive_conscription_false = {
+	icon = "eu3_soldiers"
+	allow_normal_conversion = yes
+	#legacy_equivalent = feudal_monarchy
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		OR = {
+			has_reform = standing_army
+			has_reform = limited_conscription
+			has_reform = volunteer_training
+			has_reform = tribal_conscription
+			has_reform = military_household
+			has_reform = mercenary_conscription
+			has_reform = feudal_conscription
+		}		
+		NOT = { has_reform = steppe_horde }
+		NOT = { has_reform = steppe_empire }
+		NOT = { has_reform = extensive_conscription }
+	}
+	trigger = {
+		has_reform = limited_conscription
+		#cu_didnt_change_conscription_policy = yes
+		mil_tech = 21
+		OR = {
+			custom_trigger_tooltip = {
+				tooltip = has_fulfill_at_least_a_mil_idea_group
+				OR = {
+					full_idea_group = aristocracy_ideas
+					full_idea_group = plutocracy_ideas
+					full_idea_group = offensive_ideas
+					full_idea_group = defensive_ideas
+					full_idea_group = quality_ideas
+					full_idea_group = quantity_ideas
+					full_idea_group = militarist_ideas
+				}
+			}
+			mil_tech = 24
+		}
+		mil_power = 200
+		army_tradition = 20
+		stability = 1
+		OR = {
+			custom_trigger_tooltip = {
+				tooltip = tooltip_ave_literacy_30
+				check_variable = { which = ave_literacy value = 30 }
+			}
+			AND = {
+				custom_trigger_tooltip = {
+					tooltip = tooltip_ave_literacy_25
+					check_variable = { which = ave_literacy value = 25 }
+				}
+				mil = 4
+				mil_tech = 24
+				army_tradition = 30
+			}	
+			AND = {
+				custom_trigger_tooltip = {
+					tooltip = tooltip_ave_literacy_20
+					check_variable = { which = ave_literacy value = 20 }
+				}
+				mil = 5
+				mil_tech = 27
+				army_tradition = 40
+			}
+		}
+		hidden_trigger = { ai = no }
+		estate_influence = {	estate = estate_government	influence = 10	}
+	}
+	modifiers = {
+		land_forcelimit_modifier = 1
+		global_manpower_modifier = 1
+		manpower_recovery_speed = 0.5
+		free_leader_pool = 20
+		global_unrest = 2
+		development_cost = 0.15
+		trade_company_investment_cost = 0.15
+		build_time = 0.3
+		global_trade_goods_size_modifier = -0.10
+		war_exhaustion_cost = 0.2
+		war_exhaustion = 0.01
+		global_regiment_recruit_speed = 0.25
+	}
+	effect = {
+		hidden_effect = { 
+			remove_government_reform = extensive_conscription_false
+			add_government_reform = extensive_conscription
+		}
+		tooltip = {
+			mil_power_cost = 200
+			add_army_tradition = -20
+			if = {
+					limit = { NOT = { has_country_flag = cu_stability_fixed } }
+					cu_change_stability_point_hidden = yes
+					custom_tooltip = cu_change_stability_n100
+			}
+		}
+	}
+}
+
+#Education
+education_policy_church_false = {
+	icon = "church"
+	allow_normal_conversion = yes
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = education_policy_church }
+	}
+	trigger = {
+		adm_tech = 6
+		stability = 0
+		any_owned_province = {
+			OR = {
+				has_building = temple
+				has_building = cathedral
+			}
+		}
+		hidden_trigger = { ai = no }
+		estate_influence = {	estate = estate_government	influence = 10	}
+	}
+	effect = {
+	    hidden_effect = { 
+			remove_government_reform = education_policy_church_false
+			add_government_reform = education_policy_church
+		}
+		tooltip = {
+			custom_tooltip = church_education_estate_tt
+			if = {
+					limit = { NOT = { has_country_flag = cu_stability_fixed } }
+					hidden_effect = {
+						set_variable = { which = cu_var1 value = -75 }
+					}
+					cu_change_stability_point_hidden = yes
+					custom_tooltip = cu_change_stability_n75
+			}
+			custom_tooltip = adopt_church_education_tt
+		}
+	}
+}
+
+education_policy_burghers_false = {
+	icon = "man_and_children"
+	allow_normal_conversion = yes
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = education_policy_burghers }
+	}
+	trigger = {
+		adm_tech = 17
+		stability = 0
+		has_institution = printing_press
+		hidden_trigger = { ai = no }
+		estate_influence = {	estate = estate_government	influence = 10	}
+	}
+	modifiers = {
+		state_maintenance_modifier = 0.1
+		harmonization_speed = 0.10
+	}
+	effect = {
+		hidden_effect = { 
+			remove_government_reform = education_policy_burghers_false
+			add_government_reform = education_policy_burghers
+		}
+		tooltip = {
+			custom_tooltip = burghers_education_estate_tt
+			if = {
+					limit = { NOT = { has_country_flag = cu_stability_fixed } }
+					cu_change_stability_point_hidden = yes
+					custom_tooltip = cu_change_stability_n100
+			}
+			custom_tooltip = adopt_burghers_education_tt
+		}
+	}
+}
+
+education_policy_public_false = {
+	icon = "children_on_class_2"
+	allow_normal_conversion = yes
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = education_policy_public }
+	}
+	trigger = {
+		adm_tech = 21
+		stability = 0
+		has_institution = printing_press
+		hidden_trigger = { ai = no }
+		estate_influence = {	estate = estate_government	influence = 10	}
+	}
+	modifiers = {
+		state_maintenance_modifier = 0.2
+		global_institution_spread = 0.05
+		harmonization_speed = 0.20
+	}
+	effect = {
+	    hidden_effect = { 
+			remove_government_reform = education_policy_public_false
+			add_government_reform = education_policy_public
+		}
+		tooltip = {
+			custom_tooltip = public_education_estate_tt
+			if = {
+					limit = { NOT = { has_country_flag = cu_stability_fixed } }
+					cu_change_stability_point_hidden = yes
+					custom_tooltip = cu_change_stability_n100
+			}
+			custom_tooltip = adopt_public_education_tt
+		}
+	}
+}
+	
+education_policy_nobles_false = {
+	icon = "king_2"
+	allow_normal_conversion = yes
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	#lock_level_when_selected = yes
+	potential = {
+		NOT = { has_reform = education_policy_nobles }
+	}
+	trigger = {
+		hidden_trigger = { ai = no }
+		estate_influence = {	estate = estate_government	influence = 10	}
+	}
+	effect = {
+		hidden_effect = { 
+			remove_government_reform = education_policy_nobles_false
+			add_government_reform = education_policy_nobles
+		}
+		tooltip = {
+			custom_tooltip = noble_education_estate_tt
+		}
+	}
+}
+#Central Power
+
+court_despotism_false = {
+	icon = "king"
+	allow_normal_conversion = yes
+	legacy_equivalent = feudal_monarchy
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = court_despotism }
+	}
+	trigger = {
+		custom_trigger_tooltip = {
+			tooltip = government_reform_cd_20_tooltip
+			NOT = { has_country_modifier = tur_janissaries_timer }
+		}
+		absolutism = 40
+		hidden_trigger = { ai = no }
+		estate_influence = {	estate = estate_government	influence = 10	}
+	}
+	modifiers = {
+	    max_absolutism = 20
+		yearly_absolutism = 0.2
+		yearly_corruption = 0.2
+		qinwang_loyalty_modifier = -0.05
+		shizu_loyalty_modifier = -0.05
+		church_loyalty_modifier = -0.05
+		nobles_loyalty_modifier = -0.05
+		nomadic_tribes_loyalty_modifier = -0.05
+	}
+	effect = {
+	    hidden_effect = { 
+			remove_government_reform = court_despotism_false
+			add_government_reform = court_despotism
+		}
+		tooltip = {
+			custom_tooltip = court_despotism_estate_tt
+			custom_tooltip = court_despotism_tooltip
+			add_absolutism = -10
+			if = {
+				limit = { NOT = { has_country_flag = cu_stability_fixed } }
+				cu_change_stability_point_hidden = yes
+				custom_tooltip = cu_change_stability_n100
+				if = {
+					limit = {
+						has_estate = estate_nobles
+					}
+					add_estate_loyalty = {
+						estate = estate_nobles
+						loyalty = -20
+					}
+				}
+				else_if = {
+					limit = {
+						has_estate = estate_qinwang
+					}
+					add_estate_loyalty = {
+						estate = estate_qinwang
+						loyalty = -20
+					}
+				}
+				if = {
+					limit = {
+						has_estate = estate_church
+					}
+					add_estate_loyalty = {
+						estate = estate_church
+						loyalty = -20
+					}
+				}
+				else_if = {
+					limit = {
+						has_estate = estate_shizu
+					}
+					add_estate_loyalty = {
+						estate = estate_shizu
+						loyalty = -20
+					}
+				}
+			}
+		}
+	}
+}
+
+noble_council_false = {
+	icon = "people_walking"
+	allow_normal_conversion = yes
+	legacy_equivalent = feudal_monarchy
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = noble_council }
+	}
+	trigger = {
+		custom_trigger_tooltip = {
+			tooltip = government_reform_cd_20_tooltip
+			NOT = { has_country_modifier = tur_janissaries_timer }
+		}
+		OR = {
+			absolutism = 15
+			militarised_society = 5
+		}
+		hidden_trigger = { ai = no }
+		estate_influence = {	estate = estate_government	influence = 10	}
+	}
+	modifiers = {
+		max_absolutism = 10
+		yearly_absolutism = 0.2
+		yearly_corruption = 0.1
+		monthly_militarized_society = 0.02
+		advisor_pool = 1
+		nobles_influence_modifier = 0.05
+		qinwang_influence_modifier= 0.05
+		burghers_influence_modifier = -0.05
+		nobles_loyalty_modifier = 0.05
+		qinwang_loyalty_modifier = 0.05
+	}
+	effect = {
+	    hidden_effect = { 
+			remove_government_reform = noble_council_false
+			add_government_reform = noble_council
+		}
+		tooltip = {
+			custom_tooltip = noble_council_estate_tt
+			custom_tooltip = noble_council_tooltip
+			add_absolutism = -10
+			if = {
+				limit = { NOT = { has_country_flag = cu_stability_fixed } }
+				cu_change_stability_point_hidden = yes
+				custom_tooltip = cu_change_stability_n100
+				if = {
+					limit = {
+						has_estate = estate_nobles
+					}
+					add_estate_loyalty = {
+						estate = estate_nobles
+						loyalty = 15
+					}
+				}
+				else_if = {
+					limit = {
+						has_estate = estate_qinwang
+					}
+					add_estate_loyalty = {
+						estate = estate_qinwang
+						loyalty = 15
+					}
+				}
+				if = {
+					limit = {
+						has_estate = estate_church
+					}
+					add_estate_loyalty = {
+						estate = estate_church
+						loyalty = 15
+					}
+				}
+				else_if = {
+					limit = {
+						has_estate = estate_shizu
+					}
+					add_estate_loyalty = {
+						estate = estate_shizu
+						loyalty = 15
+					}
+				}
+				if = {
+					limit = {
+						has_estate = estate_burghers
+					}
+					add_estate_loyalty = {
+						estate = estate_burghers
+						loyalty = 15
+					}
+				}
+			}
+		}
+	}
+}
+
+parliament_reform_false = {
+	icon = "assembly_hall"
+	allow_normal_conversion = yes
+	legacy_equivalent = feudal_monarchy
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = parliament_reform }
+	}
+	trigger = {
+		OR = {
+			absolutism = 45
+			militarised_society = 10
+		}
+		custom_trigger_tooltip = {
+			tooltip = government_reform_cd_20_tooltip
+			NOT = { has_country_modifier = tur_janissaries_timer }
+			ai = no
+		}
+		estate_influence = {	estate = estate_government	influence = 10	}
+		NOT = { government = tribal }
+		adm_tech = 14
+		OR = {
+			adm_tech = 17
+			has_reform = eng_grand_charter
+			full_idea_group = constitution_ideas
+		}
+		OR = {
+			custom_trigger_tooltip = {
+				tooltip = tooltip_ave_literacy_10
+				check_variable = { which = ave_literacy value = 10 }
+			}
+			estate_influence = {
+				estate = estate_burghers
+				influence = 25
+			}
+		}
+	}
+	modifiers = {
+	    max_absolutism = -20
+		monthly_militarized_society = 0.125
+		qinwang_loyalty_modifier = 0.025
+		shizu_loyalty_modifier = 0.025
+		church_loyalty_modifier = 0.025
+		nobles_loyalty_modifier = 0.025
+		nomadic_tribes_loyalty_modifier = 0.025
+		burghers_loyalty_modifier = 0.025
+	}
+	effect = {
+		hidden_effect = { 
+			remove_government_reform = parliament_reform_false
+			add_government_reform = parliament_reform
+		}
+		tooltip = {
+			custom_tooltip = parliament_estate_tt
+			add_absolutism = -15
+			if = {
+				limit = { NOT = { has_country_flag = cu_stability_fixed } }
+				cu_change_stability_point_hidden = yes
+				custom_tooltip = cu_change_stability_n100
+				if = {
+					limit = {
+						has_estate = estate_nobles
+					}
+					add_estate_loyalty = {
+						estate = estate_nobles
+						loyalty = 20
+					}
+				}
+				else_if = {
+					limit = {
+						has_estate = estate_qinwang
+					}
+					add_estate_loyalty = {
+						estate = estate_qinwang
+						loyalty = 20
+					}
+				}
+				if = {
+					limit = {
+						has_estate = estate_church
+					}
+					add_estate_loyalty = {
+						estate = estate_church
+						loyalty = 20
+					}
+				}
+				else_if = {
+					limit = {
+						has_estate = estate_shizu
+					}
+					add_estate_loyalty = {
+						estate = estate_shizu
+						loyalty = 20
+					}
+				}
+				if = {
+					limit = {
+						has_estate = estate_burghers
+					}
+					add_estate_loyalty = {
+						estate = estate_burghers
+						loyalty = 20
+					}
+				}
+			}
+		}
+	}
+	conditional = {
+		has_parliament = yes
+	}
+}
+
+clergy_reform_false = {
+	icon = "clergyman"
+	allow_normal_conversion = yes
+	legacy_equivalent = feudal_monarchy
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = clergy_reform }
+	}
+	trigger = {
+		custom_trigger_tooltip = {
+			tooltip = government_reform_cd_20_tooltip
+			NOT = { has_country_modifier = tur_janissaries_timer }
+		}
+		OR = {
+			absolutism = 25
+			militarised_society = 12
+		}
+		hidden_trigger = { ai = no }
+		estate_influence = {	estate = estate_government	influence = 10	}
+		OR = {
+			estate_influence = {
+				estate = estate_church
+				influence = 30
+			}
+			estate_influence = {
+				estate = estate_shizu
+				influence = 30
+			}
+		}
+	}
+	modifiers = {	
+		yearly_harmony = 1
+		missionaries = 1
+		global_tax_modifier = -0.15
+		yearly_corruption = 0.1
+		shizu_influence_modifier = 0.15
+		church_influence_modifier = 0.15
+		qinwang_influence_modifier= -0.05
+		nobles_influence_modifier = -0.05
+		burghers_influence_modifier = -0.05
+		government_influence_modifier = -0.05
+		shizu_loyalty_modifier = 0.10
+		church_loyalty_modifier = 0.10
+		nobles_loyalty_modifier = -0.05
+		qinwang_loyalty_modifier = -0.05
+		burghers_loyalty_modifier = -0.05
+		church_loyalty_modifier = 0.10
+	}
+	effect = {
+		hidden_effect = { 
+			remove_government_reform = clergy_reform_false
+			add_government_reform = clergy_reform
+		}
+		tooltip = {
+			custom_tooltip = clergy_reform_estate_tt
+			#custom_tooltip = clergy_reform_tooltip
+			add_absolutism = -7
+			if = {
+				limit = { NOT = { has_country_flag = cu_stability_fixed } }
+				cu_change_stability_point_hidden = yes
+				custom_tooltip = cu_change_stability_n100
+				if = {
+					limit = {
+						has_estate = estate_church
+					}
+					add_estate_loyalty = {
+						estate = estate_church
+						loyalty = 15
+					}
+				}
+			}
+		}
+	}
+}
+
+
+#province_governance 
+
+
+
+self_governance_false = {
+	icon = "ck2_mongol_horseman"
+	allow_normal_conversion = yes
+	legacy_equivalent = feudal_monarchy
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = self_governance }
+	}
+	trigger = {			
+		hidden_trigger = { ai = no }
+		estate_influence = {	estate = estate_government	influence = 10	}
+		custom_trigger_tooltip = {
+			tooltip = government_reform_cd_20_tooltip
+			NOT = { has_country_modifier = tur_janissaries_timer }
+		}
+	}
+	modifiers = {
+		state_maintenance_modifier = -0.25
+		yearly_corruption = -0.3
+		monthly_militarized_society = -0.25
+		governing_capacity = -20
+		max_absolutism = -20
+		state_governing_cost = 0.10
+		governing_cost = -0.25
+		shizu_influence_modifier = 0.10
+		church_influence_modifier = 0.10
+		burghers_influence_modifier = 0.10
+		nobles_influence_modifier = 0.10
+		qinwang_influence_modifier= 0.10
+		nomadic_tribes_influence_modifier = 0.15
+		government_influence_modifier = -0.25
+	}
+	effect = {
+		hidden_effect = { 
+			remove_government_reform = self_governance_false
+			add_government_reform = self_governance
+		}
+		tooltip = {
+			custom_tooltip = self_governance_estate_tt
+			#custom_tooltip = self_governance_tooltip
+			add_absolutism = -30
+			if = {
+				limit = { NOT = { has_country_flag = cu_stability_fixed } }
+				cu_change_stability_point_hidden = yes
+				custom_tooltip = cu_change_stability_n100
+				if = {
+					limit = {
+						has_estate = estate_nobles
+					}
+					add_estate_loyalty = {
+						estate = estate_nobles
+						loyalty = 15
+					}
+				}
+				else_if = {
+					limit = {
+						has_estate = estate_qinwang
+					}
+					add_estate_loyalty = {
+						estate = estate_qinwang
+						loyalty = 15
+					}
+				}
+				if = {
+					limit = {
+						has_estate = estate_church
+					}
+					add_estate_loyalty = {
+						estate = estate_church
+						loyalty = 15
+					}
+				}
+				else_if = {
+					limit = {
+						has_estate = estate_shizu
+					}
+					add_estate_loyalty = {
+						estate = estate_shizu
+						loyalty = 15
+					}
+				}
+			}
+		}
+	}
+}
+
+cu_feudalism_reform_false = {
+	icon = "castle"
+	allow_normal_conversion = yes
+	legacy_equivalent = feudal_monarchy
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = cu_feudalism_reform }
+	}
+	trigger = {
+		custom_trigger_tooltip = {
+			tooltip = government_reform_cd_20_tooltip
+			NOT = { has_country_modifier = tur_janissaries_timer }
+		}
+		absolutism = 20
+		has_institution = feudalism
+		hidden_trigger = { ai = no }
+		estate_influence = {	estate = estate_government	influence = 10	}
+	}
+	modifiers = {
+		vassal_income = 0.25
+		yearly_corruption = -0.1
+		max_absolutism = -10
+		yearly_absolutism = -0.6
+		monthly_militarized_society = -0.15
+		governing_capacity = -10
+		governing_cost = -0.05
+		shizu_influence_modifier = 0.05
+		church_influence_modifier = 0.05
+		burghers_influence_modifier = 0.05
+		nobles_influence_modifier = 0.05
+		qinwang_influence_modifier= 0.05
+		nomadic_tribes_influence_modifier = 0.05
+		government_influence_modifier = -0.15
+	}
+	effect = {
+		hidden_effect = { 
+			remove_government_reform = cu_feudalism_reform_false
+			add_government_reform = cu_feudalism_reform
+		}
+		tooltip = {
+			custom_tooltip = feudalism_estate_tt
+			#custom_tooltip = feudalism_tooltip
+			add_absolutism = -15
+			if = {
+				limit = { NOT = { has_country_flag = cu_stability_fixed } }
+				cu_change_stability_point_hidden = yes
+				custom_tooltip = cu_change_stability_n100
+				if = {
+					limit = {
+						has_estate = estate_nobles
+					}
+					add_estate_loyalty = {
+						estate = estate_nobles
+						loyalty = 10
+					}
+				}
+				if = {
+					limit = {
+						has_estate = estate_burghers
+					}
+					add_estate_loyalty = {
+						estate = estate_burghers
+						loyalty = -10
+					}
+				}
+			}
+		}
+	}
+	conditional = {
+		allow = { has_dlc = "Cradle of Civilization" }
+		government_abilities = {
+			feudal_theocracy_mechanic
+		}
+	}
+}
+
+mandate_system_false = {
+	icon = "map"
+	allow_normal_conversion = yes
+	legacy_equivalent = feudal_monarchy
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = mandate_system }
+	}
+	trigger = {
+		hidden_trigger = { ai = no }
+		estate_influence = {	estate = estate_government	influence = 10	}
+		OR = {
+			absolutism = 25
+			militarised_society = 7.5
+		}
+		custom_trigger_tooltip = {
+			tooltip = government_reform_cd_20_tooltip
+			NOT = { has_country_modifier = tur_janissaries_timer }
+		}
+		if = {
+			limit = { has_reform = bureaucratic }
+			has_reform = bureaucratic
+		}
+		else = {
+			has_reform = cu_feudalism_reform
+		}
+		adm_tech = 12
+	}
+	modifiers = {
+		state_maintenance_modifier = 0.125
+		state_governing_cost = 0.05
+		governing_cost = -0.10
+		yearly_absolutism = 0.25
+		monthly_militarized_society = 0.05
+	}
+	effect = {
+		hidden_effect = { 
+			remove_government_reform = mandate_system_false
+			add_government_reform = mandate_system
+		}
+		tooltip = {
+			custom_tooltip = mandate_system_estate_tt
+			#custom_tooltip = mandate_system_tooltip
+			add_absolutism = -15
+			if = {
+				limit = { NOT = { has_country_flag = cu_stability_fixed } }
+				cu_change_stability_point_hidden = yes
+				custom_tooltip = cu_change_stability_n100
+				if = {
+					limit = {
+						has_estate = estate_nobles
+					}
+					add_estate_loyalty = {
+						estate = estate_nobles
+						loyalty = -10
+					}
+				}
+				else_if = {
+					limit = {
+						has_estate = estate_qinwang
+					}
+					add_estate_loyalty = {
+						estate = estate_qinwang
+						loyalty = -10
+					}
+				}
+				if = {
+					limit = {
+						has_estate = estate_church
+					}
+					add_estate_loyalty = {
+						estate = estate_church
+						loyalty = -10
+					}
+				}
+				else_if = {
+					limit = {
+						has_estate = estate_shizu
+					}
+					add_estate_loyalty = {
+						estate = estate_shizu
+						loyalty = -10
+					}
+				}
+			}
+		}
+	}
+	conditional = {
+		allow = { has_dlc = "Cradle of Civilization" }
+		government_abilities = {
+			feudal_theocracy_mechanic
+		}
+	}
+}
+
+bureaucratic_false = {
+	icon = "chinese_bureaucracy_2"
+	allow_normal_conversion = yes
+	legacy_equivalent = feudal_monarchy
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = bureaucratic }
+	}
+	trigger = {
+		custom_trigger_tooltip = {
+			tooltip = government_reform_cd_20_tooltip
+			NOT = { has_country_modifier = tur_janissaries_timer }
+		}
+		OR = {
+			militarised_society = 20
+			absolutism = 40
+		}
+		OR = {
+			has_reform = mandate_system
+			has_reform = cu_feudalism_reform
+		}
+		OR = {
+			AND = {
+				adm_tech = 20
+				full_idea_group = administrative_ideas
+			}
+			adm_tech = 22
+		}
+		hidden_trigger = { ai = no }
+		estate_influence = {	estate = estate_government	influence = 10	}
+	}
+	modifiers = {
+		state_maintenance_modifier = 0.25
+		yearly_corruption = 0.1
+		governing_capacity = 10
+		yearly_absolutism = 0.50
+		monthly_militarized_society = 0.25
+		max_absolutism = 20
+		state_governing_cost = 0.25
+	}
+	effect = {
+		hidden_effect = { 
+			remove_government_reform = bureaucratic_false
+			add_government_reform = bureaucratic
+		}
+		tooltip = {
+			custom_tooltip = bureaucratic_estate_tt
+			custom_tooltip = bureaucratic_tooltip
+			add_absolutism = -15
+			if = {
+				limit = { NOT = { has_country_flag = cu_stability_fixed } }
+				cu_change_stability_point_hidden = yes
+				custom_tooltip = cu_change_stability_n100
+				if = {
+					limit = {
+						has_estate = estate_nobles
+					}
+					add_estate_loyalty = {
+						estate = estate_nobles
+						loyalty = -15
+					}
+				}
+				if = {
+					limit = {
+						has_estate = estate_church
+					}
+					add_estate_loyalty = {
+						estate = estate_church
+						loyalty = -15
+					}
+				}
+				else_if = {
+					limit = {
+						has_estate = estate_shizu
+					}
+					add_estate_loyalty = {
+						estate = estate_shizu
+						loyalty = 15
+					}
+				}
+				if = {
+					limit = {
+						has_estate = estate_burghers
+					}
+					add_estate_loyalty = {
+						estate = estate_burghers
+						loyalty = 15
+					}
+				}
+			}
+		}
+	}
+	conditional = {
+		allow = { has_dlc = "Cradle of Civilization" }
+		government_abilities = {
+			iqta_mechanic
+		}
+	}
+}
+
+
+#Legislation
+
+oral_tradition_false = {
+	icon = "chief"
+	allow_normal_conversion = yes
+	legacy_equivalent = feudal_monarchy
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = oral_tradition }
+	}
+	trigger = {
+		hidden_trigger = { ai = no }
+		estate_influence = {	estate = estate_government	influence = 10	}
+		custom_trigger_tooltip = {
+			tooltip = government_reform_cd_20_tooltip
+			NOT = { has_country_modifier = tur_janissaries_timer }
+		}
+		absolutism = 10
+	}
+	modifiers = {
+		state_maintenance_modifier = -0.25
+		global_autonomy = 0.12
+		monthly_militarized_society = -0.20
+		state_governing_cost = 0.10
+		governing_cost = -0.10
+		nomadic_tribes_influence_modifier = 0.10
+		government_influence_modifier = -0.10
+		nomadic_tribes_loyalty_modifier = 0.10
+	}
+	effect = {
+		hidden_effect = { 
+			remove_government_reform = oral_tradition_false
+			add_government_reform = oral_tradition
+		}
+		tooltip = {
+			custom_tooltip = oral_tradition_estate_tt
+			custom_tooltip = oral_tradition_tooltip
+			add_absolutism = -10
+			if = {
+				limit = { NOT = { has_country_flag = cu_stability_fixed } }
+				cu_change_stability_point_hidden = yes
+				custom_tooltip = cu_change_stability_n100
+				if = {
+					limit = {
+						has_estate = estate_nobles
+					}
+					add_estate_loyalty = {
+						estate = estate_nobles
+						loyalty = 15
+					}
+				}
+				else_if = {
+					limit = {
+						has_estate = estate_qinwang
+					}
+					add_estate_loyalty = {
+						estate = estate_qinwang
+						loyalty = 15
+					}
+				}
+				if = {
+					limit = {
+						has_estate = estate_church
+					}
+					add_estate_loyalty = {
+						estate = estate_church
+						loyalty = 15
+					}
+				}
+				else_if = {
+					limit = {
+						has_estate = estate_shizu
+					}
+					add_estate_loyalty = {
+						estate = estate_shizu
+						loyalty = 15
+					}
+				}
+			}
+		}
+	}
+}
+
+sovereign_code_false = {
+	icon = "justinian_the_first"
+	allow_normal_conversion = yes
+	legacy_equivalent = feudal_monarchy
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = sovereign_code }
+	}
+	trigger = {
+		custom_trigger_tooltip = {
+			tooltip = government_reform_cd_20_tooltip
+			NOT = { has_country_modifier = tur_janissaries_timer }
+		}
+		absolutism = 45
+		hidden_trigger = { ai = no }
+		estate_influence = {	estate = estate_government	influence = 10	}
+	}
+	modifiers = {
+		max_absolutism = 10
+		yearly_absolutism = 0.2
+		global_autonomy = 0.06
+		state_maintenance_modifier = 0.10
+		monthly_militarized_society = -0.10
+		shizu_influence_modifier = -0.05
+		church_influence_modifier = -0.05
+		burghers_influence_modifier = -0.05
+		nobles_influence_modifier = -0.05
+		qinwang_influence_modifier= -0.05
+		nomadic_tribes_influence_modifier = -0.05
+		government_influence_modifier = 0.15
+		shizu_loyalty_modifier = -0.05
+		qinwang_loyalty_modifier = -0.05
+		nobles_loyalty_modifier = -0.05
+		church_loyalty_modifier = -0.05
+	}
+	effect = {
+		hidden_effect = { 
+			remove_government_reform = sovereign_code_false
+			add_government_reform = sovereign_code
+		}
+		tooltip = {
+			custom_tooltip = sovereign_code_estate_tt
+			custom_tooltip = sovereign_code_tooltip
+			add_absolutism = -15
+			if = {
+				limit = { NOT = { has_country_flag = cu_stability_fixed } }
+				cu_change_stability_point_hidden = yes
+				custom_tooltip = cu_change_stability_n100
+				if = {
+					limit = {
+						has_estate = estate_nobles
+					}
+					add_estate_loyalty = {
+						estate = estate_nobles
+						loyalty = -15
+					}
+				}
+				else_if = {
+					limit = {
+						has_estate = estate_qinwang
+					}
+					add_estate_loyalty = {
+						estate = estate_qinwang
+						loyalty = -10
+					}
+				}
+				if = {
+					limit = {
+						has_estate = estate_church
+					}
+					add_estate_loyalty = {
+						estate = estate_church
+						loyalty = -15
+					}
+				}
+				else_if = {
+					limit = {
+						has_estate = estate_shizu
+					}
+					add_estate_loyalty = {
+						estate = estate_shizu
+						loyalty = -10
+					}
+				}
+				if = {
+					limit = {
+						has_estate = estate_burghers
+					}
+					add_estate_loyalty = {
+						estate = estate_burghers
+						loyalty = -5
+					}
+				}
+			}
+		}
+	}
+}
+
+divine_law_false = {
+	icon = "the_ten_commandments_2"
+	allow_normal_conversion = yes
+	legacy_equivalent = feudal_monarchy
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = divine_law }
+	}
+	trigger = {
+		custom_trigger_tooltip = {
+			tooltip = government_reform_cd_20_tooltip
+			NOT = { has_country_modifier = tur_janissaries_timer }
+		}
+		OR = {
+			absolutism = 20
+			militarised_society = 10
+		}
+		hidden_trigger = { ai = no }
+		estate_influence = {	estate = estate_government	influence = 10	}
+	}
+	modifiers = {
+		state_maintenance_modifier = 0.05
+		yearly_harmony = 1.25
+		global_autonomy = 0.06
+		global_institution_spread = -0.10
+		church_influence_modifier = 0.10
+		shizu_influence_modifier = 0.10
+		government_influence_modifier = -0.10
+		church_loyalty_modifier = 0.10
+		shizu_loyalty_modifier = 0.10
+	}
+	effect = {
+	    hidden_effect = { 
+			remove_government_reform = divine_law_false
+			add_government_reform = divine_law
+		}
+		tooltip = {
+			custom_tooltip = divine_law_estate_tt
+			custom_tooltip = divine_law_tooltip
+			add_absolutism = -15
+			if = {
+				limit = { NOT = { has_country_flag = cu_stability_fixed } }
+				hidden_effect = {
+						set_variable = { which = cu_var1 value = -100 }
+				}
+				cu_change_stability_point_hidden = yes
+				custom_tooltip = cu_change_stability_n100
+				if = {
+					limit = {
+						has_estate = estate_church
+					}
+					add_estate_loyalty = {
+						estate = estate_church
+						loyalty = 15
+					}
+				}
+				if = {
+					limit = {
+						has_estate = estate_burghers
+					}
+					add_estate_loyalty = {
+						estate = estate_burghers
+						loyalty = -15
+					}
+				}
+			}
+		}
+	}
+}
+
+
+constitution_reform_false = {
+	icon = "constitution"
+	allow_normal_conversion = yes
+	legacy_equivalent = feudal_monarchy
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = constitution_reform }
+	}
+	trigger = {
+		custom_trigger_tooltip = {
+			tooltip = government_reform_cd_20_tooltip
+			NOT = { has_country_modifier = tur_janissaries_timer }
+		}
+		
+		OR = {
+			AND = {
+				OR = {
+					has_reform = parliament_reform
+					full_idea_group = constitution_ideas
+				}
+				OR = {
+					has_reform = burghers_election
+					has_reform = universal_suffrage
+				}
+				adm_tech = 20
+			}
+			adm_tech = 24
+		}
+		OR = {
+			absolutism = 35
+			militarised_society = 10
+		}
+		hidden_trigger = { ai = no }
+		estate_influence = {	estate = estate_government	influence = 10	}
+	}
+	modifiers = {
+	    max_absolutism = -10
+		state_maintenance_modifier = 0.25
+		min_autonomy = -10
+		monthly_militarized_society = 0.175
+		burghers_loyalty_modifier = 0.10
+		church_loyalty_modifier = -0.05
+		nobles_loyalty_modifier = -0.05
+		qinwang_loyalty_modifier = -0.05
+		shizu_loyalty_modifier = -0.05
+	}
+	effect = {
+			hidden_effect = { 
+			remove_government_reform = constitution_reform_false
+			add_government_reform = constitution_reform
+		}
+		tooltip = {
+			custom_tooltip = constitution_estate_tt
+			custom_tooltip = constitution_tooltip
+			add_absolutism = -30
+			if = {
+				limit = { NOT = { has_country_flag = cu_stability_fixed } }
+				cu_change_stability_point_hidden = yes
+				custom_tooltip = cu_change_stability_n100
+				if = {
+					limit = {
+						has_estate = estate_nobles
+					}
+					add_estate_loyalty = {
+						estate = estate_nobles
+						loyalty = -15
+					}
+				}
+				else_if = {
+					limit = {
+						has_estate = estate_qinwang
+					}
+					add_estate_loyalty = {
+						estate = estate_qinwang
+						loyalty = -15
+					}
+				}
+				if = {
+					limit = {
+						has_estate = estate_church
+					}
+					add_estate_loyalty = {
+						estate = estate_church
+						loyalty = -15
+					}
+				}
+				else_if = {
+					limit = {
+						has_estate = estate_shizu
+					}
+					add_estate_loyalty = {
+						estate = estate_shizu
+						loyalty = -15
+					}
+				}
+				if = {
+					limit = {
+						has_estate = estate_burghers
+					}
+					add_estate_loyalty = {
+						estate = estate_burghers
+						loyalty = 15
+					}
+				}
+			}
+		}
+	}
+}
+
+
+#Election
+
+no_election_false = {
+	icon = "caesar"
+	allow_normal_conversion = yes
+	legacy_equivalent = feudal_monarchy
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = no_election }
+	}
+	trigger = {
+		has_parliament = no
+		custom_trigger_tooltip = {
+			tooltip = government_reform_cd_20_tooltip
+			NOT = { has_country_modifier = tur_janissaries_timer }
+		}
+		absolutism = 50
+		hidden_trigger = { ai = no }
+		estate_influence = {	estate = estate_government	influence = 10	}
+    }
+	modifiers = {
+		max_absolutism = 10
+		yearly_absolutism = 0.2
+		monthly_militarized_society = -0.125
+		legitimacy = 1
+		republican_tradition = -0.3		
+		church_influence_modifier = 0.05
+		nobles_influence_modifier = 0.05
+		qinwang_influence_modifier= 0.05
+		nomadic_tribes_influence_modifier = 0.05
+		shizu_influence_modifier = 0.05
+		burghers_influence_modifier = -0.10
+		nobles_loyalty_modifier = 0.05
+		church_loyalty_modifier = 0.05
+		qinwang_loyalty_modifier = 0.05
+		nomadic_tribes_loyalty_modifier = 0.05
+		shizu_loyalty_modifier = 0.05
+		burghers_loyalty_modifier = -0.075
+	}
+	effect = {
+	    hidden_effect = { 
+			remove_government_reform = no_election_false
+			add_government_reform = no_election
+		}
+		tooltip = {
+			custom_tooltip = no_election_estate_tt
+			#custom_tooltip = no_election_tooltip
+			if = {
+				limit = { NOT = { has_country_flag = cu_stability_fixed } }
+				hidden_effect = {
+						set_variable = { which = cu_var1 value = -100 }
+				}
+				cu_change_stability_point_hidden = yes
+				custom_tooltip = cu_change_stability_n100
+			}
+			add_absolutism = -10
+		}
+	}
+	ai = {
+		factor = 0
+	}
+}
+
+noble_election_false = {
+	icon = "man_on_podium"
+	allow_normal_conversion = yes
+	legacy_equivalent = feudal_monarchy
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = noble_election }
+	}
+	trigger = {
+		custom_trigger_tooltip = {
+			tooltip = government_reform_cd_20_tooltip
+			NOT = { has_country_modifier = tur_janissaries_timer }
+		}
+		OR = {
+			absolutism = 35
+			militarised_society = 10
+		}
+		OR = {
+			has_reform = noble_council
+			has_reform = parliament_reform
+			has_reform = eng_grand_charter
+			adm_tech = 14
+		}
+		hidden_trigger = { ai = no }
+		estate_influence = {	estate = estate_government	influence = 10	}
+	}
+	modifiers = {
+		legitimacy = 0.05
+		global_tax_modifier = 0.05
+		max_absolutism = 5
+		monthly_militarized_society = -0.03
+		nobles_influence_modifier = 0.03
+		shizu_influence_modifier = 0.03
+		burghers_influence_modifier = -0.06
+		nobles_loyalty_modifier = 0.03
+		shizu_loyalty_modifier = 0.03
+		burghers_loyalty_modifier = -0.05
+	}
+	effect = {
+		hidden_effect = { 
+			remove_government_reform = noble_election_false
+			add_government_reform = noble_election
+		}
+		tooltip = {
+			custom_tooltip = noble_election_estate_tt
+			custom_tooltip = noble_election_tooltip
+			add_absolutism = -10
+			if = {
+				limit = { NOT = { has_country_flag = cu_stability_fixed } }
+				cu_change_stability_point_hidden = yes
+				custom_tooltip = cu_change_stability_n100
+				if = {
+					limit = {
+						has_estate = estate_nobles
+					}
+					add_estate_loyalty = {
+						estate = estate_nobles
+						loyalty = 10
+					}
+				}
+				else_if = {
+					limit = {
+						has_estate = estate_qinwang
+					}
+					add_estate_loyalty = {
+						estate = estate_qinwang
+						loyalty = 5
+					}
+				}
+				if = {
+					limit = {
+						has_estate = estate_church
+					}
+					add_estate_loyalty = {
+						estate = estate_church
+						loyalty = 10
+					}
+				}
+				else_if = {
+					limit = {
+						has_estate = estate_shizu
+					}
+					add_estate_loyalty = {
+						estate = estate_shizu
+						loyalty = 5
+					}
+				}
+				if = {
+					limit = {
+						has_estate = estate_burghers
+					}
+					add_estate_loyalty = {
+						estate = estate_burghers
+						loyalty = -5
+					}
+				}
+			}
+		}
+	}
+	conditional = {
+		#has_parliament = yes
+	}
+}
+
+burghers_election_false = {
+	icon = "burgher_election_icon"
+	allow_normal_conversion = yes
+	legacy_equivalent = feudal_monarchy
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = burghers_election }
+	}
+	trigger = {	
+		custom_trigger_tooltip = {
+			tooltip = government_reform_cd_20_tooltip
+			NOT = { has_country_modifier = tur_janissaries_timer }
+		}
+		OR = {
+			absolutism = 35
+			militarised_society = 10
+		}
+		NOT = { government = tribal }
+		OR = { 
+			has_reform = constitution_reform
+			government = republic
+			full_idea_group = constitution_ideas
+			has_reform = eng_grand_charter
+		}
+		has_reform = parliament_reform
+		has_reform = noble_election
+		hidden_trigger = { ai = no }
+		estate_influence = {	estate = estate_government	influence = 10	}
+	}
+	modifiers = {
+		trade_efficiency = 0.05
+		production_efficiency = 0.05
+		republican_tradition = 0.2
+		yearly_corruption = 0.02
+		max_absolutism = -10
+		monthly_militarized_society = 0.10
+		church_influence_modifier = -0.05
+		nobles_influence_modifier = -0.05
+		qinwang_influence_modifier= -0.05
+		nomadic_tribes_influence_modifier = -0.05
+		shizu_influence_modifier = -0.05
+		burghers_influence_modifier = 0.10
+		nobles_loyalty_modifier = -0.05
+		church_loyalty_modifier = -0.05
+		qinwang_loyalty_modifier = -0.05
+		nomadic_tribes_loyalty_modifier = -0.05
+		shizu_loyalty_modifier = -0.05
+		burghers_loyalty_modifier = 0.075
+	}
+	effect = {
+		hidden_effect = { 
+			remove_government_reform = burghers_election_false
+			add_government_reform = burghers_election
+		}
+		tooltip = {
+			custom_tooltip = burghers_election_estate_tt
+			custom_tooltip = burghers_election_tooltip
+			add_absolutism = -15
+			if = {
+				limit = { NOT = { has_country_flag = cu_stability_fixed } }
+				cu_change_stability_point_hidden = yes
+				custom_tooltip = cu_change_stability_n100
+				if = {
+					limit = {
+						has_estate = estate_nobles
+					}
+					add_estate_loyalty = {
+						estate = estate_nobles
+						loyalty = -10
+					}
+				}
+				else_if = {
+					limit = {
+						has_estate = estate_qinwang
+					}
+					add_estate_loyalty = {
+						estate = estate_qinwang
+						loyalty = -10
+					}
+				}
+				if = {
+					limit = {
+						has_estate = estate_church
+					}
+					add_estate_loyalty = {
+						estate = estate_church
+						loyalty = -10
+					}
+				}
+				else_if = {
+					limit = {
+						has_estate = estate_shizu
+					}
+					add_estate_loyalty = {
+						estate = estate_shizu
+						loyalty = -15
+					}
+				}
+				if = {
+					limit = {
+						has_estate = estate_burghers
+					}
+					add_estate_loyalty = {
+						estate = estate_burghers
+						loyalty = 15
+					}
+				}
+			}
+		}
+	}
+	conditional = {
+		#has_parliament = yes
+	}
+}
+
+universal_suffrage_false = {
+	icon = "ballot_box"
+	allow_normal_conversion = yes
+	legacy_equivalent = feudal_monarchy
+	valid_for_nation_designer = yes
+	nation_designer_cost = 0
+	valid_for_new_country = yes
+	potential = {
+		NOT = { has_reform = universal_suffrage }
+	}
+	trigger = {
+		custom_trigger_tooltip = {
+			tooltip = government_reform_cd_20_tooltip
+			NOT = { has_country_modifier = tur_janissaries_timer }
+		}
+		OR = {
+			absolutism = 35
+			militarised_society = 10
+		}
+		has_reform = burghers_election
+		hidden_trigger = { ai = no }
+		estate_influence = {	estate = estate_government	influence = 10	}
+		has_reform = parliament_reform
+		OR = { 
+			has_reform = constitution_reform
+			government = republic
+			full_idea_group = constitution_ideas
+		}
+    }
+	modifiers = {
+		governing_capacity = 5
+		development_cost = -0.05
+		republican_tradition = 0.4
+		max_absolutism = -20
+		monthly_militarized_society = 0.25
+		church_influence_modifier = -0.075
+		nobles_influence_modifier = -0.075
+		qinwang_influence_modifier= -0.075
+		nomadic_tribes_influence_modifier = -0.075
+		shizu_influence_modifier = -0.075
+		burghers_influence_modifier = 0.15
+		nobles_loyalty_modifier = -0.10
+		church_loyalty_modifier = -0.10
+		qinwang_loyalty_modifier = -0.10
+		nomadic_tribes_loyalty_modifier = -0.10
+		shizu_loyalty_modifier = -0.10
+		burghers_loyalty_modifier = 0.125
+	}
+	effect = {
+		hidden_effect = { 
+			remove_government_reform = universal_suffrage_false
+			add_government_reform = universal_suffrage
+		}
+		tooltip = {
+			custom_tooltip = universal_suffrage_estate_tt
+			custom_tooltip = universal_suffrage_tooltip
+			add_absolutism = -15
+			if = {
+				limit = { NOT = { has_country_flag = cu_stability_fixed } }
+				hidden_effect = {
+						set_variable = { which = cu_var1 value = -100 }
+				}
+				cu_change_stability_point_hidden = yes
+				custom_tooltip = cu_change_stability_n100
+				if = {
+					limit = {
+						has_estate = estate_nobles
+					}
+					add_estate_loyalty = {
+						estate = estate_nobles
+						loyalty = -20
+					}
+				}
+				else_if = {
+					limit = {
+						has_estate = estate_qinwang
+					}
+					add_estate_loyalty = {
+						estate = estate_qinwang
+						loyalty = -20
+					}
+				}
+				if = {
+					limit = {
+						has_estate = estate_church
+					}
+					add_estate_loyalty = {
+						estate = estate_church
+						loyalty = -20
+					}
+				}
+				else_if = {
+					limit = {
+						has_estate = estate_shizu
+					}
+					add_estate_loyalty = {
+						estate = estate_shizu
+						loyalty = -25
+					}
+				}
+				if = {
+					limit = {
+						has_estate = estate_burghers
+					}
+					add_estate_loyalty = {
+						estate = estate_burghers
+						loyalty = 10
+					}
+				}
+			}
+		}
+	}
+	conditional = {
+		#has_parliament = yes
+	}
+}
+
+#spe
+
+eng_grand_charter_false = {
+	icon = "british_queen"
+	allow_normal_conversion = no
+	legacy_equivalent = english_monarchy_legacy
+	valid_for_new_country = yes
+	valid_for_nation_designer = yes
+	nation_designer_cost = 100
+	potential = {
+		OR = {
+			tag = ENG
+			AND = {
+			      OR = {
+				        tag = GBR
+						tag = HBR
+				  }
+				  primary_culture = english
+			}
+		}
+		NOT = { has_reform = eng_grand_charter }
+	}
+	trigger = {
+		NOT = { absolutism = 30 }
+		custom_trigger_tooltip = {
+			tooltip = government_reform_cd_20_tooltip
+			NOT = { has_country_modifier = tur_janissaries_timer }
+		}
+    }
+	modifiers = {
+		legitimacy = 1
+		global_unrest = -0.5
+		max_absolutism = -5
+		monthly_militarized_society = 0.03
+	}
+	conditional = {
+		has_parliament = yes
+	}
+	effect = {
+	    hidden_effect = { 
+			remove_government_reform = eng_grand_charter_false
+			add_government_reform = eng_grand_charter
+		}
+		tooltip = {
+			custom_tooltip = eng_grand_charter_estate_tt
+			custom_tooltip = eng_grand_charter_tooltip
+			add_absolutism = -12.5
+			if = {
+				limit = { NOT = { has_country_flag = cu_stability_fixed } }
+				if = {
+					limit = {
+						has_estate = estate_nobles
+					}
+					add_estate_loyalty = {
+						estate = estate_nobles
+						loyalty = 5
+					}
+				}
+				if = {
+					limit = {
+						has_estate = estate_church
+					}
+					add_estate_loyalty = {
+						estate = estate_church
+						loyalty = 5
+					}
+				}
+				if = {
+					limit = {
+						has_estate = estate_burghers
+					}
+					add_estate_loyalty = {
+						estate = estate_burghers
+						loyalty = 5
+					}
+				}
+			}
+		}
+	}
+	
+	ai = {
+		factor = 0
+	}
+}
+
+fra_pragmatic_sanction_false = {
+	icon = "charlesvii"
+	allow_normal_conversion = no	
+	valid_for_new_country = no
+	valid_for_nation_designer = no
+	nation_designer_cost = 100
+	potential = {
+		tag = FRA
+		NOT = { has_reform = fra_pragmatic_sanction }
+	}
+	trigger = {
+		NOT = { absolutism = 30 }
+		custom_trigger_tooltip = {
+			tooltip = government_reform_cd_20_tooltip
+			NOT = { has_country_modifier = tur_janissaries_timer }
+		}
+    }
+	modifiers = {
+		papal_influence = -1.5
+		church_influence_modifier = -0.05
+		church_loyalty_modifier = 0.05
+	}	
+	effect = {		
+		hidden_effect = { 
+			remove_government_reform = fra_pragmatic_sanction_false
+			add_government_reform = fra_pragmatic_sanction
+		}
+		tooltip = {
+			custom_tooltip = fra_pragmatic_sanction_estate_tt
+			add_absolutism = -12.5
+			if = {
+				limit = { NOT = { has_country_flag = cu_stability_fixed } }			
+				if = {
+					limit = {
+						has_estate = estate_church
+					}
+					add_estate_loyalty = {
+						estate = estate_church
+						loyalty = -5
+					}
+				}			
+			}
+		}
+	}
+	
+	ai = {
+		factor = 0
+	}
+}
+
+elective_monarchy_false = {
+	icon = "elective_monarchy"
+	allow_normal_conversion = no
+	lock_level_when_selected = yes
+	legacy_equivalent = elective_monarchy_legacy
+	valid_for_new_country = yes
+	valid_for_nation_designer = yes
+	nation_designer_cost = 10
+	nation_designer_trigger = {
+		has_dlc = "Res Publica"
+	}
+	potential = {
+		#has_reform = noble_election
+		OR = {
+			NOT = { has_reform = bureaucratic }
+			NOT = { 
+				AND = {
+					has_reform = mandate_system
+					absolutism = 60
+				}
+			}
+		}
+		NOT = { has_reform = elective_monarchy }
+	}
+	trigger = {
+		custom_trigger_tooltip = {
+			tooltip = government_reform_cd_20_tooltip
+			NOT = { has_country_modifier = tur_janissaries_timer }
+		}
+		government = monarchy
+		has_reform = noble_election
+		NOT = { MIL = 4 }
+		NOT = { legitimacy = 60 }
+    }
+	modifiers = {
+		num_accepted_cultures = 3
+		yearly_absolutism = -0.80
+		monthly_militarized_society = -0.10
+		nobles_loyalty_modifier = 0.05
+		nobles_influence_modifier = 0.10
+		government_influence_modifier = -0.10
+	}
+	effect = {
+		hidden_effect = { 
+			remove_government_reform = elective_monarchy_false
+			add_government_reform = elective_monarchy
+		}
+		tooltip = {
+			custom_tooltip = elective_monarchy_tooltip
+			add_absolutism = -12.5
+			if = {
+				limit = { NOT = { has_country_flag = cu_stability_fixed } }
+				if = {
+					limit = {
+						has_estate = estate_nobles
+					}
+					add_estate_loyalty = {
+						estate = estate_nobles
+						loyalty = 15
+					}
+				}
+				else_if = {
+					limit = {
+						has_estate = estate_qinwang
+					}
+					add_estate_loyalty = {
+						estate = estate_qinwang
+						loyalty = 15
+					}
+				}
+				if = {
+					limit = {
+						has_estate = estate_church
+					}
+					add_estate_loyalty = {
+						estate = estate_church
+						loyalty = 15
+					}
+				}
+				else_if = {
+					limit = {
+						has_estate = estate_shizu
+					}
+					add_estate_loyalty = {
+						estate = estate_shizu
+						loyalty = 15
+					}
+				}
+			}
+		}
+	}
+	conditional = {
+		is_elective = yes
+	}
+	ai = {
+		factor = 0
+	}
+}
+
+ord_reform_false = {
+	icon = "ord_reform"
+	allow_normal_conversion = no
+	legacy_equivalent = feudal_monarchy
+	valid_for_nation_designer = yes
+	valid_for_new_country = yes
+	nation_designer_cost = 0
+	#lock_level_when_selected = yes
+	potential = {
+		NOT = { has_reform = ord_reform }
+	}
+	trigger = {
+		custom_trigger_tooltip = {
+			tooltip = government_reform_cd_20_tooltip
+			NOT = { has_country_modifier = tur_janissaries_timer }
+		}
+		hidden_trigger = { ai = no }
+		estate_influence = {	estate = estate_government	influence = 10	}
+	}
+	effect = {
+		hidden_effect = { 
+			remove_government_reform = ord_reform_false
+			add_government_reform = ord_reform
+		}
+		tooltip = {
+			add_absolutism = -12.5
+		}
+	}
+}
+ 
+confederate_false = {
+	icon = "confederate"
+	allow_normal_conversion = no
+	lock_level_when_selected = yes
+	valid_for_nation_designer = no
+	potential = {
+		has_idea_group = influence_ideas
+		has_reform = self_governance	
+		NOT = { has_reform = confederate }	
+	}
+	trigger = {
+		adm_tech = 19
+		full_idea_group = influence_ideas													
+		NOT = { absolutism = 20 }
+		hidden_trigger = { ai = no }
+		estate_influence = {	estate = estate_government	influence = 10	}									
+	}
+	modifiers = { 
+		governing_capacity = 10
+		yearly_absolutism = -2.0	
+		monthly_militarized_society = -0.05
+		administrative_efficiency = -0.05
+		reduced_liberty_desire = 10
+		#Addtional buff from dominions
+	}
+	effect = {
+		hidden_effect = { 
+			remove_government_reform = confederate_false
+			add_government_reform = confederate
+		}
+		tooltip = {
+			add_absolutism = -12.5
+			custom_tooltip = cu_confederate_tooltip
+			if = {
+				limit = { NOT = { has_country_flag = cu_stability_fixed } }
+				cu_change_stability_point_hidden = yes
+				custom_tooltip = cu_change_stability_n100
+			}
+		}
+	}
+	custom_attributes = {
+		locked_government_type = yes		
+	}	
+}

@@ -1,0 +1,20 @@
+government = monarchy
+add_government_reform = feudalism_reform
+government_rank = 1
+technology_group = western
+primary_culture = lower_saxon
+religion = catholic
+technology_group = western
+capital = 6174	# Osnabruck
+fixed_capital = 6174 # Cannot move capital away from this province & no power cost to move to it
+
+1426.1.1 = {
+	monarch = {
+		name = "Otto IV"
+		dynasty = "von Diepholz"
+		birth_date = 1399.1.1
+		dip = 3
+		adm = 2
+		mil = 2
+	}
+}

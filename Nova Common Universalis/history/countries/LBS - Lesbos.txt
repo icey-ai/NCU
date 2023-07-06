@@ -1,0 +1,20 @@
+government = monarchy
+add_government_reform = feudalism_reform
+government_rank = 1
+primary_culture = ligurian
+add_accepted_culture = pontic_greek
+add_accepted_culture = greek
+religion = catholic
+technology_group = western
+capital = 4700	# Lesbos
+fixed_capital = 4700 # Cannot move capital away from this province & no power cost to move to it
+
+1428.1.1 = {
+	monarch = {
+		name = "Dorino Gattilusio"
+		birth_date = 1400.1.1
+		adm = 1
+		dip = 3
+		mil = 4
+	}
+}

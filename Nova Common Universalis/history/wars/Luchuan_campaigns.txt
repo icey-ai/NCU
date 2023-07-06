@@ -1,0 +1,17 @@
+name = "Luchuan campaigns"
+war_goal = {
+	type = take_claim
+	casus_belli = cb_conquest
+	province = 6595 # Jinggu
+}
+
+1442.1.1 = {
+	add_attacker = MMA
+	add_defender = MNG
+}
+
+# Peace
+1446.1.1 = {
+	rem_attacker = MMA
+	rem_defender = MNG
+}

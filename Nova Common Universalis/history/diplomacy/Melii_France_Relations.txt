@@ -1,0 +1,5 @@
+union = {
+	first = PRO
+	second = ANJ
+	start_date = 1444.1.1
+}

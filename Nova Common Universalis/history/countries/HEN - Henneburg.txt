@@ -1,0 +1,20 @@
+government = monarchy
+add_government_reform = feudalism_reform
+government_rank = 1
+primary_culture = franconian
+religion = catholic
+technology_group = western
+capital = 6200	# Henneberg
+fixed_capital = 6200 # Cannot move capital away from this province & no power cost to move to it
+
+1443.1.1 = {
+	heir = {
+		name = "Berthold"
+		dynasty = "von Babenberg"
+		birth_date = 1400.1.1
+		claim = 95
+		adm = 3
+		dip = 1
+		mil = 2
+	}
+}

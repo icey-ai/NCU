@@ -1,0 +1,4 @@
+#Mountains blocking movement in central europe
+
+discovered_by = chinese
+discovered_by = nomad_group

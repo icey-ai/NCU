@@ -1,0 +1,21 @@
+#6586 - Oosumi
+
+owner = SMZ
+controller = SMZ
+culture = kyushuan
+religion = shinto
+capital = "Oosumi"
+trade_goods = silk
+hre = no
+base_tax = 3
+base_manpower = 3
+base_production = 3
+is_city = yes
+add_core = SMZ
+discovered_by = chinese
+discovered_by = MCH
+discovered_by = KHA
+discovered_by = OIR
+discovered_by = QNG
+
+1542.1.1 = { discovered_by = POR }

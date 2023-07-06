@@ -1,0 +1,254 @@
+country_decisions = { 
+
+	manchu_nation_1 = {
+		major = yes
+		potential = {
+			normal_or_historical_nations = yes
+			NOT = { has_country_flag = formed_manchu_flag }
+			OR = {
+				ai = no
+				is_playing_custom_nation = no
+			}
+			NOT = { exists = MCH }
+			NOT = { tag = PAP }
+			is_emperor_of_china = no
+			OR = {
+				tag = MJZ	
+				tag = MHX
+				tag = MYR
+				tag = NVK
+				tag = NHX
+				tag = EJZ
+				AND = {
+					culture_group = tungusic
+					government_type = tribal	
+				}
+			}			
+		}
+		provinces_to_highlight = {
+			OR = {
+				province_id = 730		#Girin				
+				province_id = 2108		#Huncun
+				province_id = 2111
+				culture = manchu
+				culture = manchu_han
+				culture = evenk
+			}
+			OR = {
+				NOT = { owned_by = ROOT }
+				NOT = { is_core = ROOT }
+			}
+		}
+		allow = {
+			is_free_or_tributary_trigger = yes
+			is_at_war = no			
+			owns_core_province = 730		#Girin			
+			owns_core_province = 2108		#Huncun
+			owns_core_province = 2111
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = manchu_manchuria_decision.tooltip
+					num_of_owned_provinces_with = {
+						is_core = ROOT
+						OR = {
+							culture = manchu_han
+							culture = manchu
+							culture = evenk
+						}
+						value = 20
+					}
+				}
+				total_development = 200
+			}
+		}
+		effect = {
+			swap_non_generic_missions = yes
+			2111 = {
+				move_capital_effect = yes
+			}
+			manchuria_region = {
+				limit = {
+					NOT = { is_core = ROOT }
+				}
+				add_core = MCH
+			}
+			add_prestige = 25
+			change_tag = MCH
+			if = {
+				limit = {
+					NOT = { government_rank = 2 }
+				}
+				set_government_rank = 2
+			}
+			set_country_flag = formed_manchu_flag
+			if = {
+				limit = { has_custom_ideas = no }
+				country_event = { id = ideagroups.1 } #Swap Ideas
+			}
+		}
+		ai_importance = 500		
+	}
+
+	the_seven_grievances = {
+		major = yes
+		potential = {
+			OR = {
+				tag = MCH
+				tag = QNG
+			}
+			normal_or_historical_nations = yes		
+			NOT = { has_country_modifier = seven_grievance_mod }
+			NOT = { has_country_flag = seven_grievance_flag }
+			MNG = {
+				exists = yes
+				is_emperor_of_china = yes
+			}
+			any_owned_province = {
+				any_neighbor_province = {
+					owned_by = MNG
+				}
+			}
+		}
+		allow = {
+			total_development = 100
+			NOT = {
+				has_opinion = {
+					    who = MNG
+					    value = 50
+				}
+			}
+			NOT = { alliance_with = MNG }
+			MNG = { NOT = { meritocracy = 70 } } 
+		}
+		effect = {
+			declare_war_with_cb = {
+				    who = MNG
+				    casus_belli = cb_border_war
+		    }
+			add_country_modifier = {
+				name = seven_grievance_mod
+				duration = 5475
+			}
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				NOT = { army_size = 15 } #no suicide
+			}
+			modifier = {
+				factor = 0
+				MNG = { army_size = 70 } #no suicide
+			}
+		}
+	}
+
+	form_manchu_dynasty = {
+		major = yes
+		potential = {
+			tag = MCH
+			normal_or_historical_nations = yes			
+			OR = {
+				ai = no
+				is_playing_custom_nation = no
+			}
+			NOT = { exists = QNG }
+			is_emperor_of_china = no
+			NOT = { has_country_flag = manchu_dynasty_formed }
+			NOT = { tag = PAP }
+			OR = {
+				ai = no
+				AND = {
+					ai = yes
+					num_of_cities = 5
+				}
+			}
+		}
+		provinces_to_highlight = {
+			OR = {
+				province_id = 6237		# Liaoyang
+				province_id = 704		# Guangning
+				province_id = 726		# Shenyang	
+				province_id = 723		# Xilin Gol
+				province_id = 702
+			}
+			NOT = { cu_hold_by_country_or_non_sovereign_subject_trigger = { target = ROOT } }
+		}
+		allow = {
+			owns_core_province = 6237		# Liaoyang
+			owns_core_province = 704		# Guangning
+			owns_core_province = 726		# Shenyang			
+			OR = {
+				owns = 4203
+				4203 = { 
+					owner = { is_subject_of = ROOT }
+				}
+			}
+			OR = {
+				owns = 702
+				702	= { 
+					owner = { is_subject_of = ROOT }
+				}
+			}		
+			is_at_war = no
+			is_subject = no
+			prestige = 30
+		}
+		effect = {
+			726 = {				
+				change_culture = ROOT
+				add_core = QNG
+				rename_capital = ShengJing
+			}
+			set_capital = 726 # Shenyang			  
+			change_tag = QNG			
+			add_country_modifier = {
+				name = "centralization_modifier"
+				duration = 5475
+			}
+			add_government_reform = becomes_monarchy_reform			
+			add_government_reform = chinese_warlord
+			set_country_flag = can_use_qing_policy
+			change_religion = confucianism
+			set_ruler_religion = confucianism
+			set_heir_religion = confucianism		
+			add_government_reform = bureaucratic	
+			add_government_reform = sovereign_code	
+			if = {
+				limit = { has_reform = education_policy_nobles }
+				add_government_reform = education_policy_church
+			}
+			add_country_modifier = {
+				name = "conversion_zeal"
+				duration = 5475
+			}
+			add_prestige = 30
+			country_event = { id = mandate.000 }
+			  if = {
+				limit = {
+					technology_group = nomad_group
+				}
+                cu_change_stability_point_n150 = yes
+				if = {
+					limit = { has_reform = tribal_conscription }
+					add_government_reform = military_household
+				}
+				change_technology_group = chinese
+				change_unit_type = chinese
+			}		
+			
+			add_prestige = 10
+			set_country_flag = manchu_dynasty_formed
+			swap_non_generic_missions = yes			
+			if = {
+				limit = { has_custom_ideas = no }
+				swap_free_idea_group = yes #Swap Ideas
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+
+} #End of country decisions

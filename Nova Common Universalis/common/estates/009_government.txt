@@ -1,0 +1,36 @@
+estate_government = {
+	icon = 11
+		
+	trigger = {
+		NOT = { has_country_modifier = cu_estate_reshuffle }
+	}
+
+	# These scale with loyalty & power
+	country_modifier_happy = {
+		monthly_militarized_society = 0.25
+		max_absolutism = 20
+	}
+	country_modifier_neutral = {
+		monthly_militarized_society = 0.15
+		max_absolutism = 10
+	}	
+	country_modifier_angry = {
+		monthly_militarized_society = 0.1
+		max_absolutism = 5
+	}
+	
+	
+	# Influence modifiers
+	base_influence = 0
+	
+	privileges = {
+	}
+	
+	agendas = {
+	}
+	
+	
+	color = { 65 115 240 }
+	influence_from_dev_modifier = 2.0
+	
+}

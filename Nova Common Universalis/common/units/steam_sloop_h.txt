@@ -1,0 +1,11 @@
+#Steam Sloop
+type = galley
+trigger = { 
+	has_country_flag = galley_mod_h
+}
+hull_size = 30
+base_cannons = 32
+blockade = 5
+sail_speed = 9
+
+sprite_level = 6

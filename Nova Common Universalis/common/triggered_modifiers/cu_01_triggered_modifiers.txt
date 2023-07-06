@@ -1,0 +1,1925 @@
+# Triggered modifiers are here.
+# these are checked for each countries once/month and then applied.
+#
+# Effects are fully scriptable here.
+
+#Tiny State
+
+tiny_state = {
+	potential = {
+	   NOT = {
+                OR = {
+                               has_reform =  daimyo
+                               has_reform =  shogunate
+                               has_reform =  celestial_empire  
+                               num_of_cities = 5
+                 }
+           }
+	}
+	trigger = {
+		NOT = {
+			num_of_cities = 5
+		}          
+	}
+        diplomatic_upkeep = -1
+        state_governing_cost = -0.10
+        #development_cost = 0.3
+        idea_cost = -0.10
+        core_creation = 0.25
+        #fort_maintenance_modifier = -0.3
+        ae_impact = -0.2
+        global_colonial_growth = 20
+		yearly_corruption = -0.1
+		state_maintenance_modifier = -0.1
+		placed_merchant_power = -3
+		spy_offence = -0.25	
+		stability_cost_modifier = -0.2
+		technology_cost = 0.15
+        #icon = 3
+}
+
+#Small State
+
+small_state = {
+	potential = {
+                num_of_cities = 5
+		NOT = {
+                        OR = 
+                            { 
+                               has_reform =  daimyo
+                               has_reform =  shogunate
+                               has_reform =  celestial_empire   
+                        }
+                }
+	}
+	trigger = {
+		NOT = {
+			num_of_cities = 12
+		}
+                
+	}
+		diplomatic_upkeep = -1
+        state_governing_cost = -0.05
+        #development_cost = 0.15
+        idea_cost = -0.05
+        core_creation = 0.2
+        #fort_maintenance_modifier = -0.25
+        ae_impact = -0.1
+        global_colonial_growth = 15
+		yearly_corruption = -0.04
+		state_maintenance_modifier = -0.05
+		placed_merchant_power = -2
+        spy_offence = -0.15	
+		stability_cost_modifier = -0.1
+		technology_cost = 0.075
+		all_power_cost = -0.025
+        #icon = 3
+}
+
+#Medium State
+
+medium_state = {
+	potential = {
+		 NOT = {
+                        OR = 
+                            {
+                               has_reform =  daimyo
+                               has_reform =  shogunate
+                        }
+                }
+                NOT = {
+			               num_of_cities = 30
+		            }   
+	}
+	trigger = {
+		       num_of_cities = 12  
+	}
+        free_leader_pool = 5
+        core_creation = 0.15
+        years_of_nationalism = -1
+        global_colonial_growth = 10
+		placed_merchant_power = -1
+		spy_offence = -0.05
+		land_forcelimit = 2
+		naval_forcelimit = 3
+		all_power_cost = -0.05
+        #icon = 3
+}
+
+#Large State
+
+large_state = {
+	potential = {
+                NOT = {
+                        OR = 
+                            {
+                               has_reform =  daimyo
+                               has_reform =  shogunate
+                        }
+                }
+                NOT = {
+			              num_of_cities = 60
+		            }
+	}
+	trigger = {
+                num_of_cities = 30
+	}
+        free_leader_pool = 5
+        #development_cost = -0.05
+        idea_cost = 0.05
+        #fort_maintenance_modifier = -0.15
+		ae_impact = 0.05
+        core_creation = 0.1
+		province_warscore_cost = -0.05
+        years_of_nationalism = -2
+        global_colonial_growth = 5
+		yearly_corruption = 0.06
+		state_maintenance_modifier = 0.05
+		stability_cost_modifier= 0.1
+		land_forcelimit = 4
+		technology_cost = -0.025
+		naval_forcelimit = 6
+		all_power_cost = -0.075
+        #icon = 3
+}
+
+#Huge State
+
+huge_state = {
+	potential = {
+                               NOT = {
+                                    num_of_cities = 120
+                               }
+	}
+	trigger = {
+	  num_of_cities = 60
+	}
+        free_leader_pool = 10
+        state_governing_cost = 0.025
+        #development_cost = -0.1
+        idea_cost = 0.10
+        #fort_maintenance_modifier = -0.1
+		ae_impact = 0.1
+        core_creation = 0.05
+		province_warscore_cost = -0.10
+        years_of_nationalism = -3
+		yearly_corruption = 0.12
+		state_maintenance_modifier = 0.1
+		placed_merchant_power = 1
+		spy_offence = 0.05
+		stability_cost_modifier= 0.2
+		technology_cost = -0.05
+		land_forcelimit = 6
+		naval_forcelimit = 9
+		all_power_cost = -0.1
+        #icon = 3
+}
+
+#Continental State
+
+continental_state = {
+	potential = {
+                 NOT = {
+                         num_of_cities = 250
+                 }
+	}
+	trigger = {
+	  num_of_cities = 120
+	}
+	    diplomatic_upkeep = 1
+        free_leader_pool = 15
+        state_governing_cost = 0.05
+        #development_cost = -0.15
+        idea_cost = 0.15
+        #fort_maintenance_modifier = -0.05
+        ae_impact = 0.2
+		province_warscore_cost = -0.15
+        years_of_nationalism = -4
+        missionaries = 1
+		merchants = 1
+		yearly_corruption = 0.2
+		state_maintenance_modifier = 0.15
+		placed_merchant_power = 2	
+		spy_offence = 0.15	
+		stability_cost_modifier= 0.3
+		technology_cost = -0.075
+		land_forcelimit = 8
+		naval_forcelimit = 12
+		all_power_cost = -0.125
+        #icon = 3
+}	
+
+#World State
+
+world_state = {
+	potential = {
+	}
+	trigger = {
+                num_of_cities = 250
+	}
+	    diplomatic_upkeep = 1
+        free_leader_pool = 20
+		state_governing_cost = 0.1
+        #development_cost = -0.2
+        idea_cost = 0.20
+        core_creation = -0.05
+        ae_impact = 0.3
+		province_warscore_cost = -0.20
+        years_of_nationalism = -5
+        missionaries = 1
+		merchants = 1
+		yearly_corruption = 0.3
+		state_maintenance_modifier = 0.2
+		placed_merchant_power = 3
+		spy_offence = 0.25
+		stability_cost_modifier= 0.4
+		technology_cost = -0.10
+		land_forcelimit = 10
+		naval_forcelimit = 15
+		all_power_cost = -0.15
+        #icon = 3
+}
+
+Khan_1 = {
+	potential = {
+		OR = {
+			government = tribal
+			has_reform =  steppe_horde
+			has_reform =  steppe_empire
+			primitives = yes
+		}
+		NOT = { check_variable = { which = cu_ra_ws value = 0.2 } }
+    }
+	trigger = {    
+		custom_trigger_tooltip = {
+			tooltip = khan_supermacy_1_tt
+			check_variable = { which = cu_ra_ws value = 0.1 }
+		}	
+	}
+    land_morale = 0.01
+	shock_damage = 0.01
+	land_maintenance_modifier = -0.01
+	global_unrest = -0.2
+	horde_unity = 0.2	
+	province_warscore_cost = -0.02
+	global_manpower_modifier = 0.02
+	prestige = 0.1
+    #icon = 3
+}
+
+Khan_2 = {
+	potential = {
+		OR = {
+			government = tribal
+			has_reform =  steppe_horde
+			has_reform =  steppe_empire
+			primitives = yes
+		}
+		NOT = { check_variable = { which = cu_ra_ws value = 0.4 } }
+	}
+	trigger = {    
+		custom_trigger_tooltip = {
+			tooltip = khan_supermacy_2_tt
+			check_variable = { which = cu_ra_ws value = 0.2 }
+		}
+	}
+    land_morale = 0.02
+	shock_damage = 0.02
+	land_maintenance_modifier = -0.02
+	horde_unity = 0.4
+	global_unrest = -0.4	
+	province_warscore_cost = -0.04
+	global_manpower_modifier = 0.04
+	prestige = 0.3
+    #icon = 3
+}
+
+Khan_3 = {
+	potential = {
+		OR = {
+			government = tribal
+			has_reform =  steppe_horde
+			has_reform =  steppe_empire
+			primitives = yes
+		}
+		NOT = { check_variable = { which = cu_ra_ws value = 0.7 } }
+	}
+	trigger = {    
+		custom_trigger_tooltip = {
+			tooltip = khan_supermacy_3_tt
+			check_variable = { which = cu_ra_ws value = 0.4 }
+		}
+	}
+    land_morale = 0.03
+	shock_damage = 0.03
+	land_maintenance_modifier = -0.03
+	horde_unity = 0.6
+	global_unrest = -0.6	
+	province_warscore_cost = -0.06
+	global_manpower_modifier = 0.06
+	prestige = 0.5
+    #icon = 3
+}
+
+Khan_4 = {
+	potential = {
+		OR = {
+			government = tribal
+			has_reform =  steppe_horde
+			has_reform =  steppe_empire
+			primitives = yes
+		}
+		NOT = { check_variable = { which = cu_ra_ws value = 1 } }
+	}
+	trigger = {    
+		custom_trigger_tooltip = {
+			tooltip = khan_supermacy_4_tt
+			check_variable = { which = cu_ra_ws value = 0.7 }
+		}
+	}
+    land_morale = 0.04
+	shock_damage = 0.04
+	land_maintenance_modifier = -0.04
+	horde_unity = 0.8
+	global_unrest = -0.8	
+	province_warscore_cost = -0.08
+	global_manpower_modifier = 0.08
+	prestige = 0.7
+    #icon = 3
+}
+
+Khan_5 = {
+	potential = {
+            OR = {
+				government = tribal
+				has_reform =  steppe_horde
+				has_reform =  steppe_empire
+				primitives = yes
+		    }
+			NOT = { check_variable = { which = cu_ra_ws value = 1.5 } }
+        }
+	trigger = {    
+		custom_trigger_tooltip = {
+			tooltip = khan_supermacy_5_tt
+			check_variable = { which = cu_ra_ws value = 1 }
+		}
+	}
+    land_morale = 0.05
+	shock_damage = 0.05
+	land_maintenance_modifier = -0.05
+	horde_unity = 1
+	global_unrest = -1	
+	province_warscore_cost = -0.10
+	global_manpower_modifier = 0.1
+	prestige = 0.9
+    #icon = 3
+}
+
+Khan_6 = {
+	potential = {
+		OR = {
+			government = tribal
+			has_reform =  steppe_horde
+			has_reform =  steppe_empire
+			primitives = yes
+		}
+		NOT = { check_variable = { which = cu_ra_ws value = 2 } }
+	}
+	trigger = {    
+		custom_trigger_tooltip = {
+			tooltip = khan_supermacy_6_tt
+			check_variable = { which = cu_ra_ws value = 1.5 }
+		}
+	}
+    land_morale = 0.06
+	shock_damage = 0.06
+	land_maintenance_modifier = -0.06
+	horde_unity = 1.2
+	global_unrest = -1.2	
+	province_warscore_cost = -0.12
+	global_manpower_modifier = 0.12
+	prestige = 1.1
+    #icon = 3
+}
+
+Khan_7 = {
+	potential = {
+		OR = {
+			government = tribal
+			has_reform =  steppe_horde
+			has_reform =  steppe_empire
+			primitives = yes
+		}
+		NOT = { check_variable = { which = cu_ra_ws value = 2.6 } }
+	}
+	trigger = {    
+		custom_trigger_tooltip = {
+			tooltip = khan_supermacy_7_tt
+			check_variable = { which = cu_ra_ws value = 2 }
+		}
+	}
+    land_morale = 0.07
+	shock_damage = 0.07
+	land_maintenance_modifier = -0.07
+	horde_unity = 1.4
+	global_unrest = -1.4	
+	province_warscore_cost = -0.14
+	global_manpower_modifier = 0.14
+	prestige = 1.3
+    #icon = 3
+}
+
+Khan_8 = {
+	potential = {
+		OR = {
+			government = tribal
+			has_reform =  steppe_horde
+			has_reform =  steppe_empire
+			primitives = yes
+		}
+		NOT = { check_variable = { which = cu_ra_ws value = 3.3 } }
+	}
+	trigger = {    
+		custom_trigger_tooltip = {
+			tooltip = khan_supermacy_8_tt
+			check_variable = { which = cu_ra_ws value = 2.6 }
+		}
+	}
+    land_morale = 0.08
+	shock_damage = 0.08
+	land_maintenance_modifier = -0.08
+	horde_unity = 1.6
+	global_unrest = -1.6	
+	province_warscore_cost = -0.16
+	global_manpower_modifier = 0.16
+	prestige = 1.5
+    #icon = 3
+}
+
+Khan_9 = {
+	potential = {
+		OR = {
+			government = tribal
+			has_reform =  steppe_horde
+			has_reform =  steppe_empire
+			primitives = yes
+		}
+		NOT = { check_variable = { which = cu_ra_ws value = 4 } }
+	}
+	trigger = {    
+		custom_trigger_tooltip = {
+			tooltip = khan_supermacy_9_tt
+			check_variable = { which = cu_ra_ws value = 3.3 }
+		}
+	}
+    land_morale = 0.09
+	shock_damage = 0.09
+	land_maintenance_modifier = -0.09
+	horde_unity = 1.8
+	global_unrest = -1.8	
+	province_warscore_cost = -0.18
+	global_manpower_modifier = 0.18
+	prestige = 1.7
+    #icon = 3
+}
+
+Khan_10 = {
+	potential = {
+		OR = {
+			government = tribal
+			has_reform =  steppe_horde
+			has_reform =  steppe_empire
+			primitives = yes
+		}
+		OR = {
+			NOT = { check_variable = { which = cu_ra_ws value = 10 } }
+			NOT = { total_development = 1500 }	
+		}
+	}
+	trigger = {    
+		custom_trigger_tooltip = {
+			tooltip = khan_supermacy_10_tt
+			check_variable = { which = cu_ra_ws value = 4 }
+		}
+	}
+    land_morale = 0.1
+	shock_damage = 0.1
+	land_maintenance_modifier = -0.1
+	horde_unity = 2
+	global_unrest = -2	
+	province_warscore_cost = -0.20
+	global_manpower_modifier = 0.2
+	prestige = 1.9
+    #icon = 3
+}
+
+genghis_khan = {
+	potential = {
+		OR = {
+			government = tribal
+			has_reform =  steppe_horde
+			has_reform =  steppe_empire
+			primitives = yes
+		}
+	}
+	trigger = {    
+		total_development = 1500
+		custom_trigger_tooltip = {
+			tooltip = genghis_khan_tt
+			check_variable = { which = cu_ra_ws value = 10 }
+		}
+	}
+    land_morale = 0.15
+	shock_damage = 0.15
+	land_maintenance_modifier = -0.15
+	horde_unity = 4
+	global_unrest = -3	
+	province_warscore_cost = -0.25
+	global_manpower_modifier = 0.25
+	
+    #Additional Bonus
+	movement_speed = 0.1
+	leader_land_shock = 1
+	free_leader_pool = 25
+	caravan_power = 0.2
+	diplomatic_reputation = 1
+	prestige = 4
+	
+    #icon = 3
+}
+
+merchant_fleet = {
+	potential = {
+				num_of_ports = 1
+                has_idea_group = maritime_ideas
+				NOT = { num_of_light_ship = 50 }
+    }
+	trigger = {
+                full_idea_group = maritime_ideas
+                num_of_light_ship = 20
+	}
+        merchants = 1
+        #icon = 3
+}
+
+merchant_fleet_2 = {
+	potential = {
+                num_of_ports = 1
+                has_idea_group = maritime_ideas
+        }
+	trigger = {
+                full_idea_group = maritime_ideas
+				full_idea_group = naval_ideas
+                num_of_light_ship = 50
+	}
+        merchants = 2
+        #icon = 3
+}
+
+merchant_fleet_3 = {
+	potential = {
+                num_of_ports = 1
+                has_idea_group = maritime_ideas
+				NOT = { num_of_transport = 50 }
+        }
+	trigger = {
+                full_idea_group = maritime_ideas
+                num_of_transport = 20
+	}
+        merchants = 1
+        #icon = 3
+}
+
+merchant_fleet_4 = {
+	potential = {
+                num_of_ports = 1
+                has_idea_group = maritime_ideas
+        }
+	trigger = {
+                full_idea_group = maritime_ideas
+                num_of_transport = 50
+	}
+        merchants = 2
+        #icon = 3
+}
+
+subject_forcelimit_bonus = {
+	potential = {
+                OR = {
+				     is_subject_of_type = vassal
+                     is_subject_of_type = march
+                     is_subject_of_type = client_vassal	
+                     is_subject_of_type = client_march	 
+				}
+				OR = {
+							      NOT = { has_global_flag = cu_fast_mode }
+							      ai = no
+				}	
+        }
+	trigger = {
+                any_known_country = {
+                            overlord_of = ROOT
+                            aristocracy_ideas = 2
+                }
+				OR = {
+				     is_subject_of_type = vassal
+                     is_subject_of_type = march
+                     is_subject_of_type = client_vassal	
+                     is_subject_of_type = client_march	 
+				}
+	}
+
+        land_forcelimit_modifier  = 0.2
+
+        #icon = 3
+}
+
+university_1 = {
+	potential = {
+		check_variable = { which = tv_literacy value = 5 }
+		NOT = { check_variable = { which = tv_literacy value = 20 } }
+    }
+	trigger = {
+    	custom_trigger_tooltip = {
+			tooltip = tooltip_cu_weighted_literacy_5
+			check_variable = { which = tv_literacy value = 5 }
+			NOT = { check_variable = { which = tv_literacy value = 20 } }
+		}
+	}
+	idea_cost = -0.05
+	technology_cost = -0.025
+	#icon = 3
+}
+
+university_2 = {
+	potential = {
+		check_variable = { which = tv_literacy value = 20 }
+		NOT = { check_variable = { which = tv_literacy value = 35 } }
+    }
+	trigger = {
+		custom_trigger_tooltip = {
+			tooltip = tooltip_cu_weighted_literacy_20
+			check_variable = { which = tv_literacy value = 20 }
+			NOT = { check_variable = { which = tv_literacy value = 35 } }
+		}
+	}
+	idea_cost = -0.10
+	technology_cost = -0.05
+	#icon = 3
+}
+
+university_3 = {
+	potential = {
+		check_variable = { which = tv_literacy value = 35 }
+		NOT = { check_variable = { which = tv_literacy value = 50 } }
+    }
+	trigger = {
+		custom_trigger_tooltip = {
+			tooltip = tooltip_cu_weighted_literacy_35
+			check_variable = { which = tv_literacy value = 35 }
+			NOT = { check_variable = { which = tv_literacy value = 50 } }
+		}
+	}
+	idea_cost = -0.15
+	technology_cost = -0.075
+	#icon = 3
+}
+
+university_4 = {
+	potential = {
+        check_variable = { which = tv_literacy value = 50 }
+	}
+	trigger = {
+        custom_trigger_tooltip = {
+			tooltip = tooltip_cu_weighted_literacy_50
+			check_variable = { which = tv_literacy value = 50 }
+		}
+	}
+	idea_cost = -0.2
+	technology_cost = -0.1
+	#icon = 3
+}
+
+sunset_adm_tech_booster = {
+	potential = {
+                #has_global_flag = sunset_invasion
+                OR = {
+                        tag = AZE
+                        tag = ICN
+                        tag = IRF
+                }
+                NOT = { has_country_modifier = high_american_tech_booster }
+                had_global_flag = {  #Prevent this from overlapping with start tech booster
+                                    flag = sunset_invasion
+                                    days = 30
+                }
+        }
+	trigger = {
+                NOT = { adm_tech = 9 }
+	}
+        adm_tech_cost_modifier = -2
+}
+
+sunset_dip_tech_booster = {
+	potential = {
+                #has_global_flag = sunset_invasion
+                OR = {
+                        tag = AZE
+                        tag = ICN
+                        tag = IRF
+                }
+                NOT = { has_country_modifier = high_american_tech_booster }
+                had_global_flag = {  #Prevent this from overlapping with start tech booster
+                                    flag = sunset_invasion
+                                    days = 30
+                }
+        }
+	trigger = {
+                NOT = { dip_tech = 9 }
+	}
+        dip_tech_cost_modifier = -2
+}
+
+sunset_mil_tech_booster = {
+	potential = {
+                #has_global_flag = sunset_invasion
+                OR = {
+                        tag = AZE
+                        tag = ICN
+                        tag = IRF
+                }
+                NOT = { has_country_modifier = high_american_tech_booster }
+                had_global_flag = {  #Prevent this from overlapping with start tech booster
+                                    flag = sunset_invasion
+                                    days = 30
+                }
+        }
+	trigger = {
+                NOT = { mil_tech = 9 }
+	}
+        mil_tech_cost_modifier = -2
+}
+
+sunset_invasion = {
+	potential = {
+                has_global_flag = sunset_invasion
+                ai = no
+                OR = {
+                        tag = AZE
+                        tag = ICN
+                }
+        }
+	trigger = {
+                NOT = { is_year = 1520 }
+	}
+        range = 0.5
+        administrative_efficiency = 0.25
+		global_autonomy = -0.1
+        global_ship_recruit_speed = -0.1
+        naval_attrition = -0.25
+        transport_cost = -0.2
+        reinforce_speed = 0.25
+	land_attrition = -0.25
+        free_leader_pool = 15
+        ae_impact = 0.25
+}
+
+sunset_invasion_ai = {
+	potential = {
+                has_global_flag = sunset_invasion
+                ai = yes
+                OR = {
+                        tag = AZE
+                        tag = ICN
+                }
+        }
+	trigger = {
+                NOT = {
+                          is_year = 1530 
+                }
+	}
+        range = 1
+        #colonists = 1
+        administrative_efficiency = 0.25
+		global_autonomy = -0.1
+        global_ship_recruit_speed = -0.2
+        land_maintenance_modifier = -0.1
+        naval_maintenance_modifier = -0.1
+        global_regiment_recruit_speed = -0.2
+        naval_attrition = -0.5
+        transport_cost = -0.25
+		land_attrition = -0.33
+        discipline = 0.05
+        free_leader_pool = 30
+        technology_cost = -0.2
+        ae_impact = 0.5
+        ship_durability = 0.05
+}
+
+sunset_invasion_colony = {
+	potential = {
+                OR = {
+                        tag = AZC
+                        tag = ICC
+                }
+                ai = yes
+        }
+	trigger = {
+                NOT = { is_year = 1530 }
+                OR = {
+                         vassal_of = AZE
+                         vassal_of = ICN
+                }
+	}
+        range = 1
+        global_tax_income = 60
+        core_creation = -0.25
+        land_forcelimit_modifier = 10
+        naval_forcelimit_modifier = 10
+        land_maintenance_modifier = -0.99
+        naval_maintenance_modifier = -0.99
+        reinforce_speed = 0.25
+	land_attrition = -0.25
+        free_leader_pool = 3
+        global_ship_recruit_speed = -0.2
+        global_regiment_recruit_speed = -0.2
+        naval_attrition = -0.5
+        transport_cost = -0.5
+        reinforce_speed = 0.25
+	land_attrition = -0.33
+        discipline = 0.05
+        free_leader_pool = 3
+        technology_cost = -0.2
+        ae_impact = 0.5
+        ship_durability = 0.05
+        interest = -5
+}
+
+sunset_invasion_iro = {
+	potential = {
+                has_global_flag = sunset_invasion
+                tag = IRF
+        }
+	trigger = {
+                NOT = { is_year = 1550 }
+                OR = {
+                         war_with = AZE
+                         truce_with = AZE
+                         NOT = { is_year = 1470 }
+                }
+	}
+        range = 1
+        land_morale = 0.10
+        land_forcelimit_modifier = 0.25
+        land_maintenance_modifier = -0.25
+        reinforce_speed = 0.25
+	land_attrition = -0.25
+        free_leader_pool = 2
+}
+
+west_europe_company_bonus_1 = {
+	potential = {
+                OR = {
+                             has_country_flag = west_europe_private_company
+                             has_country_flag = west_europe_official_company
+                }
+                NOT = { check_variable = { which = west_europe_company_size value = 30 } }
+        }
+	trigger = {
+                custom_trigger_tooltip = {
+				tooltip = trade_company_bonus_1_tooltip
+				check_variable = { which = west_europe_company_size value = 6 }
+		}
+	}
+        merchants = 1
+}
+
+west_europe_company_bonus_2 = {
+	potential = {
+                OR = {
+                             has_country_flag = west_europe_private_company
+                             has_country_flag = west_europe_official_company
+                }
+        }
+	trigger = {
+                custom_trigger_tooltip = {
+				tooltip = trade_company_bonus_2_tooltip
+				check_variable = { which = west_europe_company_size value = 30 }
+		}
+	}
+        merchants = 2
+}
+
+west_mediterraneansea_company_bonus_1 = {
+	potential = {
+                OR = {
+                             has_country_flag = west_mediterraneansea_private_company
+                             has_country_flag = west_mediterraneansea_official_company
+                }
+                NOT = { check_variable = { which = west_mediterraneansea_company_size value = 30 } }
+        }
+	trigger = {
+                custom_trigger_tooltip = {
+				tooltip = trade_company_bonus_1_tooltip
+				check_variable = { which = west_mediterraneansea_company_size value = 6 }
+		}
+	}
+        merchants = 1
+}
+
+west_mediterraneansea_company_bonus_2 = {
+	potential = {
+                OR = {
+                             has_country_flag = west_mediterraneansea_private_company
+                             has_country_flag = west_mediterraneansea_official_company
+                }
+        }
+	trigger = {
+                custom_trigger_tooltip = {
+				tooltip = trade_company_bonus_2_tooltip
+				check_variable = { which = west_mediterraneansea_company_size value = 30 }
+		}
+	}
+        merchants = 2
+}
+
+central_europe_company_bonus_1 = {
+	potential = {
+                OR = {
+                             has_country_flag = central_europe_private_company
+                             has_country_flag = central_europe_official_company
+                }
+                NOT = { check_variable = { which = central_europe_company_size value = 30 } }
+        }
+	trigger = {
+                custom_trigger_tooltip = {
+				tooltip = trade_company_bonus_1_tooltip
+				check_variable = { which = central_europe_company_size value = 6 }
+		}
+	}
+        merchants = 1
+}
+
+central_europe_company_bonus_2 = {
+	potential = {
+                OR = {
+                             has_country_flag = central_europe_private_company
+                             has_country_flag = central_europe_official_company
+                }
+        }
+	trigger = {
+                custom_trigger_tooltip = {
+				tooltip = trade_company_bonus_2_tooltip
+				check_variable = { which = central_europe_company_size value = 30 }
+		}
+	}
+        merchants = 2
+}
+
+balticsea_company_bonus_1 = {
+	potential = {
+                OR = {
+                             has_country_flag = balticsea_private_company
+                             has_country_flag = balticsea_official_company
+                }
+                NOT = { check_variable = { which = balticsea_company_size value = 30 } }
+        }
+	trigger = {
+                custom_trigger_tooltip = {
+				tooltip = trade_company_bonus_1_tooltip
+				check_variable = { which = balticsea_company_size value = 6 }
+		}
+	}
+        merchants = 1
+}
+
+balticsea_company_bonus_2 = {
+	potential = {
+                OR = {
+                             has_country_flag = balticsea_private_company
+                             has_country_flag = balticsea_official_company
+                }
+        }
+	trigger = {
+                custom_trigger_tooltip = {
+				tooltip = trade_company_bonus_2_tooltip
+				check_variable = { which = balticsea_company_size value = 30 }
+		}
+	}
+        merchants = 2
+}
+
+eastern_europe_company_bonus_1 = {
+	potential = {
+                OR = {
+                             has_country_flag = eastern_europe_private_company
+                             has_country_flag = eastern_europe_official_company
+                }
+                NOT = { check_variable = { which = eastern_europe_company_size value = 30 } }
+        }
+	trigger = {
+                custom_trigger_tooltip = {
+				tooltip = trade_company_bonus_1_tooltip
+				check_variable = { which = eastern_europe_company_size value = 6 }
+		}
+	}
+        merchants = 1
+}
+
+eastern_europe_company_bonus_2 = {
+	potential = {
+                OR = {
+                             has_country_flag = eastern_europe_private_company
+                             has_country_flag = eastern_europe_official_company
+                }
+        }
+	trigger = {
+                custom_trigger_tooltip = {
+				tooltip = trade_company_bonus_2_tooltip
+				check_variable = { which = eastern_europe_company_size value = 30 }
+		}
+	}
+        merchants = 2
+}
+
+tartary_company_bonus_1 = {
+	potential = {
+                OR = {
+                             has_country_flag = tartary_private_company
+                             has_country_flag = tartary_official_company
+                }
+                NOT = { check_variable = { which = tartary_company_size value = 30 } }
+        }
+	trigger = {
+                custom_trigger_tooltip = {
+				tooltip = trade_company_bonus_1_tooltip
+				check_variable = { which = tartary_company_size value = 6 }
+		}
+	}
+        merchants = 1
+}
+
+tartary_company_bonus_2 = {
+	potential = {
+                OR = {
+                             has_country_flag = tartary_private_company
+                             has_country_flag = tartary_official_company
+                }
+        }
+	trigger = {
+                custom_trigger_tooltip = {
+				tooltip = trade_company_bonus_2_tooltip
+				check_variable = { which = tartary_company_size value = 30 }
+		}
+	}
+        merchants = 2
+}
+
+near_east_company_bonus_1 = {
+	potential = {
+                OR = {
+                             has_country_flag = near_east_private_company
+                             has_country_flag = near_east_official_company
+                }
+                NOT = { check_variable = { which = near_east_company_size value = 30 } }
+        }
+	trigger = {
+                custom_trigger_tooltip = {
+				tooltip = trade_company_bonus_1_tooltip
+				check_variable = { which = near_east_company_size value = 6 }
+		}
+	}
+        merchants = 1
+}
+
+near_east_company_bonus_2 = {
+	potential = {
+                OR = {
+                             has_country_flag = near_east_private_company
+                             has_country_flag = near_east_official_company
+                }
+        }
+	trigger = {
+                custom_trigger_tooltip = {
+				tooltip = trade_company_bonus_2_tooltip
+				check_variable = { which = near_east_company_size value = 30 }
+		}
+	}
+        merchants = 2
+}
+
+
+india_company_bonus_1 = {
+	potential = {
+                OR = {
+                             has_country_flag = india_private_company
+                             has_country_flag = india_official_company
+                }
+                NOT = { check_variable = { which = india_company_size value = 30 } }
+        }
+	trigger = {
+                custom_trigger_tooltip = {
+				tooltip = trade_company_bonus_1_tooltip
+				check_variable = { which = india_company_size value = 6 }
+		}
+	}
+        merchants = 1
+}
+
+india_company_bonus_2 = {
+	potential = {
+                OR = {
+                             has_country_flag = india_private_company
+                             has_country_flag = india_official_company
+                }
+        }
+	trigger = {
+                custom_trigger_tooltip = {
+				tooltip = trade_company_bonus_2_tooltip
+				check_variable = { which = india_company_size value = 30 }
+		}
+	}
+        merchants = 2
+}
+
+indochina_company_bonus_1 = {
+	potential = {
+                OR = {
+                             has_country_flag = indochina_private_company
+                             has_country_flag = indochina_official_company
+                }
+                NOT = { check_variable = { which = indochina_company_size value = 30 } }
+        }
+	trigger = {
+                custom_trigger_tooltip = {
+				tooltip = trade_company_bonus_1_tooltip
+				check_variable = { which = indochina_company_size value = 6 }
+		}
+	}
+        merchants = 1
+}
+
+indochina_company_bonus_2 = {
+	potential = {
+                OR = {
+                             has_country_flag = indochina_private_company
+                             has_country_flag = indochina_official_company
+                }
+        }
+	trigger = {
+                custom_trigger_tooltip = {
+				tooltip = trade_company_bonus_2_tooltip
+				check_variable = { which = indochina_company_size value = 30 }
+		}
+	}
+        merchants = 2
+}
+
+indonesia_company_bonus_1 = {
+	potential = {
+                OR = {
+                             has_country_flag = indonesia_private_company
+                             has_country_flag = indonesia_official_company
+                }
+                NOT = { check_variable = { which = indonesia_company_size value = 30 } }
+        }
+	trigger = {
+                custom_trigger_tooltip = {
+				tooltip = trade_company_bonus_1_tooltip
+				check_variable = { which = indonesia_company_size value = 6 }
+		}
+	}
+        merchants = 1
+}
+
+indonesia_company_bonus_2 = {
+	potential = {
+                OR = {
+                             has_country_flag = indonesia_private_company
+                             has_country_flag = indonesia_official_company
+                }
+        }
+	trigger = {
+                custom_trigger_tooltip = {
+				tooltip = trade_company_bonus_2_tooltip
+				check_variable = { which = indonesia_company_size value = 30 }
+		}
+	}
+        merchants = 2
+}
+
+china_company_bonus_1 = {
+	potential = {
+                OR = {
+                             has_country_flag = china_private_company
+                             has_country_flag = china_official_company
+                }
+                NOT = { check_variable = { which = china_company_size value = 30 } }
+        }
+	trigger = {
+                custom_trigger_tooltip = {
+				tooltip = trade_company_bonus_1_tooltip
+				check_variable = { which = china_company_size value = 6 }
+		}
+	}
+        merchants = 1
+}
+
+china_company_bonus_2 = {
+	potential = {
+                OR = {
+                             has_country_flag = china_private_company
+                             has_country_flag = china_official_company
+                }
+        }
+	trigger = {
+                custom_trigger_tooltip = {
+				tooltip = trade_company_bonus_2_tooltip
+				check_variable = { which = china_company_size value = 30 }
+		}
+	}
+        merchants = 2
+}
+
+japan_korea_company_bonus_1 = {
+	potential = {
+                OR = {
+                             has_country_flag = japan_korea_private_company
+                             has_country_flag = japan_korea_official_company
+                }
+                NOT = { check_variable = { which = japan_korea_company_size value = 30 } }
+        }
+	trigger = {
+                custom_trigger_tooltip = {
+				tooltip = trade_company_bonus_1_tooltip
+				check_variable = { which = japan_korea_company_size value = 6 }
+		}
+	}
+        merchants = 1
+}
+
+japan_korea_company_bonus_2 = {
+	potential = {
+                OR = {
+                             has_country_flag = japan_korea_private_company
+                             has_country_flag = japan_korea_official_company
+                }
+        }
+	trigger = {
+                custom_trigger_tooltip = {
+				tooltip = trade_company_bonus_2_tooltip
+				check_variable = { which = japan_korea_company_size value = 30 }
+		}
+	}
+        merchants = 2
+}
+
+persia_company_bonus_1 = {
+	potential = {
+                OR = {
+                             has_country_flag = persia_private_company
+                             has_country_flag = persia_official_company
+                }
+                NOT = { check_variable = { which = persia_company_size value = 30 } }
+        }
+	trigger = {
+                custom_trigger_tooltip = {
+				tooltip = trade_company_bonus_1_tooltip
+				check_variable = { which = persia_company_size value = 6 }
+		}
+	}
+        merchants = 1
+}
+
+persia_company_bonus_2 = {
+	potential = {
+                OR = {
+                             has_country_flag = persia_private_company
+                             has_country_flag = persia_official_company
+                }
+        }
+	trigger = {
+                custom_trigger_tooltip = {
+				tooltip = trade_company_bonus_2_tooltip
+				check_variable = { which = persia_company_size value = 30 }
+		}
+	}
+        merchants = 2
+}
+
+west_africa_company_bonus_1 = {
+	potential = {
+                OR = {
+                             has_country_flag = west_africa_private_company
+                             has_country_flag = west_africa_official_company
+                }
+                NOT = { check_variable = { which = west_africa_company_size value = 30 } }
+        }
+	trigger = {
+                custom_trigger_tooltip = {
+				tooltip = trade_company_bonus_1_tooltip
+				check_variable = { which = west_africa_company_size value = 6 }
+		}
+	}
+        merchants = 1
+}
+
+west_africa_company_bonus_2 = {
+	potential = {
+                OR = {
+                             has_country_flag = west_africa_private_company
+                             has_country_flag = west_africa_official_company
+                }
+        }
+	trigger = {
+                custom_trigger_tooltip = {
+				tooltip = trade_company_bonus_2_tooltip
+				check_variable = { which = west_africa_company_size value = 30 }
+		}
+	}
+        merchants = 2
+}
+
+south_africa_company_bonus_1 = {
+	potential = {
+                OR = {
+                             has_country_flag = south_africa_private_company
+                             has_country_flag = south_africa_official_company
+                }
+                NOT = { check_variable = { which = south_africa_company_size value = 30 } }
+        }
+	trigger = {
+                custom_trigger_tooltip = {
+				tooltip = trade_company_bonus_1_tooltip
+				check_variable = { which = south_africa_company_size value = 6 }
+		}
+	}
+        merchants = 1
+}
+
+south_africa_company_bonus_2 = {
+	potential = {
+                OR = {
+                             has_country_flag = south_africa_private_company
+                             has_country_flag = south_africa_official_company
+                }
+        }
+	trigger = {
+                custom_trigger_tooltip = {
+				tooltip = trade_company_bonus_2_tooltip
+				check_variable = { which = south_africa_company_size value = 30 }
+		}
+	}
+        merchants = 2
+}
+
+east_africa_company_bonus_1 = {
+	potential = {
+                OR = {
+                             has_country_flag = east_africa_private_company
+                             has_country_flag = east_africa_official_company
+                }
+                NOT = { check_variable = { which = east_africa_company_size value = 30 } }
+        }
+	trigger = {
+                custom_trigger_tooltip = {
+				tooltip = trade_company_bonus_1_tooltip
+				check_variable = { which = east_africa_company_size value = 6 }
+		}
+	}
+        merchants = 1
+}
+
+east_africa_company_bonus_2 = {
+	potential = {
+                OR = {
+                             has_country_flag = east_africa_private_company
+                             has_country_flag = east_africa_official_company
+                }
+        }
+	trigger = {
+                custom_trigger_tooltip = {
+				tooltip = trade_company_bonus_2_tooltip
+				check_variable = { which = east_africa_company_size value = 30 }
+			}
+	}
+        merchants = 2
+}
+colonist_from_dock = {
+	potential = {
+	    OR = {
+							      NOT = { has_global_flag = cu_fast_mode }
+							      ai = no
+				}
+	     
+    }
+	trigger = {
+	    full_idea_group = exploration_ideas
+        OR = {
+		    AND = {
+			        num_of_owned_provinces_with = {
+			             value = 10
+			             is_core = ROOT 
+			             OR = {
+                               has_building = dock
+                               has_building = drydock
+                                 
+                         }
+		            }
+					AND = {
+		                  full_idea_group = maritime_ideas
+			              full_idea_group = naval_ideas
+		            }
+			}
+			AND = {
+			        num_of_owned_provinces_with = {
+			             value = 20
+			             is_core = ROOT 
+			             OR = {
+                               has_building = dock
+                               has_building = drydock
+                                 
+                         }
+		            }
+					OR = {
+		                  full_idea_group = maritime_ideas
+			              full_idea_group = naval_ideas
+		            }
+			}
+			AND = {
+			        num_of_owned_provinces_with = {
+			             value = 30
+			             is_core = ROOT 
+			             OR = {
+                               has_building = dock
+                               has_building = drydock
+                                 
+                         }
+		            }
+			}
+		}
+	}
+        colonists = 1
+}
+
+
+cu_tax_efficiency_1 = { 
+	potential = {
+	            NOT = { adm_tech = 9 }
+    }
+	trigger = {
+	          NOT = { adm_tech = 9 }
+	          adm_tech = 5
+	}
+	global_tax_modifier = 0.05
+	yearly_absolutism = 0.1
+	monthly_militarized_society = 0.01
+	state_maintenance_modifier = 0.02
+}
+
+cu_tax_efficiency_2 = { 
+	potential = {
+	            NOT = { adm_tech = 12 }
+    }
+	trigger = {
+	          NOT = { adm_tech = 12 }
+	          adm_tech = 9
+	}
+	global_tax_modifier = 0.1
+	yearly_absolutism = 0.2
+	monthly_militarized_society = 0.015
+	state_maintenance_modifier = 0.04
+}
+
+cu_tax_efficiency_3 = { 
+	potential = {
+	            NOT = { adm_tech = 15 }
+    }
+	trigger = {
+	          NOT = { adm_tech = 15 }
+	          adm_tech = 12
+	}
+	global_tax_modifier = 0.15
+	yearly_absolutism = 0.3
+	monthly_militarized_society = 0.02
+	state_maintenance_modifier = 0.06
+}
+
+cu_tax_efficiency_4 = { 
+	potential = {
+	            NOT = { adm_tech = 18 }
+    }
+	trigger = {
+	          NOT = { adm_tech = 18 }
+	          adm_tech = 15
+	}
+	global_tax_modifier = 0.2
+	yearly_absolutism = 0.4
+	monthly_militarized_society = 0.025
+	state_maintenance_modifier = 0.08
+}
+
+cu_tax_efficiency_5 = { 
+	potential = {
+	            NOT = { adm_tech = 22 }
+    }
+	trigger = {
+	          NOT = { adm_tech = 22 }
+	          adm_tech = 18
+	}
+	global_tax_modifier = 0.25
+	yearly_absolutism = 0.5
+	monthly_militarized_society = 0.03
+	state_maintenance_modifier = 0.10
+}
+
+cu_tax_efficiency_6 = { 
+	potential = {
+	            NOT = { adm_tech = 25 }
+    }
+	trigger = {
+	          NOT = { adm_tech = 25 }
+	          adm_tech = 22
+	}
+	global_tax_modifier = 0.3
+	yearly_absolutism = 0.6
+	monthly_militarized_society = 0.035
+	state_maintenance_modifier = 0.12
+}
+
+cu_tax_efficiency_7 = { 
+	potential = {
+	            NOT = { adm_tech = 29 }
+    }
+	trigger = {
+	          NOT = { adm_tech = 29 }
+	          adm_tech = 25
+	}
+	global_tax_modifier = 0.35
+	yearly_absolutism = 0.7
+	monthly_militarized_society = 0.04
+	state_maintenance_modifier = 0.14
+}
+
+cu_tax_efficiency_8 = { 
+	potential = {
+	            NOT = { adm_tech = 33 }
+    }
+	trigger = {
+	          NOT = { adm_tech = 33 }
+	          adm_tech = 29
+	}
+	global_tax_modifier = 0.4
+	yearly_absolutism = 0.8
+	monthly_militarized_society = 0.045
+	state_maintenance_modifier = 0.16
+}
+
+cu_tax_efficiency_9 = { 
+	potential = {
+	           adm_tech = 33
+    }
+	trigger = {
+	          adm_tech = 33
+	}
+	global_tax_modifier = 0.45
+	yearly_absolutism = 0.9
+	monthly_militarized_society = 0.05
+	state_maintenance_modifier = 0.18
+}
+
+cu_extra_merchant_1 = { 
+	potential = {
+	        NOT = { check_variable = { which = merc_vgm value = 100 } }
+    }
+	trigger = {
+	        custom_trigger_tooltip = {
+				tooltip = cu_extra_merchant_1_tooltip
+				check_variable = { which = merc_vgm value = 30 }
+		    }      
+	}
+    merchants = 1
+}
+
+cu_extra_merchant_2 = { 
+	potential = {
+	        NOT = { check_variable = { which = merc_vgm value = 200 } }
+			check_variable = { which = merc_vgm value = 30 }
+    }
+	trigger = {
+	        custom_trigger_tooltip = {
+				tooltip = cu_extra_merchant_2_tooltip
+				check_variable = { which = merc_vgm value = 100 }
+		    }
+	}
+    merchants = 2
+}
+
+
+cu_extra_merchant_3 = { 
+	potential = {
+	        NOT = { check_variable = { which = merc_vgm value = 400 } }
+			check_variable = { which = merc_vgm value = 100 }
+    }
+	trigger = {
+	        custom_trigger_tooltip = {
+				tooltip = cu_extra_merchant_3_tooltip
+				check_variable = { which = merc_vgm value = 200 }
+		    }
+	}
+    merchants = 3
+}
+
+cu_extra_merchant_4 = { 
+	potential = {
+	        NOT = { check_variable = { which = merc_vgm value = 700 } }
+			check_variable = { which = merc_vgm value = 200 }
+    }
+	trigger = {
+	        custom_trigger_tooltip = {
+				tooltip = cu_extra_merchant_4_tooltip
+				check_variable = { which = merc_vgm value = 400 }
+		    }
+	}
+    merchants = 4
+}
+
+cu_extra_merchant_5 = { 
+	potential = {
+	        NOT = { check_variable = { which = merc_vgm value = 1100 } }
+			check_variable = { which = merc_vgm value = 400 }
+    }
+	trigger = {
+	        custom_trigger_tooltip = {
+				tooltip = cu_extra_merchant_5_tooltip
+				check_variable = { which = merc_vgm value = 700 }
+		    }
+	}
+    merchants = 5
+}
+
+cu_extra_merchant_6 = { 
+	potential = {
+	        NOT = { check_variable = { which = merc_vgm value = 1600 } }
+			check_variable = { which = merc_vgm value = 700 }
+    }
+	trigger = {
+	        custom_trigger_tooltip = {
+				tooltip = cu_extra_merchant_6_tooltip
+				check_variable = { which = merc_vgm value = 1100 }
+		    }
+	}
+    merchants = 6
+}
+
+cu_extra_merchant_7 = { 
+	potential = {
+	        NOT = { check_variable = { which = merc_vgm value = 2200 } }
+			check_variable = { which = merc_vgm value = 1100 }
+    }
+	trigger = {
+	        custom_trigger_tooltip = {
+				tooltip = cu_extra_merchant_7_tooltip
+				check_variable = { which = merc_vgm value = 1600 }
+		    }
+	}
+    merchants = 7
+}
+
+cu_extra_merchant_8 = { 
+	potential = {
+	        NOT = { check_variable = { which = merc_vgm value = 2900 } }
+			check_variable = { which = merc_vgm value = 1600 }
+    }
+	trigger = {
+	        custom_trigger_tooltip = {
+				tooltip = cu_extra_merchant_8_tooltip
+				check_variable = { which = merc_vgm value = 2200 }
+		    }
+	}
+    merchants = 8
+}
+
+cu_extra_merchant_9 = { 
+	potential = {
+	        NOT = { check_variable = { which = merc_vgm value = 3700 } }
+			check_variable = { which = merc_vgm value = 2200 }
+    }
+	trigger = {
+	        custom_trigger_tooltip = {
+				tooltip = cu_extra_merchant_9_tooltip
+				check_variable = { which = merc_vgm value = 2900 }
+		    }
+	}
+    merchants = 9
+}
+
+cu_extra_merchant_10 = { 
+	potential = {
+	        NOT = { check_variable = { which = merc_vgm value = 4600 } }
+			check_variable = { which = merc_vgm value = 2900 }
+    }
+	trigger = {
+	        custom_trigger_tooltip = {
+				tooltip = cu_extra_merchant_10_tooltip
+				check_variable = { which = merc_vgm value = 3700 }
+		    }
+	}
+    merchants = 10
+}
+
+cu_extra_merchant_11 = { 
+	potential = {
+	        NOT = { check_variable = { which = merc_vgm value = 5600 } }
+			check_variable = { which = merc_vgm value = 3700 }
+    }
+	trigger = {
+	        custom_trigger_tooltip = {
+				tooltip = cu_extra_merchant_11_tooltip
+				check_variable = { which = merc_vgm value = 4600 }
+		    }
+	}
+    merchants = 11
+}
+
+cu_extra_merchant_12 = { 
+	potential = {
+	         check_variable = { which = merc_vgm value = 4600 }
+    }
+	trigger = {
+	        custom_trigger_tooltip = {
+				tooltip = cu_extra_merchant_12_tooltip
+				check_variable = { which = merc_vgm value = 5600 }
+		    }
+	}
+    merchants = 12
+}
+
+offensive_war_cost = {
+	potential = {
+		is_at_war = yes
+		any_known_country = {
+			defensive_war_with = ROOT
+		}
+		ai = no
+	}
+	trigger = {
+		is_at_war = yes
+		any_known_country = {
+			defensive_war_with = ROOT 
+		}
+	}
+	war_exhaustion_cost = 0.25
+	war_exhaustion = 0.005
+	stability_cost_modifier= 0.25
+}
+
+cu_capital_not_in_state = {
+	potential = {
+		any_owned_province = {
+			AND = {
+				cu_is_terr_trigger = yes
+				OR = {
+					is_capital = yes
+					has_province_modifier = second_capital
+				}
+			}
+		}
+		ai = no
+	}
+	trigger = {
+		any_owned_province = {
+			AND = {
+				cu_is_terr_trigger = yes
+				OR = {
+					is_capital = yes
+					has_province_modifier = second_capital
+				}
+			}
+		}
+	}
+	yearly_corruption = 0.2
+	state_governing_cost = 0.15
+	yearly_absolutism = -4
+}
+
+insufficient_diplomatic_upkeep_1 = {
+	potential = {
+		NOT = { dip_power = 0 }
+		ai = no
+	}
+	trigger = {
+		NOT = { dip_power = -99 }
+	}
+	reduced_liberty_desire = -10
+}
+	
+insufficient_diplomatic_upkeep_2 = {
+	potential = {
+		NOT = { dip_power = -99 }
+		ai = no
+	}
+	trigger = {
+		NOT = { dip_power = -199 }
+	}
+	reduced_liberty_desire = -20
+}
+
+insufficient_diplomatic_upkeep_3 = {
+	potential = {
+		NOT = { dip_power = -199 }
+		ai = no
+	}
+	trigger = {
+		NOT = { dip_power = -299 }
+	}
+	reduced_liberty_desire = -30
+}
+
+insufficient_diplomatic_upkeep_4 = {
+	potential = {
+		NOT = { dip_power = -299 }
+		ai = no
+	}
+	trigger = {
+		NOT = { dip_power = -399 }
+	}
+	reduced_liberty_desire = -40
+}	
+
+insufficient_diplomatic_upkeep_5 = {
+	potential = {
+		NOT = { dip_power = -399 }
+		ai = no
+	}
+	trigger = {
+		NOT = { dip_power = -499 }
+	}
+	reduced_liberty_desire = -50
+}	
+
+insufficient_diplomatic_upkeep_6 = {
+	potential = {
+		NOT = { dip_power = -499 }
+		ai = no
+	}
+	trigger = {
+		NOT = { dip_power = -599 }
+	}
+	reduced_liberty_desire = -60
+}	
+
+insufficient_diplomatic_upkeep_7 = {
+	potential = {
+		NOT = { dip_power = -599 }
+		ai = no
+	}
+	trigger = {
+		NOT = { dip_power = -699 }
+	}
+	reduced_liberty_desire = -70
+}
+
+insufficient_diplomatic_upkeep_8 = {
+	potential = {
+		NOT = { dip_power = -699 }
+		ai = no
+	}
+	trigger = {
+		NOT = { dip_power = -799 }
+	}
+	reduced_liberty_desire = -80
+}	
+
+insufficient_diplomatic_upkeep_9 = {
+	potential = {
+		NOT = { dip_power = -799 }
+		ai = no
+	}
+	trigger = {
+		NOT = { dip_power = -899 }
+	}
+	reduced_liberty_desire = -90
+}
+
+insufficient_diplomatic_upkeep_10 = {
+	potential = {
+		NOT = { dip_power = -899 }
+		ai = no
+	}
+	trigger = {
+		NOT = { dip_power = -999 }
+	}
+	reduced_liberty_desire = -100
+}	
+
+cu_full_mandate = {
+	potential = {
+		is_emperor_of_china = yes
+	}
+	trigger = {
+		has_unified_culture_group = yes
+	}
+	imperial_mandate = 0.05
+	land_morale = 0.05
+}

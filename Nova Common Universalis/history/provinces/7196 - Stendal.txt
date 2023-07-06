@@ -1,0 +1,19 @@
+#58 - Anhalt
+
+owner = DAI
+controller = DAI
+culture = vietnamese
+religion = mahayana
+capital = "Stendal"
+trade_goods = chinaware
+hre = no
+base_tax = 7
+base_production = 7
+base_manpower = 4
+is_city = yes
+add_core = DAI
+discovered_by = chinese
+discovered_by = indian
+discovered_by = muslim
+discovered_by = ottoman
+

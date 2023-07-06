@@ -1,0 +1,104 @@
+nothingness_modifier = {
+	hidden = yes
+	army_professionalism = 0.0
+
+	marker_sprite = GFX_pa_rank_0
+	unit_sprite_start = "GFX_ap1_"
+
+	trigger = {
+		always = yes
+	}
+}
+
+
+supply_depot_modifier = {
+	army_professionalism = 0.2
+	
+	marker_sprite = GFX_pa_rank_1
+	unit_sprite_start = "GFX_ap2_"
+
+	trigger = {
+		always = yes
+	}
+
+	global_supply_limit_modifier = 0.25
+}
+
+supply_depot_modifier_2 = {
+	army_professionalism = 0.34
+	
+	marker_sprite = GFX_pa_rank_1
+	unit_sprite_start = "GFX_ap2_"
+
+	trigger = {
+		NOT = { has_reform = volunteer_training }
+	}
+	yearly_army_professionalism = -1.00
+}
+
+refill_garrison_modifier = {
+	army_professionalism = 0.4
+	
+	marker_sprite = GFX_pa_rank_2
+	unit_sprite_start = "GFX_ap3_"
+
+	trigger = {
+		always = yes
+	}
+	
+	fort_maintenance_modifier = -0.25
+}
+
+return_manpower_modifier = {
+	army_professionalism = 0.6
+	
+	marker_sprite = GFX_pa_rank_3
+	unit_sprite_start = "GFX_ap4_"
+
+	
+	trigger = {
+		always = yes
+	}
+
+	manpower_recovery_speed = 0.25
+}
+
+supply_depot_modifier_3 = {
+	army_professionalism = 0.67
+	
+	marker_sprite = GFX_pa_rank_3
+	unit_sprite_start = "GFX_ap4_"
+
+	trigger = {
+		NOT = { has_reform = standing_army }
+	}
+	yearly_army_professionalism = -1.00
+}
+
+general_cost_modifier = {
+	army_professionalism = 0.8
+	
+	marker_sprite = GFX_pa_rank_4
+	unit_sprite_start = "GFX_ap5_"
+
+	
+	trigger = {
+		always = yes
+	}
+
+	siege_ability = 0.25
+}
+
+reserves_organisation_modifier = {
+	army_professionalism = 1.0
+	
+	marker_sprite = GFX_pa_rank_5
+	unit_sprite_start = "GFX_ap6_"
+
+	
+	trigger = {
+		always = yes
+	}
+
+	movement_speed = 0.25	
+}

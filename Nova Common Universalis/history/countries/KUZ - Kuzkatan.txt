@@ -1,0 +1,8 @@
+# No previous file for Teotitlan
+
+government = monarchy
+add_government_reform = autocracy_reform
+primary_culture = aztek
+religion = mesoamerican_religion
+technology_group = mesoamerican
+capital = 839

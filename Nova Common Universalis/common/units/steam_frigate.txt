@@ -1,0 +1,18 @@
+#Steam Frigate
+type = light_ship
+trigger = { 
+	NOT = {
+		has_country_flag = lightship_mod_f
+		has_country_flag = lightship_mod_h
+		has_country_flag = lightship_mod_s
+		has_country_flag = lightship_mod_t
+	}
+}
+hull_size = 40
+base_cannons = 54
+blockade = 7
+sail_speed = 12
+
+trade_power = 7
+
+sprite_level = 6

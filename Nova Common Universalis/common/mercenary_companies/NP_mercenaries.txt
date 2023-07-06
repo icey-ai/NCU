@@ -1,0 +1,18 @@
+merc__foreign_legion = {
+	regiments_per_development = 0.015
+	cavalry_weight = 0.1
+    artillery_weight = 0.45
+	cavalry_cap = 4
+	trigger = {
+        ai = no
+		full_idea_group = plutocracy_ideas
+	}
+	cost_modifier = 0.75
+	modifier = {
+		fire_damage_received = -0.05
+		shock_damage_received = -0.05
+		land_morale = 0.20
+		reinforce_speed = 0.33
+	}
+    # No home province means local mercenary company
+}

@@ -1,0 +1,38 @@
+province = {
+    war = {
+        active = {
+			OR = {
+				num_of_rebel_armies = 1
+				num_of_rebel_controlled_provinces = 1
+                is_at_war = yes
+			}
+        }
+        eval_add = {
+            factor = 1000.0
+            modifier = {
+                factor = 0.8
+                NOT = { controlled_by = owner }
+            }
+            modifier = {
+                factor = 0.8
+                units_in_province = REB
+            }
+            modifier = {
+                factor = 0.8
+                fort_level = 3
+            }
+            modifier = {
+                factor = 1.5
+                is_island = yes
+            }
+			modifier = {
+                factor = 1.5
+				is_in_capital_area = no
+			}
+            modifier = {
+				factor = 7.5
+                has_terrain = mountain
+            }
+        }
+    }
+}

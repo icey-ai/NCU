@@ -1,0 +1,11 @@
+#Two-Decker
+type = heavy_ship
+trigger = { 
+		has_country_flag = heavyship_mod_h
+}
+hull_size = 60
+base_cannons = 100
+blockade = 12
+sail_speed = 5
+
+sprite_level = 5

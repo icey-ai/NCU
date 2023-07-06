@@ -1,0 +1,8 @@
+government = theocracy
+add_government_reform = leading_clergy_reform
+government_rank = 1
+primary_culture = estphalian
+religion = catholic
+technology_group = western
+capital = 6218	# Halber
+fixed_capital = 6218 # Cannot move capital away from this province & no power cost to move to it

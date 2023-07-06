@@ -1,0 +1,28 @@
+# No previous file for Huichol
+
+culture = aztek
+religion = nahuatl
+owner = TON
+controller = TON
+add_core = TON
+capital = "Tonallan"
+trade_goods = grain
+hre = no
+base_tax = 6
+base_production = 6
+base_manpower = 5
+
+
+
+discovered_by = mesoamerican
+
+
+1532.1.1 = { 
+	discovered_by = SPA
+	owner = SPA
+	controller = SPA
+	add_core = SPA
+	is_city = yes
+	capital = "Guadalajara"
+}
+1810.9.16 = { owner = MEX add_core = MEX controller = MEX } # Mexican War of Independence

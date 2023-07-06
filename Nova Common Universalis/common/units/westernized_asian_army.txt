@@ -1,0 +1,15 @@
+# Huai Army
+
+type = infantry
+unit_type = chinese
+trigger = { 	
+		NOT = { culture_group = japanese_g }
+		NOT = { culture_group = east_asian }
+}
+maneuver = 1
+offensive_morale = 4
+defensive_morale = 3
+offensive_fire = 4
+defensive_fire = 4
+offensive_shock = 4
+defensive_shock = 3

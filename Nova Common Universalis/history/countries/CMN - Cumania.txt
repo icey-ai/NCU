@@ -1,0 +1,7 @@
+government = monarchy
+add_government_reform = feudalism_reform
+primary_culture = szekler
+religion = catholic
+technology_group = eastern
+capital = 158	# Maros
+fixed_capital = 158 # Cannot move capital away from this province & no power cost to move to it

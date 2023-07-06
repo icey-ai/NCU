@@ -1,0 +1,24 @@
+vassal = {
+	first = TUR
+	second = ATO
+	start_date = 1444.1.1
+}
+
+vassal = {
+	first = VEN
+	second = NPT
+	start_date = 1444.1.1
+}
+
+vassal = {
+	first = GEN
+	second = LBS
+	start_date = 1444.1.1
+}
+
+union = {
+	first = HUN
+	second = TRA
+	start_date = 1002.1.1
+	end_date = 1570.1.1
+}

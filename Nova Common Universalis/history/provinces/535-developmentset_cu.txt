@@ -1,0 +1,1 @@
+1444.1.1 = { base_tax =  4  base_production =  4  base_manpower =  42  }

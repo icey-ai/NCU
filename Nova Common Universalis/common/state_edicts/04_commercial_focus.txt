@@ -1,0 +1,20 @@
+edict_commercial_focus = {
+	potential = {
+		always = yes		#we support "potential" if modders want to have lots and just show some.
+	}
+	
+	allow = {
+		has_institution = global_trade
+	}
+	
+	modifier = {
+		province_trade_power_modifier = 0.4
+	    local_production_efficiency = -0.2
+	}
+	
+	color = {  255 215 0   }
+	
+	ai_will_do = {
+		factor = 0
+	}
+}

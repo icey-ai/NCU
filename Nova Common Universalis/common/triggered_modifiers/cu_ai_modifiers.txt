@@ -1,0 +1,440 @@
+# Triggered modifiers are here.
+# these are checked for each countries once/month and then applied.
+#
+# Effects are fully scriptable here.
+ai_spa_and_por_handicap_helper = {	#Prevent ai Spain and Portugal from becoming too weak 
+	potential = {
+		cu_ai_buff_trigger = yes
+		OR = {
+			AND = {
+				NOT = { total_development = 700 }
+				tag = SPA
+			}
+			AND = {
+				NOT = { total_development = 300 }
+				tag = POR
+			}
+			AND = {
+				NOT = { total_development = 500 }
+				tag = CAS
+			}
+		}
+	}
+	trigger = {
+	}
+	global_tax_income = 36
+	shock_damage_received = -0.10
+}
+
+ai_eng_handicap_helper = {	#Prevent ai England from becoming too weak in the early game stage
+	potential = {
+		cu_ai_buff_trigger = yes
+		tag = ENG
+		NOT = { is_year = 1550 }
+	}
+	trigger = {
+		ai = yes
+	}
+	global_tax_income = 48
+}
+
+ai_tur_handicap_modifier = { #Prevent ai Ottoman from becoming too weak 
+	potential = {
+		tag = TUR
+		cu_ai_buff_trigger = yes
+	}
+	trigger = {
+		OR = {
+			adm = 3
+			dip = 3
+			mil = 3
+		}
+	}
+	global_tax_income = 36
+	state_maintenance_modifier = -0.05
+    #icon = 3
+}
+
+ai_hab_handicap_modifier = { #Prevent ai Austria from becoming too weak 
+	potential = {
+		OR = {
+			tag = STY
+			tag = HAB
+		}
+		cu_ai_buff_trigger = yes
+	}
+	trigger = {
+		is_emperor = yes
+		NOT = { total_development = 700 }
+	}
+	global_tax_income = 60
+	heir_chance = 0.50
+	#icon = 3
+}
+
+#AI bonus on warfare and economy, they are not applied to player's subject, so that player cannot make use of then
+ai_helper = {
+	potential = {
+		cu_ai_buff_trigger = yes
+	}
+	trigger = {
+	}
+	
+	#Warfare
+	reinforce_cost_modifier = -0.20
+	naval_maintenance_modifier = -0.20
+	reinforce_speed = 1
+	ship_durability = 0.20
+	land_attrition = -0.25
+	artillery_shock = 1
+	movement_speed_onto_off_boat_modifier = 0.5
+	#Economy
+	build_time = -0.75
+	state_governing_cost = -0.10
+	#Others
+	improve_relation_modifier = 0.10
+	ae_impact = -0.20
+}
+
+ai_war_help = {
+	potential = {
+		cu_ai_buff_trigger = yes
+	}
+	trigger = {
+		is_at_war = yes
+	}
+	manpower_recovery_speed = 0.20
+	land_maintenance_modifier = -0.20
+}
+
+ai_army_expansion_1 = { 
+	potential = {
+		cu_ai_buff_trigger = yes
+		total_development = 50
+		NOT = { total_development = 1000 }
+		NOT = { is_colonial_nation = yes }
+    }
+	trigger = {
+		any_known_country = {
+			ai = no
+			ROOT = {
+				has_opinion_modifier = {
+					modifier = aggressive_expansion
+					who = PREV
+					value = 50
+				}
+			}
+			OR = {
+				total_development = 1000	
+				AND = {
+					total_development = 500
+					calc_true_if = {
+						any_subject_country = {
+							total_development = 100
+							NOT = { liberty_desire = 50 }
+						}
+						amount = 3
+					}	
+				}
+			}			
+		}
+	}
+    land_forcelimit_modifier = 0.20
+	global_regiment_cost = -0.10
+	naval_forcelimit_modifier = 0.25
+    global_ship_cost = -0.10
+	yearly_army_professionalism = 0.001
+}
+
+ai_army_expansion_2 = { 
+	potential = {
+		cu_ai_buff_trigger = yes
+		total_development = 1000
+		NOT = { total_development = 2000 }
+		NOT = { is_colonial_nation = yes }
+    }
+	trigger = {
+		any_known_country = {
+			ai = no
+			ROOT = {
+				has_opinion_modifier = {
+					modifier = aggressive_expansion
+					who = PREV
+					value = 50
+				}
+			}
+			OR = {
+				total_development = 2000	
+				AND = {
+					total_development = 1000
+					calc_true_if = {
+						any_subject_country = {
+							total_development = 200
+							NOT = { liberty_desire = 50 }
+						}
+						amount = 3
+					}	
+				}
+			}			
+		}
+	}
+    land_forcelimit_modifier = 0.20
+	global_regiment_cost = -0.10
+	naval_forcelimit_modifier = 0.25
+    global_ship_cost = -0.10
+	yearly_army_professionalism = 0.005
+}
+
+ai_army_expansion_3 = { 
+	potential = {
+		cu_ai_buff_trigger = yes
+		total_development = 2000
+		NOT = { total_development = 4000 }
+		NOT = { is_colonial_nation = yes }
+    }
+	trigger = {
+		any_known_country = {
+			ai = no
+			ROOT = {
+				has_opinion_modifier = {
+					modifier = aggressive_expansion
+					who = PREV
+					value = 50
+				}
+			}
+			OR = {
+				total_development = 4000	
+				AND = {
+					total_development = 2000
+					calc_true_if = {
+						any_subject_country = {
+							total_development = 300
+							NOT = { liberty_desire = 50 }
+						}
+						amount = 3
+					}	
+				}
+			}			
+		}
+	}
+    land_forcelimit_modifier = 0.20
+	global_regiment_cost = -0.10
+	naval_forcelimit_modifier = 0.25
+    global_ship_cost = -0.10
+	yearly_army_professionalism = 0.01
+}
+
+ai_bankruptcy_help = {
+	potential = {
+		cu_ai_buff_trigger = yes
+	}
+	trigger = {
+		is_bankrupt = yes
+	}
+	interest = -5
+	global_unrest = -3
+	state_governing_cost = -0.10
+	idea_cost = -0.25
+	reduced_liberty_desire = 12.5
+	global_autonomy = -0.05
+}
+
+ai_corrupt_helper_1 = {
+	potential = {
+		cu_ai_buff_trigger = yes
+	}
+	trigger = {
+		corruption = 10
+		NOT = {
+			corruption = 20
+		}
+	}
+	yearly_corruption = -0.02
+	all_power_cost = -0.05
+	land_morale = 0.03
+	naval_morale = 0.03
+}
+
+ai_corrupt_helper_2 = {
+	potential = {
+		cu_ai_buff_trigger = yes
+	}
+	trigger = {
+		corruption = 20
+		NOT = {
+			corruption = 30
+		}
+	}
+	yearly_corruption = -0.04
+	all_power_cost = -0.10
+	land_morale = 0.06
+	naval_morale = 0.06
+}
+
+ai_corrupt_helper_3 = {
+	potential = {
+		cu_ai_buff_trigger = yes
+	}
+	trigger = {
+		corruption = 30
+		NOT = {
+			corruption = 40
+		}
+	}
+	yearly_corruption = -0.08
+	all_power_cost = -0.20
+	land_morale = 0.09
+	naval_morale = 0.09
+}
+
+ai_corrupt_helper_4 = {
+	potential = {
+		cu_ai_buff_trigger = yes
+	}
+	trigger = {
+		corruption = 40
+		NOT = {
+			corruption = 50
+		}
+	}
+	yearly_corruption = -0.16
+	all_power_cost = -0.30
+	land_morale = 0.12
+	naval_morale = 0.12
+}
+
+ai_corrupt_helper_5 = {
+	potential = {
+		cu_ai_buff_trigger = yes
+	}
+	trigger = {
+		corruption = 50
+	}
+	yearly_corruption = -0.24
+	all_power_cost = -0.40
+	land_morale = 0.15
+	naval_morale = 0.15
+}
+
+ai_huge_country_help_0 = {
+	potential = {
+		cu_ai_buff_trigger = yes
+		has_country_modifier = medium_state
+    }
+	trigger = {
+	}
+	state_governing_cost = -0.04
+	technology_cost = -0.04
+	state_maintenance_modifier = -0.05
+	global_tax_modifier = 0.05
+}
+
+ai_huge_country_help_1 = {
+	potential = {
+		cu_ai_buff_trigger = yes
+		has_country_modifier = large_state
+    }
+	trigger = {
+	}
+	state_governing_cost = -0.06
+	technology_cost = -0.08
+	state_maintenance_modifier = -0.1
+	global_tax_modifier = 0.075
+}
+
+ai_huge_country_help_2 = {
+	potential = {
+		cu_ai_buff_trigger = yes
+		has_country_modifier = huge_state
+    }
+	trigger = {
+	}
+	state_governing_cost = -0.08
+	technology_cost = -0.12
+	state_maintenance_modifier = -0.15
+	global_tax_modifier = 0.1
+}
+
+ai_huge_country_help_3 = {
+	potential = {
+		cu_ai_buff_trigger = yes
+		has_country_modifier = continental_state
+    }
+	trigger = {
+	}
+	state_governing_cost = -0.10
+	technology_cost = -0.16
+	state_maintenance_modifier = -0.2
+	global_tax_modifier = 0.125
+    merchants = 1
+}
+
+ai_huge_country_help_4 = {
+	potential = {
+		cu_ai_buff_trigger = yes
+		has_country_modifier = world_state
+    }
+	trigger = {
+	}
+	state_governing_cost = -0.12
+	technology_cost = -0.20
+	state_maintenance_modifier = -0.25
+	global_tax_modifier = 0.15
+    merchants = 1
+}
+
+ai_army_quailty_help_1 = {
+	potential = {
+		cu_ai_buff_trigger = yes
+		has_reform = volunteer_training
+	}
+	trigger = {}
+	yearly_army_professionalism = 0.002
+	fire_damage_received = -0.025
+	shock_damage_received = -0.025
+	recover_army_morale_speed = 0.10
+	land_forcelimit_modifier = 0.125
+	mil_tech_cost_modifier = -0.025
+}
+
+ai_army_quailty_help_2 = {
+	potential = {
+		cu_ai_buff_trigger = yes
+		has_reform = standing_army
+	}
+	trigger = {}
+	yearly_army_professionalism = 0.004
+	fire_damage_received = -0.05
+	shock_damage_received = -0.05
+	recover_army_morale_speed = 0.15
+	land_forcelimit_modifier = 0.25
+	mil_tech_cost_modifier = -0.05
+}
+
+ai_army_quailty_help_3 = {
+	potential = {
+		cu_ai_buff_trigger = yes
+		has_reform = limited_conscription
+	}
+	trigger = {}
+	yearly_army_professionalism = 0.008
+	fire_damage_received = -0.075
+	shock_damage_received = -0.075
+	recover_army_morale_speed = 0.20
+	land_forcelimit_modifier = 0.375
+	mil_tech_cost_modifier = -0.075
+}
+
+ai_army_quailty_help_4 = {
+	potential = {
+		cu_ai_buff_trigger = yes
+		has_reform = extensive_conscription
+	}
+	trigger = {}
+	yearly_army_professionalism = 0.01
+	fire_damage_received = -0.1
+	shock_damage_received = -0.1
+	recover_army_morale_speed = 0.25
+	land_forcelimit_modifier = 0.50
+	mil_tech_cost_modifier = -0.10
+}

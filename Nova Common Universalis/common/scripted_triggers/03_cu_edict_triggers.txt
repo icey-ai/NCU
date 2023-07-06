@@ -1,0 +1,268 @@
+move_capital_trigger = {
+	is_state_core = owner
+	cu_not_terr_trigger = yes
+}
+
+improve_drainage_trigger = {
+	base_manpower = 2
+	owner = {
+	    adm_tech = 5
+		treasury = 75
+		adm_power = 12
+	}
+	OR = {
+		NOT = { check_variable = { which = b_ac value = 10 } }
+		AND = {
+			owner = { adm_tech = 12 }
+			NOT = { check_variable = { which = b_ac value = 15 } }
+		}
+		AND = {
+			owner = { adm_tech = 19 }
+			NOT = { check_variable = { which = b_ac value = 20 } }
+		}
+		AND = {
+			owner = { adm_tech = 23 }
+			NOT = { check_variable = { which = b_ac value = 25 } }
+		}
+		AND = {
+			owner = { adm_tech = 30 }
+			NOT = { check_variable = { which = b_ac value = 30 } }
+		}
+		AND = {
+			owner = {  adm_tech = 34 }
+			NOT = { check_variable = { which = b_ac value = 35 } }
+		}
+	}
+}
+
+improve_sanitation_trigger = {
+    development = 15
+	OR = {
+		check_variable = { which = o_uc value = 10 }
+		NOT = { check_variable = { which = r_uc value = 3 } }
+	}
+	OR = {
+		NOT = { check_variable = { which = b_uc value = 5 } }
+		AND = {
+			owner = { adm_tech = 12 }
+			NOT = { check_variable = { which = b_uc value = 7 } }
+		}
+		AND = {
+			owner = { adm_tech = 17 }
+			NOT = { check_variable = { which = b_uc value = 9 } }
+		}
+		AND = {
+			owner = { adm_tech = 22 }
+			NOT = { check_variable = { which = b_uc value = 12 } }
+		}
+		AND = {
+			owner = { adm_tech = 27 }
+			NOT = { check_variable = { which = b_uc value = 15 } }
+		}
+		AND = {
+			owner = {  adm_tech = 32 }
+			NOT = { check_variable = { which = b_uc value = 18 } }
+		}
+	}
+	owner = {
+		treasury = 75
+		adm_power = 12
+	}
+}
+
+reclaim_wasteland_trigger = {
+	OR = {
+		NOT = { base_manpower = 6 }
+		check_variable = { which = r_ac value = 6 }
+	}
+	OR = {
+		is_overseas = no
+		cu_not_terr_trigger = yes
+		NOT = { base_manpower = 2 }
+	}
+	check_variable = { which = r_ac value = 1 }
+	hidden_trigger = {
+		NOT = { 
+			has_province_modifier = ti_military_cultivation 
+			has_province_modifier = ti_mc_done
+		}
+	}
+	owner = {
+		manpower_percentage = 0.5
+		treasury = 50
+		mil_power = 22
+	}
+}
+
+force_language_education_trigger = {
+	NOT = { has_province_modifier = cu_language_education }
+	NOT = { has_owner_culture = yes }
+	is_core = owner
+	OR = {
+		has_building = university
+		has_building = public_school
+	}
+	owner = {
+		adm_power = 8
+		dip_power = 8
+		prestige = 6
+	}
+}
+
+boost_cultural_assimilation_trigger = {
+	NOT = { has_province_modifier = cu_cultural_assimilation_booster }
+	has_owner_culture = no
+	is_core = owner
+	NOT = { nationalism = 1 }
+	owner = {
+		prestige = 10
+		dip_power = 50
+	}
+}
+
+#province scope
+cu_can_change_plantation_trigger = {
+	OR = {
+		has_terrain = farmlands
+		has_terrain = grasslands
+		has_province_modifier = ti_woods_done
+		has_province_modifier = ti_terrace_done
+		has_province_modifier = ti_marsh_done 
+		has_province_modifier = holland_polders
+		has_province_modifier = ti_irragation_done
+		has_province_modifier = ti_terrace_done
+		has_province_modifier = ti_jungle_done
+		has_province_modifier = ti_forest_done
+	}
+	NOT = { has_climate = arctic }
+	NOT = { has_winter = severe_winter }
+	NOT = { has_winter = normal_winter }
+	OR = {
+		NOT = { has_climate = arid }
+		has_province_modifier = ti_irragation_done
+	}
+}
+
+#Terrain Improvement Trigger
+#NOT: This does not include terrain requirement and "province has not related modifier already" requirement
+#When using them, remember to add requirements like below:
+#has_terrain = woods
+#NOT = { has_province_modifier = ti_woods }
+#NOT = { has_province_modifier = ti_woods_done }
+
+cu_ti_forest_trigger = {
+	development = 9
+	owner = { 
+		treasury = 75
+		adm_power = 15
+		adm_tech = 11
+	}
+}
+
+cu_ti_jungle_trigger = {
+	development = 9
+	owner = { 
+		adm_power = 15
+		treasury = 100
+		adm_tech = 18
+	}
+}
+
+cu_ti_woods_trigger = {
+	development = 9
+	owner = { 
+		adm_tech = 11
+		treasury = 75
+		adm_power = 15
+	}
+}
+
+cu_ti_marsh_trigger = {
+	development = 9
+	owner = { 
+		treasury = 120
+		adm_tech = 15
+		adm_power = 22
+	}
+}
+
+cu_ti_irragation_trigger = {
+	base_manpower = 4
+	owner = { 
+		treasury = 100
+		OR = {
+			adm_tech = 8
+			technology_group = chinese
+		}
+		adm_power = 22
+	}
+	OR = {
+		base_manpower = 10
+		has_province_modifier = river_estuary_modifier
+		any_neighbor_province = {
+			OR = {
+				has_province_modifier = ti_irragation_done
+				has_terrain = mountain
+				has_terrain = impassable_mountains
+				has_terrain = glacier
+				has_terrain = farmlands
+				has_terrain = marsh
+				has_river_estuary_trigger = yes
+			}
+		}
+	}
+}
+
+cu_ti_terrace_trigger = {
+	base_manpower = 4
+	OR = {
+		owner = { adm_tech = 5 }
+		owner = { technology_group = andean }
+	}
+	owner = { 
+		treasury = 100
+		adm_power = 22
+	}
+}
+
+cu_patronage_art_trigger = {
+			is_core = owner
+			cu_not_terr_trigger = yes
+			owner = {
+				prestige = 5
+				treasury = 60
+				dip_power = 8
+			}
+}
+
+cu_build_museum_trigger = {
+			development = 15
+			owner = {
+				treasury = 90
+				dip_power = 22
+			}
+}
+
+cu_build_theatre_trigger = {
+            development = 10
+			owner = {
+				prestige = 5
+				treasury = 80
+				dip_power = 30
+			}
+
+}
+
+cu_organize_salon_trigger = {
+development = 15
+			owner = {
+				prestige = 8
+				treasury = 150
+				OR = {
+					capital_scope = { continent = europe }
+					dip_tech = 7
+				}
+				check_variable = { which = literacy value = 4 }
+				dip_power = 30
+			}
+}

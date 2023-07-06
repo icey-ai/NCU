@@ -1,0 +1,369 @@
+#Variable List
+#p_ltime
+#p_ctime
+#p_stime
+#p_stime_max
+
+#Flag List
+#cu_dist_p_done
+#cu_dist_p_next
+#cu_dist_s_done
+#Event target
+#cu_dist_port
+
+#Scripted Effect
+
+
+set_base_travel_time = {
+    set_variable = { which = p_ltime_base value = 0 }
+    if = {
+        limit = {
+            has_terrain = glacier
+        }
+        set_variable = { which = p_ltime_base value = 5 }
+        set_province_flag = challenging_access_terrain
+    }
+    else_if = {
+        limit = {
+            has_terrain = savannah
+        }
+        set_variable = { which = p_ltime_base value = 3 }
+        set_province_flag = easy_access_terrain
+    }
+    else_if = {
+        limit = {
+            has_terrain = farmlands
+        }
+        set_variable = { which = p_ltime_base value = 3 }
+        set_province_flag = easy_access_terrain
+    }				
+    else_if = {
+        limit = {
+            has_terrain = woods
+        }
+        set_variable = { which = p_ltime_base value = 4 }
+        set_province_flag = challenging_access_terrain
+    }				
+    else_if = {
+        limit = {
+            has_terrain = forest
+        }
+        set_variable = { which = p_ltime_base value = 6 }
+        set_province_flag = cannot_access_terrain
+    }				
+    else_if = {
+        limit = {
+            has_terrain = drylands
+        }
+        set_variable = { which = p_ltime_base value = 3 }
+        set_province_flag = easy_access_terrain
+    }
+    else_if = {
+        limit = {
+            has_terrain = grasslands
+        }
+        set_variable = { which = p_ltime_base value = 3 }
+        set_province_flag = easy_access_terrain
+    }				
+    else_if = {
+        limit = {
+            has_terrain = hills
+        }
+        set_variable = { which = p_ltime_base value = 5 }
+        set_province_flag = challenging_access_terrain
+    }			
+    else_if = {
+        limit = {
+            has_terrain = mountain
+        }
+        set_variable = { which = p_ltime_base value = 8 }
+        set_province_flag = cannot_access_terrain
+    }				
+    else_if = {
+        limit = {
+            has_terrain = steppe
+        }
+        set_variable = { which = p_ltime_base value = 3 }
+        set_province_flag = easy_access_terrain
+    }			
+    else_if = {
+        limit = {
+            has_terrain = marsh
+        }
+        set_variable = { which = p_ltime_base value = 6 }
+        set_province_flag = cannot_access_terrain
+    }				
+    else_if = {
+        limit = {
+            has_terrain = coastline
+        }
+        set_variable = { which = p_ltime_base value = 3 }
+        set_province_flag = challenging_access_terrain
+    }
+    else_if = {
+        limit = {
+            has_terrain = jungle
+        }
+        set_variable = { which = p_ltime_base value = 7 }
+        set_province_flag = cannot_access_terrain
+    }				
+    else_if = {
+        limit = {
+            has_terrain = desert
+        }
+        set_variable = { which = p_ltime_base value = 5 }
+        set_province_flag = cannot_access_terrain
+    }				
+    else_if = {
+        limit = {
+            has_terrain = coastal_desert
+        }
+        set_variable = { which = p_ltime_base value = 5 }
+        set_province_flag = challenging_access_terrain
+    }				
+    else_if = {
+        limit = {
+            has_terrain = highlands
+        }
+        set_variable = { which = p_ltime_base value = 5 }
+        set_province_flag = cannot_access_terrain
+    }
+    if = {
+        limit = { #Extreme Climate
+            OR = {
+                has_climate = arid
+                has_climate = arctic
+                has_climate = tropical
+            }
+            NOT = { #Already calc cliamte affect terraian
+                OR = {
+                    has_terrain = desert
+                    has_terrain = coastal_desert
+                    has_terrain = glacier
+                    has_terrain = jungle
+                }
+            }
+        }
+        change_variable = { which = p_ltime_base value = 2 }
+        if = {
+            limit = { has_province_flag = easy_access_terrain }
+            clr_province_flag = easy_access_terrain
+            set_province_flag = challenging_access_terrain
+        }
+        else_if = {
+            limit = { has_province_flag = challenging_access_terrain }
+            clr_province_flag = challenging_access_terrain
+            set_province_flag = cannot_access_terrain
+        }
+    }
+}
+
+calc_local_travel_time = {
+    set_variable = { which = p_ltime value = p_ltime_base }
+    
+    set_variable = { which = time_reduced value = 0 }
+    if = {
+        limit = {
+            has_province_flag = easy_access_terrain
+        }
+        set_variable = { which = time_reduced value = 0.15 }
+    }
+    if = {
+        limit = {
+            has_province_flag = challenging_access_terrain
+        }
+        set_variable = { which = time_reduced value = 0.375 }
+    }
+    if = {
+        limit = {
+            has_province_flag = cannot_access_terrain
+        }
+        set_variable = { which = time_reduced value = 0.6 }
+    }
+    multiply_variable = { which = time_reduced which = local_infrastructure_level }
+    subtract_variable = { which = p_ltime which = time_reduced }
+    change_variable = { which = p_ctime which = p_ltime }
+}
+
+del_calc_province_distance = {#Without Sqrt 
+    set_variable = { which = rel_coosum value = 0.001 }
+	change_variable = { which = rel_coosum which = xdif }
+	change_variable = { which = rel_coosum which = ydif }
+	
+	set_variable = { which = rel_coomul which = xdif }
+	multiply_variable = { which = rel_coomul which = ydif }
+	multiply_variable = { which = rel_coomul value = 1.135 }
+	
+	if = { # same effect as what game does, but without the report in the error log
+		limit = {
+			is_variable_equal = { which = rel_coosum value = 0 }
+		}
+		set_variable = { which = rel_coosum value = 0.001 }
+	}
+	
+	divide_variable = { which = rel_coomul which = rel_coosum }
+	subtract_variable = { which = rel_coosum which = rel_coomul }
+	
+	set_variable = { which = cu_distance which = rel_coosum }
+	
+	set_variable = { which = rel_coosum value = 0 }
+	set_variable = { which = rel_coomul value = 0 }
+	set_variable = { which = xdif value = 0 }
+	set_variable = { which = ydif value = 0 }
+    
+}
+
+calc_oversea_travel_time = {
+    set_variable = { which = p_stime value = 0 }
+    set_variable = { which = cu_var1 value = 0 }
+    event_target:cu_dist_port = {
+		set_variable = { which = xdif which = x_coord }
+		set_variable = { which = ydif which = y_coord }
+	}
+
+	set_variable = { which = xdif which = x_coord }
+	set_variable = { which = ydif which = y_coord }
+	subtract_variable = { which = xdif which = PREV }
+	subtract_variable = { which = ydif which = PREV }
+	if = {
+		limit = {
+			NOT = { check_variable = { which = xdif value = 0 } }
+		}
+		multiply_variable = { which = xdif value = -1 }
+	}
+	if = {
+		limit = {
+			NOT = { check_variable = { which = ydif value = 0 } }
+		}
+		multiply_variable = { which = ydif value = -1 }
+	}
+    calc_province_distance = yes
+
+    change_variable = { which = p_stime which = cu_distance }
+    multiply_variable = { which = p_stime value = 4 }
+    export_to_variable = { 
+		which = cu_var1
+		value = trigger_value:dip_tech
+        who = owner
+	}
+    divide_variable = { which = p_stime which = cu_var1 }
+
+}
+
+check_province_travel_time = {
+    
+}
+
+initialize_dist_calc = {
+	every_owned_province = {
+		set_variable = { which = p_ctime value = 0 }
+		calc_local_travel_time = yes 
+	}
+}
+
+mark_next_province_set = {
+	every_neighbor_province = {
+        limit = { 
+            owned_by = ROOT 
+            NOT = { has_province_flag = cu_dist_p_done }
+        }
+        
+        if = {
+            limit = {
+                NOT = { has_province_flag = cu_dist_p_next }
+            }
+            set_province_flag = cu_dist_p_next
+            set_variable = { which = p_ctime which = PREV } 
+        }
+        else = { 
+            if = {
+                limit = { check_variable = { which = p_ctime which = PREV } }
+                set_variable = { which = p_ctime which = PREV }
+            }
+        }
+    }
+    if = {
+        limit = { 
+            has_port = yes
+            has_province_flag = cu_dist_s_done
+            OR = {
+                has_building = dock
+                has_building = drydock
+            }	  
+        }
+        save_event_target_as = cu_dist_port 
+        ROOT = {
+            every_owned_province = {
+                limit = { 
+                    has_port = yes
+                    NOT = { has_province_flag = cu_dist_s_done }
+                    OR = {
+                        has_building = dock
+                        has_building = drydock
+                    }
+                }
+                calc_oversea_travel_time = yes 
+                set_variable = { which = p_stime_max which = ROOT }
+                if = {
+                  limit = { check_variable = { which = p_stime_max which = p_stime } }
+                  set_province_flag = cu_dist_s_done
+                    if = {
+                        limit = {
+                            NOT = { has_province_flag = cu_dist_p_next }
+                        }
+                        set_province_flag = cu_dist_p_next 
+                        set_variable = { which = p_ctime which = event_target:cu_dist_port } 
+                        change_variable = { which = p_ctime which = p_stime }
+                    }
+                    else = { 
+                        set_variable = { which = cu_var1 which = event_target:cu_dist_port }
+                        change_variable = { which = cu_var1 which = p_stime }
+                        if = {
+                            limit = { check_variable = { which = p_ctime which = cu_var1 } }
+                            set_variable = { which = p_ctime which = cu_var1 } 
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+travel_isolated_provinces = {
+    owner = {
+        capital_scope = {
+            set_variable = { which = xdif which = x_coord }
+            set_variable = { which = ydif which = y_coord }
+        }
+    }
+
+	set_variable = { which = xdif which = x_coord }
+	set_variable = { which = ydif which = y_coord }
+	subtract_variable = { which = xdif which = PREV }
+	subtract_variable = { which = ydif which = PREV }
+	if = {
+		limit = {
+			NOT = { check_variable = { which = xdif value = 0 } }
+		}
+		multiply_variable = { which = xdif value = -1 }
+	}
+	if = {
+		limit = {
+			NOT = { check_variable = { which = ydif value = 0 } }
+		}
+		multiply_variable = { which = ydif value = -1 }
+	}
+    calc_province_distance = yes
+
+    change_variable = { which = p_ctime which = cu_distance }
+    multiply_variable = { which = p_ctime value = 2 }
+    if = {
+        limit = {
+            ROOT = { capital_scope = { is_part_of_hre = yes } }
+			is_part_of_hre = yes
+        }
+    }
+    change_variable = { which = p_ctime which = p_ltime }
+}
+

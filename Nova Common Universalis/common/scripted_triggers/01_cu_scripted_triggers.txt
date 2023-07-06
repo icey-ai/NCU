@@ -1,0 +1,719 @@
+cu_is_node_in_trade_company_region = {
+	OR = {
+		superregion = india_superregion
+		superregion = east_indies_superregion
+		superregion = indo_china_superregion
+		superregion = china_superregion
+		superregion = west_europe_superregion #	Western Europe
+		superregion = west_mediterraneansea_superregion
+		superregion = central_europe_superregion
+		superregion = north_europe_superregion #	Northern Europe
+		superregion = eastern_europe_superregion
+		superregion = inner_asia_superregion #	Inner Asia
+		superregion = far_east_superregion
+		superregion = west_africa_superregion #	West Africa
+		superregion = eastern_africa_superregion
+		superregion = southern_africa_superregion
+		superregion = near_east_superregion
+		superregion = middle_east_superregion	 #	Middle East
+	}
+}
+
+cu_eligible_cabinet_province = {
+	check_variable = { which = p_ca which = cabinet_ca }
+	OR = {
+		has_province_modifier = cu_province_highlight
+		has_owner_culture = yes
+		AND = {
+			owner = { culture_group = PREV }
+			OR = {
+				owner = { government_rank = 3 }
+				has_owner_accepted_culture = yes
+			}
+		}
+		AND = {
+			OR = {
+				owner = { culture_group = PREV }
+				has_owner_accepted_culture = yes
+			}
+			owner = { has_country_flag = cabinet_ep_accepted }
+		}
+		owner = { has_country_flag = cabinet_ep_allculture }
+	}
+}
+
+
+
+cu_didnt_change_tax_policy = {
+	custom_trigger_tooltip = {
+		tooltip = "didnt_change_tax_policy"
+		OR = {
+			NOT = { has_country_flag = chose_tax_policy_timer }
+			AND = {
+				had_country_flag = {
+					flag = chose_tax_policy_timer
+					days = 3650
+				}
+				NOT = { has_ruler_flag = chose_tax_policy }
+			}
+			had_country_flag = {
+				flag = chose_tax_policy_timer
+				days = 7300
+			}
+		}
+	}
+}
+
+cu_didnt_change_economic_policy = {
+	custom_trigger_tooltip = {
+		tooltip = "didnt_change_economic_policy"
+		OR = {
+			NOT = { has_country_flag = chose_economic_policy_timer }
+			AND = {
+				had_country_flag = {
+					flag = chose_economic_policy_timer
+					days = 3650
+				}
+				NOT = { has_ruler_flag = chose_economic_policy }
+			}
+			had_country_flag = {
+				flag = chose_economic_policy_timer
+				days = 7300
+			}
+		}  
+	}
+}
+
+cu_didnt_change_trade_policy = {
+	custom_trigger_tooltip = {
+		tooltip = "didnt_change_trade_policy"
+		OR = {
+			NOT = { has_country_flag = chose_trade_policy_timer }
+			AND = {
+				had_country_flag = {
+					flag = chose_trade_policy_timer
+					days = 3650
+				}
+				NOT = { has_ruler_flag = chose_trade_policy }
+			}
+			had_country_flag = {
+				flag = chose_trade_policy_timer
+				days = 7300
+			}
+		}  
+	}
+}
+
+cu_didnt_change_GC_policy = {
+	custom_trigger_tooltip = {
+		tooltip = "didnt_change_GC_policy"
+		OR = {
+			NOT = { has_country_flag = chose_gc_policy_timer }
+			AND = {
+				had_country_flag = {
+					flag = chose_gc_policy_timer
+					days = 3650
+				}
+				NOT = { has_ruler_flag = chose_gc_policy }
+			}
+			had_country_flag = {
+				flag = chose_gc_policy_timer
+				days = 7300
+			}
+		}  
+	}
+}
+
+cu_didnt_change_cultural_policy = {
+	custom_trigger_tooltip = {
+		tooltip = "didnt_change_cultural_policy"
+		OR = {
+			NOT = { has_country_flag = chose_cultural_policy_timer }
+			AND = {
+				had_country_flag = {
+					flag = chose_cultural_policy_timer
+					days = 3650
+				}
+				NOT = { has_ruler_flag = chose_cultural_policy }
+			}
+			had_country_flag = {
+				flag = chose_cultural_policy_timer
+				days = 7300
+			}
+		}  
+	}
+}
+
+cu_didnt_change_religious_policy = {
+	custom_trigger_tooltip = {
+		tooltip = "didnt_change_religious_policy"
+		OR = {
+			NOT = { has_country_flag = chose_religious_policy_timer }
+			AND = {
+				had_country_flag = {
+					flag = chose_religious_policy_timer
+					days = 3650
+				}
+				NOT = { has_ruler_flag = chose_religious_policy }
+			}
+			had_country_flag = {
+				flag = chose_religious_policy_timer
+				days = 7300
+			}
+		}  
+	}
+}
+
+cu_didnt_change_conscription_policy = {
+	custom_trigger_tooltip = {
+		tooltip = "didnt_change_conscription_policy"
+		OR = {
+			NOT = { has_country_flag = change_conscription_law }
+			had_country_flag = {
+				flag = change_conscription_law
+				days = 7300
+			}
+		}  
+	}
+}
+
+cu_year_going_normally = {
+      AND = {
+	         has_country_flag = cu_year_going
+	         NOT = {
+			        had_country_flag = {
+					      flag = cu_year_going
+						  days = 367
+					}
+			 }
+	  }
+}
+
+cu_in_culture_union = {
+    OR = {
+		    has_owner_culture = yes
+			AND = {
+				    culture_group = owner
+					OR = {
+							has_owner_accepted_culture = yes
+							owner = { government_rank = 3 }
+					}
+			}
+	}
+}
+
+cu_hlr_land_trigger = {
+	continent = europe
+	OR = {
+		region = low_countries_region
+		region = north_german_region
+		region = south_german_region
+		region = switzerland_region
+		region = west_german_region
+		region = italy_region 
+		area = provence_area
+		area = savoy_dauphine_area
+		area = picardy_area
+		area = silesia_area
+		province_id = 193
+		province_id = 181
+		province_id = 6081
+		province_id = 4764
+		area = lorraine_area
+		AND = {
+			cu_germanic_group = yes
+			check_variable = { which = p_ca value = 60 }
+		}
+	}
+}
+
+cu_ai_reform_trigger = {
+	ai = yes
+	OR = {
+		militarised_society = 10
+		absolutism = 20
+	}
+}
+
+cu_can_update_heavy_ship = {
+	OR = {
+		innovativeness_ideas = 5
+		navy_tradition = 40
+	}
+	OR = {
+		AND = {
+			dip_tech = 4
+			NOT = { dip_tech = 5 }
+		}
+		AND = {
+			dip_tech = 10
+			NOT = { dip_tech = 11 }
+		}
+		AND = {
+			dip_tech = 16
+			NOT = { dip_tech = 17 }
+		}
+		AND = {
+			dip_tech = 20
+			NOT = { dip_tech = 21 }
+		}
+		AND = {
+			dip_tech = 23
+			NOT = { dip_tech = 24 }
+		}
+		AND = {
+			dip_tech = 26
+			NOT = { dip_tech = 27 }
+		}
+		AND = {
+			dip_tech = 36
+			NOT = { dip_tech = 37 }
+		}
+	}
+}
+
+cu_can_update_light_ship = {
+	OR = {
+		innovativeness_ideas = 5
+		navy_tradition = 30
+	}
+	OR = {
+		AND = {
+			dip_tech = 4
+			NOT = { dip_tech = 5 }
+		}
+		AND = {
+			dip_tech = 10
+			NOT = { dip_tech = 11 }
+		}
+		AND = {
+			dip_tech = 16
+			NOT = { dip_tech = 17 }
+		}
+		AND = {
+			dip_tech = 20
+			NOT = { dip_tech = 21 }
+		}
+		AND = {
+			dip_tech = 23
+			NOT = { dip_tech = 24 }
+		}
+		AND = {
+			dip_tech = 26
+			NOT = { dip_tech = 27 }
+		}
+		AND = {
+			dip_tech = 34
+			NOT = { dip_tech = 35 }
+		}
+	}
+}
+
+cu_can_update_galley = {
+	OR = {
+		innovativeness_ideas = 5
+		navy_tradition = 20
+	}
+	OR = {
+		AND = {
+			dip_tech = 3
+			NOT = { dip_tech = 4 }
+		}
+		AND = {
+			dip_tech = 11
+			NOT = { dip_tech = 12 }
+		}
+		AND = {
+			dip_tech = 15
+			NOT = { dip_tech = 16 }
+		}
+		AND = {
+			dip_tech = 19
+			NOT = { dip_tech = 20 }
+		}
+		AND = {
+			dip_tech = 22
+			NOT = { dip_tech = 23 }
+		}
+		AND = {
+			dip_tech = 25
+			NOT = { dip_tech = 26 }
+		}
+		AND = {
+			dip_tech = 34
+			NOT = { dip_tech = 35 }
+		}
+	}
+}
+
+cu_can_update_transport = {
+	OR = {
+		innovativeness_ideas = 5
+		navy_tradition = 30
+	}
+	OR = {
+		AND = {
+			dip_tech = 3
+			NOT = { dip_tech = 4 }
+		}
+		AND = {
+			dip_tech = 11
+			NOT = { dip_tech = 12 }
+		}
+		AND = {
+			dip_tech = 14
+			NOT = { dip_tech = 15 }
+		}
+		AND = {
+			dip_tech = 18
+			NOT = { dip_tech = 19 }
+		}
+		AND = {
+			dip_tech = 23
+			NOT = { dip_tech = 24 }
+		}
+		AND = {
+			dip_tech = 27
+			NOT = { dip_tech = 28 }
+		}
+		AND = {
+			dip_tech = 35
+			NOT = { dip_tech = 36 }
+		}
+	}
+}
+
+
+
+cu_in_hybrid_group = {
+	OR = {
+		AND = {
+			culture_group = latin
+			owner = { culture_group = cisalpinic }
+		}
+		AND = {
+			culture_group = cisalpinic
+			owner = { culture_group = latin }
+		}
+		AND = {
+			culture_group = languedoc_group
+			owner = { culture_group = french }
+		}
+		AND = {
+			culture_group = french
+			owner = { culture_group = languedoc_group }
+		}
+		AND = {
+			cu_germanic_group = yes
+			owner = { cu_germanic_group = yes }
+		}
+	}
+}
+
+cu_in_same_group = {
+	OR = {
+		owner = { culture_group = PREV } 	
+		cu_in_hybrid_group = yes
+	}
+}
+
+cu_south_slavic_group = { #Only use for making old codes stable
+	OR = {
+		culture_group = bulgarian_group
+		culture_group = south_slavic
+	}
+}
+
+cu_gaelic_group = { #Only use for making old codes stable
+	OR = {
+		culture_group = brythonic
+		culture_group = gaelic
+	}
+}
+
+cu_baltic_group = { #Only use for making old codes stable
+	OR = {
+		culture_group = baltic
+		culture_group = finnish_g
+	}
+}
+
+cu_malay_group = { #Only use for making old codes stable
+	OR = {
+		culture_group = taiwanic
+		culture_group = phillipines
+		culture_group = chamic
+		culture_group = javanese_g
+		culture_group = northern_bornean
+		culture_group = sulawesi_g 
+		culture_group = east_malay 
+		culture_group = malay
+		culture_group = barito
+	}
+}
+
+cu_iranian_group = { #Only use for making old codes stable
+	OR = {
+		culture_group = north_iranian
+		culture_group = east_iranian
+		culture_group = iranian
+	}
+}
+
+cu_burman_group = { #Only use for making old codes stable
+	OR = {
+		culture_group = kuki_chin
+		culture_group = nosoish
+		culture_group = karenic
+		culture_group = bai_g
+		culture_group = burman
+	}
+}
+
+cu_southeastasian_group_group = { #Only use for making old codes stable
+	OR = {
+		culture_group = southeastasian_group
+		culture_group = zhuang_group
+	}
+}
+
+cu_cushitic_group = { #Only use for making old codes stable
+	OR = {
+		culture_group = highland_cushitic
+		culture_group = lowland_cushitic 
+		culture_group = beja_cushitic 
+		culture_group = cushitic 
+	}
+}
+
+cu_mon_khmer_group = { #Only use for making old codes stable
+	OR = {
+		culture_group = southeastasian_group
+		culture_group = vietic
+		culture_group = monic
+	}
+}
+
+cu_south_turkic_group = { #Only use for making old codes stable
+	OR = {
+		culture = uzbehk
+		culture = uyghur
+		culture = yughur
+	}
+}
+
+cu_germanic_group = {
+	OR = {
+		culture_group = germanic
+		culture_group = low_germanic
+	}
+}
+
+cu_minor_chinese_group = {
+	OR = {
+		culture_group = tujiazu_g
+		culture_group = hmong_mienic
+	}
+}
+
+cu_india_culture = {
+	OR = {
+		culture_group = eastern_aryan
+		culture_group = hindusthani
+		culture_group = western_aryan
+		culture_group = dravidian
+		culture_group = kannada_dravidan
+		culture_group = telugu_dravidan
+		culture_group = gondi_kui
+		culture_group = odia
+		culture_group = bihari_aryan 
+		culture_group = northern_aryan
+		culture_group = dardic 
+		culture_group = rajasthani
+		culture_group = malwi
+		culture_group = sindhi_aryan
+		culture_group = marathi_aryan
+		culture_group = simhalese
+		culture_group = bodo_koch
+	}
+}
+
+cu_hindusthani_group = {
+	OR = {
+		culture = panjabi
+		culture_group = hindusthani
+		culture = kashmiri
+	}
+}
+
+cu_scandinavian_group = {
+	OR = {
+		culture_group = scandinavian
+	}
+}
+
+cu_central_indic_group = { #Only use for making old codes stable
+	OR = {
+		culture_group = gondi_kui
+		culture_group = odia
+		culture_group = bihari_aryan
+	}
+}
+
+cu_tibetan_group = {
+	OR = {
+		culture_group = tibetan_group
+		culture_group = qiangic
+	}
+}
+
+cu_native_trigger = {
+	OR = {
+		government = native
+		AND = {
+			capital_scope = {
+				OR = {
+					continent = new_world
+					continent = north_america
+					continent = south_america
+				}
+			}
+			OR = {
+				technology_group = north_american
+				technology_group = south_american
+				technology_group = andean
+				technology_group = mesoamerican
+			}
+			NOT = { check_variable = { which = ave_literacy value = 2 } }
+		}
+	}
+}
+
+cu_ai_buff_trigger = {
+	OR = {
+		NOT = { 
+			any_known_country = {
+				OR = {
+					junior_union_with = ROOT
+					senior_union_with = ROOT
+					vassal_of = ROOT
+					overlord_of = ROOT
+				}
+				ai = no
+			}
+		}
+		is_subject_of_type = tributary_state
+		is_subject_of_type = protectorate
+	}
+	ai = yes
+}
+
+cu_hold_by_country_or_non_sovereign_subject_trigger = {
+    custom_trigger_tooltip = {
+        tooltip = cu_hold_by_country_or_non_sovereign_subject_tooltip
+        owner = {
+            OR = {
+                tag = $target$
+                AND = {
+                    is_subject_of = $target$
+                    NOT = { 
+                        OR = {
+                            is_subject_of_type = tributary_state
+                            is_subject_of_type = protectorate
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+cu_no_religion_penalty = {
+	OR = { 
+		religion = confucianism
+		HUN_ideas = 7
+		YUA_ideas = 3
+		tag = USA
+		tag = TEX
+	}
+	has_global_flag = test_version
+}
+
+cu_in_owner_religion_group = {
+	OR = {
+		AND = {
+			owner = {
+				religion_group = zoroastrian_group
+			}
+			religion_group = zoroastrian_group
+		}
+		AND = {
+			owner = {
+				religion_group = jewish_group
+			}
+			religion_group = jewish_group
+		}
+		AND = {
+			owner = {
+				religion_group = pagan
+			}
+			religion_group = pagan
+		}
+		AND = {
+			owner = {
+				religion_group = dharmic
+			}
+			religion_group = dharmic
+		}
+		AND = {
+			owner = {
+				religion_group = eastern
+			}
+			religion_group = eastern
+		}
+		AND = {
+			owner = {
+				religion_group = muslim
+			}
+			religion_group = muslim
+		}
+		AND = {
+			owner = {
+				religion_group = christian
+			}
+			religion_group = christian
+		}
+	}
+}
+
+is_subject_of_type_colony = {
+	OR = {
+		is_subject_of_type = colony
+		is_subject_of_type = crown_colony
+		is_subject_of_type = private_enterprise
+		is_subject_of_type = self_governing_colony
+	}
+}
+
+cu_non_upkeep_subject = {
+	OR = {
+		is_colonial_nation = yes
+		has_reform = trading_city
+		is_subject_of_type = protectorate	
+		is_subject_of_type = vassal	
+		is_subject_of_type = dominion
+		AND = {
+			is_part_of_hre = yes
+			ROOT = { is_emperor = yes }
+			has_global_flag = privilegia_de_non_appelando_cu
+		}
+	}
+}
+
+cu_high_autonomy_subject = {
+	OR = {
+		is_subject_of_type = personal_union	
+		is_subject_of_type = vassal	
+		is_subject_of_type = daimyo_vassal
+	}
+}

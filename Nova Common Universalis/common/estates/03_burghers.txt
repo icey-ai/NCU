@@ -1,0 +1,123 @@
+estate_burghers =
+{
+	icon = 3
+	
+
+	# If true, country will get estate
+	trigger = {	
+		#NOT = { has_reform = merchants_reform }		
+		#NOT = { has_reform = trading_city }
+		#NOT = { has_reform = revolutionary_republic_reform }
+		NOT = { has_country_modifier = cu_estate_reshuffle }
+		NOT = {  cu_estate_preload_native = yes }
+		NOT = { has_reform = siberian_tribe }
+		OR = {
+		    is_nomad = no
+			has_reform = steppe_empire
+		}		
+	    OR = {
+			AND = {
+				NOT = { has_reform = celestial_empire }
+				NOT = { has_reform = celestial_empire_2 }
+			}
+			has_dlc = "Mandate of Heaven"
+			NOT = { has_country_flag = no_more_celestial }
+	    }
+		NOT = { 
+			AND = {
+				has_country_flag = revoke_burghers
+				has_reform = court_despotism
+			}
+		}
+		NOT = { 
+			AND = {
+				has_country_flag = revoke_all_estates
+				has_reform = parliament_reform
+			}
+		}		
+		check_variable = { which = ave_literacy value = 1.5 }
+	}
+	
+	
+
+	# These scale with loyalty & power
+	country_modifier_happy = {
+        #yearly_corruption = 0.1
+		max_absolutism = -5
+		yearly_absolutism = 0.2
+	}
+	country_modifier_neutral = {
+        #yearly_corruption = 0.2
+		max_absolutism = -10
+	}	
+	country_modifier_angry = {
+		trade_efficiency = -0.15
+        #yearly_corruption = 0.3
+		max_absolutism = -10
+		yearly_absolutism = -0.4
+	}
+	
+	
+	
+	# Influence modifiers
+	base_influence = 0	
+	influence_modifier = {
+		desc = EST_VAL_OTHER_ESTATE_IN_POWER
+		trigger = {
+			OR = {
+				has_disaster = estate_nobility_disaster
+				has_disaster = estate_church_disaster
+			}
+		}	
+		influence = -40
+	}
+	influence_modifier = {
+		desc = calc_estate
+		trigger = {
+			has_country_flag = useless_estates
+		}	
+		influence = -100
+	}
+	
+	
+	#Loyalty
+	loyalty_modifier = {
+		desc = EST_VAL_OTHER_ESTATE_IN_POWER_LOY
+		trigger = {
+			OR = {
+				has_disaster = estate_nobility_disaster
+				has_disaster = estate_church_disaster
+			}
+		}
+		loyalty = -20
+	}
+	
+	
+	#Custom Names
+	custom_name = {
+		desc = estate_bourgeoisie
+		trigger = {
+			culture_group = french
+		}
+	}
+	custom_name = {
+		desc = estate_shangbang
+		trigger = {
+			culture_group = east_asian
+		}
+	}
+	custom_name = {
+		desc = estate_merchant_guilds
+		trigger = {
+			NOT = { religion_group = christian } #Diversify a bit more.
+		}
+	}
+
+	privileges = {
+	}
+	
+	agendas = {
+	}
+	color = { 35 35 150 }
+	influence_from_dev_modifier = 2.0
+}
